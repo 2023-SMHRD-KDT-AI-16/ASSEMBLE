@@ -35,14 +35,14 @@
         	 <li><a href="${contextPath}/imageForm.do"><span class="glyphicon glyphicon-picture">프로필사진등록</span></a></li>
         	 <li><a href="${contextPath}/logout.do"><span class="glyphicon glyphicon-log-out">로그아웃</a></span> </li>
           	
-          	<c:if test="${mvo.memProfile eq ''}"> <!-- <c:if test="${empty mvo.memProfile}"> -->
+          	<c:if test="${mvo.memProfile eq ''}">
           	<li>
           		<img class="img-circle" src="${contextPath}/resources/images/person.png" style="width: 50px; height: 50px;">
           		${mvo.memName}님 Welcome.
           	</li>
           	</c:if>
           	
-          	<c:if test="${mvo.memProfile ne ''}"> <!-- <c:if test="${not empty mvo.memProfile}"> -->
+          	<c:if test="${mvo.memProfile ne ''}">
           	<li>
           		<img class="img-circle" src="${contextPath}/resources/upload/${mvo.memProfile}" style="width: 50px; height: 50px;">
           		${mvo.memName}님 Welcome.
