@@ -234,9 +234,9 @@ public class UserController {
 //	}
 
 	// 회원가입 페이지 이동 /joinForm.do
-	@GetMapping("/joinForm.do")
+	@GetMapping("/join.do")
 	public String joinForm() {
-		return "member/joinForm";
+		return "member/join";
 	}
 
 	// 회원가입기능 /join.do

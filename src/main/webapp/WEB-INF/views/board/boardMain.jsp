@@ -16,7 +16,7 @@
 
     <style>
       tbody tr:nth-child(odd) {
-        background-color: lightblue;
+        background-color: beige;
       }
     </style>
 
@@ -34,7 +34,7 @@
 				<thead>
 					<tr class = "warning">
 						<th>번호</th>
-						<th>제목</th>
+						<th style="width: 500px">제목</th>
 						<th>작성자</th>
 						<th>첨부파일</th>
 						<th>조회수</th>
@@ -47,7 +47,7 @@
 					<c:forEach var="vo" items="${list}">
 						<tr>
 							<td>${vo.b_idx}</td>
-							<td><a href="boardContent.do?idx=${vo.b_idx}"><c:out value="${vo.b_title}"></c:out></a></td>
+							<td><a href="boardContent.do?b_idx=${vo.b_idx}"><c:out value="${vo.b_title}"></c:out></a></td>
 							<td>${vo.user_nick}</td>
 							<td>${vo.b_file}</td>
 							<td>${vo.b_views}</td>

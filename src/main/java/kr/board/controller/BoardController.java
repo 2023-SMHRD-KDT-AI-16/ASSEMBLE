@@ -30,7 +30,7 @@ public class BoardController {
 //		return "board/boardMain";
 //	}
 	
-	@RequestMapping("boardList.do")
+	@GetMapping("boardList.do")
 	public String boardList(Model model) {
 				
 		List<Board> list = boardMapper.boardList();
@@ -39,10 +39,19 @@ public class BoardController {
 		
 		return "board/boardMain";
 	}
-
+	
+	@GetMapping("boardContent.do")
+	public String boardContent(@RequestParam("b_idx") int b_idx, Model model) {
+		// 조회수
+		//boardMapper.boardCount(b_idx);
+		Board vo = boardMapper.boardContent(b_idx);
+		model.addAttribute("vo",vo);
+		//System.out.println(vo.toString()); //=> 값이 잘 있난 확인
+		return "board/boardContent";
+		
+	} 
 	
 
-	
 }
 
 

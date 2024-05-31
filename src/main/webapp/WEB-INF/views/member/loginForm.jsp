@@ -65,6 +65,7 @@
                                             </div>
                                         </form>
                                     </div>
+                                    <hr>
                                     <div style="text-align: center;">
                                         <div class="small">
                                         	* 아직회원이 아니신가요?
