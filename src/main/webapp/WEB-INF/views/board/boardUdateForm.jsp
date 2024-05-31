@@ -26,9 +26,7 @@
 				
 				<tr>
 					<td>글번호</td>
-					<td>${vo.b_idx}</td>
-					<td>조회수</td>
-					<td>${vo.b_views}</td>				
+					<td>${vo.b_idx}</td>		
 				</tr>
 				
 				<tr>
@@ -40,6 +38,7 @@
 				
 				<tr>
 					<td>제목</td>
+					<input>
 					<td colspan="3" align="left">${vo.b_title}</td>
 				</tr>
 				

@@ -16,19 +16,19 @@
 
     <style>
       tbody tr:nth-child(odd) {
-        background-color: beige;
+        background-color: lightgray;
       }
     </style>
 
 
 
 </head>
-<body>
+<body class="nav-fixed">
 	<div class="container">
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	  <h2>게시판</h2>
-	  <div class="panel panel-primary">
-	    <div class="panel-heading">Board</div>
+	  <!--<div class="panel panel-primary">
+	    <div class="panel-heading">Board</div>  -->
 	    <div class="panel-body">
 			<table class="table table-hover">
 				<thead>
@@ -61,7 +61,7 @@
 	    
 	    </div>
 	    <div class="panel-footer">스프링 - 강성훈</div>
-	  </div>
+	  <!-- </div> -->
 	</div>
 	
 		<div id="myModal" class="modal fade" role="dialog">

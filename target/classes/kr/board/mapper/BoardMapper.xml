@@ -8,8 +8,8 @@
 	
 	<!-- memID 추가 -->
 	<insert id="boardInsert" parameterType="kr.board.entity.Board">
-		insert into board(memID,title,content,writer)
-		values(#{memID},#{title},#{content},#{writer})
+		insert into board_info(user_nick,b_title,b_content)
+		values(#{user_nick},#{b_title},#{b_content})
 	</insert>
 	
 	<select id="boardContent" parameterType="int" resultType="kr.board.entity.Board">
