@@ -13,7 +13,6 @@ create table board(
 );
 
 
-
 select * from user_info;
 
 -- 회원테이블 생성
@@ -50,13 +49,6 @@ delete from member;
 
 
 select * from power_info;
-
-
-
-
-
-
-
 
 
 
