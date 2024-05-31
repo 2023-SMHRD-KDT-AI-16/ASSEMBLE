@@ -1,4 +1,4 @@
-<%@page import="com.smhrd.entity.Board"%>
+<%@page import="kr.board.entity.Board"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,9 +13,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+    <style>
+      tbody tr:nth-child(odd) {
+        background-color: lightblue;
+      }
+    </style>
+
+
+
 </head>
 <body>
 	<div class="container">
+	<jsp:include page="../common/header.jsp"></jsp:include>
 	  <h2>게시판</h2>
 	  <div class="panel panel-primary">
 	    <div class="panel-heading">Board</div>
@@ -36,12 +46,12 @@
 					<!-- BoardController에서 받아온 게시판 리스트를 아래에 출력 -->
 					<c:forEach var="vo" items="${list}">
 						<tr>
-							<td>${vo.idx}</td>
-							<td><a href="boardContent.do?idx=${vo.idx}"><c:out value="${vo.title}"></c:out></a></td>
+							<td>${vo.b_idx}</td>
+							<td><a href="boardContent.do?idx=${vo.b_idx}"><c:out value="${vo.b_title}"></c:out></a></td>
 							<td>${vo.user_nick}</td>
 							<td>${vo.b_file}</td>
-							<td>${vo.count}</td>
-							<td>${fn:split(vo.indate, " ")[0]}</td>
+							<td>${vo.b_views}</td>
+							<td>${fn:split(vo.created_at, " ")[0]}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

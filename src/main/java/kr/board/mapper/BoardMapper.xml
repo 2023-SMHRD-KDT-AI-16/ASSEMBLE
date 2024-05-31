@@ -3,7 +3,7 @@
 <mapper namespace="kr.board.mapper.BoardMapper">
 
 	<select id="boardList" resultType="kr.board.entity.Board">
-		select * from board order by indate desc
+		select * from board_info order by created_at desc
 	</select>
 	
 	<!-- memID 추가 -->

@@ -25,10 +25,21 @@ public class BoardController {
 	@Autowired
 	private BoardMapper boardMapper;
 
-	@RequestMapping("/boardMain.do")
-	public String main() {
-		return "board/main";
+//	@RequestMapping("/boardMain.do")
+//	public String main() {
+//		return "board/boardMain";
+//	}
+	
+	@RequestMapping("boardList.do")
+	public String boardList(Model model) {
+				
+		List<Board> list = boardMapper.boardList();
+		
+		model.addAttribute("list",list); //model에다가 잠깐 값을 담아서 간다.
+		
+		return "board/boardMain";
 	}
+
 	
 
 	

@@ -17,6 +17,7 @@
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
         
+        
         <script type="text/javascript">
   
 		  	$(document).ready(function(){
@@ -31,7 +32,7 @@
 	   </script>
 	   
     </head>
-    <body class="bg-primary">
+    <body class="bg-primary" style="background-image: url('/controller/resources/images/logopa1.png'); background-repeat: no-repeat; background-size: cover;">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
