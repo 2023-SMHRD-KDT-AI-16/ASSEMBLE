@@ -19,7 +19,10 @@
     <link rel="icon" type="image/x-icon" href="resources/assets/img/favicon.png" />
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	
     <script type="text/javascript">
+    
 	  function goInsert(){
 		  // 제목, 내용, 작성자를 DB에 입력
 		  var fData = $("#insertF").serialize();
@@ -61,9 +64,9 @@
                 
 				<tr>
 					<td colspan="2" align="center">
-						<a class="btn btn-info btn-sm" href="boardMain.do">돌아가기</a>
+						<a class="btn btn-info btn-sm" href="board/boardMain.do">돌아가기</a>
 						<button type="reset" class="btn btn-success btn-sm" id="fclear">취소</button>
-						<button class="btn btn-sm btn-success" type="button" onclick="goInsert()">등록</button>
+						<button class="btn btn-sm btn-warning" type="button" onclick="goInsert()">등록</button>
 					</td>
 				</tr>
 			</table>
@@ -72,9 +75,9 @@
 	  </div>
 	</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script src="resources/js/scripts.js"></script>
     <script src="https://unpkg.com/easymde/dist/easymde.min.js" crossorigin="anonymous"></script>
-    <script src="js/markdown.js"></script>
+    <script src="resources/js/markdown.js"></script>
 
 	
 </body>
