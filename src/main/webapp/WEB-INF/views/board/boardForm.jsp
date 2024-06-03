@@ -57,6 +57,18 @@
 					<td>제목</td>
 					<td><input required="required" class="form-control" type="text" name="b_title" ></td>
 				</tr>
+				
+				<tr>
+				    <th scope="row">첨부파일</th>
+				    <td id="files" colspan="3">
+				    
+				        </td>
+				 </tr>
+				
+				
+				
+				
+				
 				<tr>
 					<td>내용</td>
                     <td class="card-body"><textarea id="postEditor" type="text" required="required" name="b_content"></textarea></td>
