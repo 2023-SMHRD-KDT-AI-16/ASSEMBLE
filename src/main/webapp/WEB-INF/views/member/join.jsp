@@ -260,7 +260,6 @@
     	  emailInput.value = fullEmail;
     	  document.getElementById('content').appendChild(emailInput);
 			
-    	  alert(emailInput);
     	  return true; // 폼을 정상적으로 제출
     	}
     
