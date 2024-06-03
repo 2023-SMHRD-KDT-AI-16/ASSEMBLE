@@ -26,7 +26,7 @@
   			}
   			$("#myMessage").modal("show");
   		}
-  		loadList();
+  		//loadList();
   	});
   
 	function loadList(){
