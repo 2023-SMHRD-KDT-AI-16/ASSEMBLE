@@ -37,6 +37,8 @@ public class User {
     
     // 회원 상태
     private String user_state;
+    //회원 탈퇴일자
+    private String user_leave_at;
 	
 }
 

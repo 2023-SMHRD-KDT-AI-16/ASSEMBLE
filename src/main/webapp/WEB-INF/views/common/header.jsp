@@ -18,12 +18,12 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="${contextPath}/">Home</a></li>
-        <li><a href="boardMain.do">게시판</a></li>
+        <li><a href="boardList.do">게시판</a></li>
       </ul>
       
       <c:if test="${empty mvo}">
      <ul class="nav navbar-nav navbar-right">
-             <li><a href="${contextPath}/joinForm.do"><span class="glyphicon glyphicon-user">회원가입</span></a></li>
+             <li><a href="${contextPath}/join.do"><span class="glyphicon glyphicon-user">회원가입</span></a></li>
         	 <li><a href="${contextPath}/loginForm.do"><span class="glyphicon glyphicon-log-in">로그인</span></a></li>
       </ul>
       </c:if>

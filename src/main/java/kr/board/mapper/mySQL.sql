@@ -14,6 +14,7 @@ create table board(
 
 
 select * from user_info;
+select * from board_info;
 
 -- 회원테이블 생성
 
@@ -29,6 +30,17 @@ create table member(
 	primary key(memIdx)
 );
 
+
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 01', 'b_content 01', 01, 'b_file 01', NOW(), 'user_id 01');
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 02', 'b_content 02', 02, 'b_file 02', NOW(), 'user_id 02');
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 03', 'b_content 03', 03, 'b_file 03', NOW(), 'user_id 03');
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 04', 'b_content 04', 04, 'b_file 04', NOW(), 'user_id 04');
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 05', 'b_content 05', 05, 'b_file 05', NOW(), 'user_id 05');
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 06', 'b_content 06', 06, 'b_file 06', NOW(), 'user_id 06');
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 07', 'b_content 07', 07, 'b_file 07', NOW(), 'user_id 07');
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 08', 'b_content 08', 08, 'b_file 08', NOW(), 'user_id 08');
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 09', 'b_content 09', 09, 'b_file 09', NOW(), 'user_id 09');
+INSERT INTO board_info (b_category, b_title, b_content, b_views, b_file, created_at, user_id) VALUES ('N', 'b_title 10', 'b_content 10', 10, 'b_file 10', NOW(), 'user_id 10');
 
 select * from member;
 

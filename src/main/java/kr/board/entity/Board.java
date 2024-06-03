@@ -11,13 +11,14 @@ import lombok.ToString;
 @ToString
 public class Board {
 
-	private int idx; // 번호
-	private String memID; // 아이디 -- 수정 시 필드 추가
-	private String title; // 제목
-	private String content; // 내용
-	private String writer; // 작성자
-	private String indate; // 작성일
-	private int count; // 조회수
+	private int b_idx; // 번호
+	private String b_category; // 공지사항 / 게시글
+	private String b_title; // 제목
+	private String b_content; // 내용
+	private String b_file; // 첨부파일
+	private String created_at; // 작성일
+	private String user_nick; // 작성자
+	private int b_views; // 조회수
 	
 	
 }

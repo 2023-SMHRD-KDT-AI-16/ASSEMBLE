@@ -17,6 +17,7 @@
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
         
+        
         <script type="text/javascript">
   
 		  	$(document).ready(function(){
@@ -32,7 +33,11 @@
 	   
 
     </head>
+<<<<<<< HEAD
     <body class="bg-primary" >
+=======
+    <body class="bg-primary" style="background-image: url('/controller/resources/images/logopa1.png'); background-repeat: no-repeat; background-size: cover;">
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE.git
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -65,6 +70,7 @@
                                             </div>
                                         </form>
                                     </div>
+                                    <hr>
                                     <div style="text-align: center;">
                                         <div class="small">
                                         	* 아직회원이 아니신가요?

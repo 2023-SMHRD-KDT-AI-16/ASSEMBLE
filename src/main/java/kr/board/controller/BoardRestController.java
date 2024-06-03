@@ -3,6 +3,7 @@ package kr.board.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,11 +33,15 @@ public class BoardRestController {
 //	}
 	
 	// 게시글 전체보기 /boardList.do
-	@GetMapping("/all") // 요청 url -> /board/all
-	public List<Board> boardList() {
-		List<Board> list = boardMapper.boardList();
-		return list;
-	}
+//	@GetMapping("boardList.do")   // 요청했을 때 해당 기능을 연결해주는것
+//	public String boardList(Model model) {
+//				
+//		List<Board> list = boardMapper.boardList();
+//		
+//		model.addAttribute("list",list); //model에다가 잠깐 값을 담아서 간다.
+//		
+//		return "board/boardMain"; // view name,  WEB-INF/views/boardList.jsp => view resolver가 해준다.
+//	}
 
 	// 게시글 등록 /boardInsert.do
 	@PostMapping("/new")
