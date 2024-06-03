@@ -51,6 +51,10 @@ public class BoardController {
 		
 	} 
 	
+	@GetMapping("boardForm.do")
+	public String boardForm() {
+		return "board/boardForm";
+	}
 
 }
 
