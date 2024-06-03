@@ -23,6 +23,12 @@ public interface UserMapper {
 
 	public void profileUpdate(User vo);
 
+	public User idCheck(String user_id);
+
+	public User nickCheck(String user_nick);
+
+	public User checkEmail(String email);
+
 
 }
 

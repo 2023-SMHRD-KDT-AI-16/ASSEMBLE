@@ -5,13 +5,14 @@
 	<!--  <select id="registerCheck" parameterType="String" resultType="kr.board.entity.User">
 		select * from member where memID = #{memID}
 	</select>
+	-->
 	
 	<insert id="join" parameterType="kr.board.entity.User">
-		insert into member(memID, memPassword, memName, memAge, 
-		memGender, memEmail, memProfile)
-		values(#{memID}, #{memPassword}, #{memName}, #{memAge}, 
-		#{memGender}, #{memEmail}, #{memProfile})
-	</insert> -->
+		insert into user_info(user_id, user_pw, user_nick, user_email, 
+		user_phone, user_type)
+		values(#{user_id}, #{user_pw}, #{user_nick}, #{user_email}, 
+		#{user_phone}, #{user_type})
+	</insert> 
 	
 	<select id="login" parameterType="kr.board.entity.User" resultType="kr.board.entity.User">
 		select * from user_info where user_id=#{user_id} and user_pw=#{user_pw}
@@ -31,9 +32,19 @@
 		update member set memProfile = #{memProfile}
 		where memID = #{memID}
 	</update>
+		
+	<select id="idCheck" parameterType="String" resultType="kr.board.entity.User">
+		select * from user_info where user_id=#{user_id}
+	</select>	
 	
+	<select id="nickCheck" parameterType="String" resultType="kr.board.entity.User">
+		select * from user_info where user_nick=#{user_nick}
+	</select>
 	
-
+	<select id="checkEmail" parameterType="String" resultType="kr.board.entity.User">
+		select * from user_info where user_email=#{user_email}
+	</select>
+	
 </mapper>
 
 

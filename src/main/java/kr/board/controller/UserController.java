@@ -2,6 +2,7 @@ package kr.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -237,51 +238,67 @@ public class UserController {
 	@GetMapping("/join.do")
 	public String joinForm() {
 		return "member/join";
+	}		
+	
+	@GetMapping("/idCheck.do")
+	public @ResponseBody int idCheck(@RequestParam("user_id") String user_id) {
+		
+		User mvo = userMapper.idCheck(user_id);
+		
+		int num=0;		
+		if(mvo==null) {
+			num=1;
+		}		
+		return num;
 	}
+	
+	
+	@GetMapping("/nickCheck.do")
+	public @ResponseBody int nickCheck(@RequestParam("nickName") String user_nick) {		
+		
+		User mvo = userMapper.nickCheck(user_nick);
+		
+		int num=0;		
+		if(mvo==null) {
+			num=1;
+		}		
+		return num;
+	}
+	
+	@GetMapping("/checkEmail.do")
+	public @ResponseBody int checkEmail(@RequestParam("email") String email) {		
+		
+		User mvo = userMapper.checkEmail(email);
+		
+		int num=0;		
+		if(mvo==null) {
+			num=1;
+		}		
+		return num;
+	}
+		
+		
+	
+	@PostMapping("/join.do")
+	  public String join(User m,HttpSession session, RedirectAttributes rttr) {		
+			
+			int cnt = userMapper.join(m);
 
-	// 회원가입기능 /join.do
-//	@PostMapping("/join.do")
-//	public String join(Member m, HttpSession session, RedirectAttributes rttr) {
-//		
-//		// System.out.println(m.toString());
-//		
-//		// RedirectAttributes
-//		// - Redirect 방식으로 페이지를 이동할때 전달할 데이터가 있는데
-//		// Request에 담자니 데이터가 사라지고 Session에 담자니 뭔가 너무 아깝고 할때
-//		// 딱 한번만 데이터를 저장해서 뿌려주는 저장소(객체)
-//		//    name값이 틀림(못받아온 것)   input값은 있지만 아무것도 안쓴 경우       
-//		if (m.getMemID() == null || m.getMemID().equals("") || m.getMemPassword() == null
-//				|| m.getMemPassword().equals("") || m.getMemName() == null || m.getMemName().equals("")
-//				|| m.getMemAge() == 0 || m.getMemEmail() == null || m.getMemEmail().equals("")) {
-//
-//			rttr.addFlashAttribute("msgType", "실패 메세지");
-//			rttr.addFlashAttribute("msg", "모든 내용을 입력하세요.");
-//
-//			// 회원가입이 불가능한 상황 (미입력 데이터 존재)
-//			return "redirect:/joinForm.do";
-//		} else {
-//			// 회원가입이 가능한 상황
-//			// 프로필 파일 이름 빈문자열로 바꿔주기
-//			m.setMemProfile("");
-//			int cnt = memberMapper.join(m);
-//
-//			if (cnt == 1) {
-//				// 회원가입 성공
-//				rttr.addFlashAttribute("msgType", "성공 메세지");
-//				rttr.addFlashAttribute("msg", "회원가입에 성공했습니다.");
-//				// 회원가입 성공하면 로그인이 된 채로 main 페이지로 갈 거임
-//				session.setAttribute("mvo", m); // 게시판 정보는 model에 담았는데 왜? -> request영역 게시판 전체보기했을 때만 필요 다른 페이지에서 게시글 필요 없음
-//				return "redirect:/";
-//			} else {
-//				// 회원가입 실패
-//				rttr.addFlashAttribute("msgType", "실패 메세지");
-//				rttr.addFlashAttribute("msg", "회원가입에 실패했습니다.");
-//
-//				return "redirect:/joinForm.do";
-//			}
-//
-//		}
-//
-//	}
+			if (cnt == 1) {
+				rttr.addFlashAttribute("msgType", "성공 메세지");
+				rttr.addFlashAttribute("msg", "회원가입에 성공했습니다.");
+				// 회원가입 성공하면 로그인이 된 채로 main 페이지로 갈 거임
+				session.setAttribute("mvo", m); 
+				return "redirect:/";
+			} else {
+				// 회원가입 실패
+				rttr.addFlashAttribute("msgType", "실패 메세지");
+				rttr.addFlashAttribute("msg", "회원가입에 실패했습니다.");
+
+				return "redirect:/joinForm.do";
+			}
+		}
+
+	
 
 }
