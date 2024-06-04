@@ -32,12 +32,7 @@
 	   </script>
 	   
 
-    </head>
-<<<<<<< HEAD
-    <body class="bg-primary" >
-=======
     <body class="bg-primary" style="background-image: url('/controller/resources/images/logopa1.png'); background-repeat: no-repeat; background-size: cover;">
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE.git
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
