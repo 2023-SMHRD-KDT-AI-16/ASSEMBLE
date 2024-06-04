@@ -30,7 +30,7 @@
 	  <!--<div class="panel panel-primary">
 	    <div class="panel-heading">Board</div>  -->
 	    <div class="panel-body">
-			<table class="table table-hover">
+			<table class="table">
 				<thead>
 					<tr class = "warning">
 						<th>번호</th>
