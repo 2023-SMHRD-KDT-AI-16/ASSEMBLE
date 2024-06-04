@@ -63,6 +63,18 @@
 					<td>제목</td>
 					<td><input required="required" class="form-control" type="text" name="b_title" ></td>
 				</tr>
+				
+				<tr>
+				    <th scope="row">첨부파일</th>
+				    <td id="files" colspan="3">
+				    
+				        </td>
+				 </tr>
+				
+				
+				
+				
+				
 				<tr>
 					<td>내용</td>
                     <td class="card-body"><textarea id="postEditor" type="text" required="required" name="b_content"></textarea></td>
@@ -70,7 +82,7 @@
                 
 				<tr>
 					<td colspan="2" align="center">
-						<a class="btn btn-info btn-sm" href="board/boardMain.do">돌아가기</a>
+						<a class="btn btn-info btn-sm" href="board/boardMain">돌아가기</a>
 						<button type="reset" class="btn btn-success btn-sm" id="fclear" onclick="reload()">취소</button>
 						<button class="btn btn-sm btn-warning" type="button" onclick="goInsert()">등록</button>
 					</td>
