@@ -25,12 +25,12 @@
 	</update>
 	
 	<select id="getMember" resultType="kr.board.entity.User">
-		select * from member where memID = #{memID}
+		select * from user_info where user_id = #{user_id}
 	</select>
 	
 	<update id="profileUpdate" parameterType="kr.board.entity.User">
-		update member set memProfile = #{memProfile}
-		where memID = #{memID}
+		update user_info set user_profile = #{user_profile}
+		where user_id = #{user_id}
 	</update>
 		
 	<select id="idCheck" parameterType="String" resultType="kr.board.entity.User">
@@ -44,6 +44,8 @@
 	<select id="checkEmail" parameterType="String" resultType="kr.board.entity.User">
 		select * from user_info where user_email=#{user_email}
 	</select>
+	
+	
 	
 </mapper>
 

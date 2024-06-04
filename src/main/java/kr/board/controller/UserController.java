@@ -2,7 +2,11 @@ package kr.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -180,7 +186,7 @@ public class UserController {
 	// 로그인 기능 /login.do
 	@PostMapping("/login.do")
 	public String login(User m, RedirectAttributes rttr, HttpSession session) {
-		System.out.println("여기 입력값"+m);
+		System.out.println("여기 입력값" + m);
 		// 문제
 		// 로그인 기능 구현
 		// 입력한 아이디와 비밀번호 일치하는 회원을 검색하여
@@ -188,9 +194,9 @@ public class UserController {
 		// - session에 mvo이름으로 회원의 정보를 저장 index.jsp에서 "로그인에 성공했습니다." 모달창
 		// 로그인 실패 시
 		// - loginForm.jsp로 이동 후 "아이디와 비밀번호를 다시 입력해주세요." 모달창
-		
+
 		User mvo = userMapper.login(m);
-		System.out.println("여기 db에서 나온거"+mvo);
+		System.out.println("여기 db에서 나온거" + mvo);
 		if (mvo == null) {
 			// 로그인 실패
 			rttr.addFlashAttribute("msgType", "실패 메세지");
@@ -238,67 +244,135 @@ public class UserController {
 	@GetMapping("/join.do")
 	public String joinForm() {
 		return "member/join";
-	}		
-	
+	}
+
 	@GetMapping("/idCheck.do")
 	public @ResponseBody int idCheck(@RequestParam("user_id") String user_id) {
-		
+
 		User mvo = userMapper.idCheck(user_id);
-		
-		int num=0;		
-		if(mvo==null) {
-			num=1;
-		}		
+
+		int num = 0;
+		if (mvo == null) {
+			num = 1;
+		}
 		return num;
 	}
-	
-	
+
 	@GetMapping("/nickCheck.do")
-	public @ResponseBody int nickCheck(@RequestParam("nickName") String user_nick) {		
-		
+	public @ResponseBody int nickCheck(@RequestParam("nickName") String user_nick) {
+
 		User mvo = userMapper.nickCheck(user_nick);
-		
-		int num=0;		
-		if(mvo==null) {
-			num=1;
-		}		
+
+		int num = 0;
+		if (mvo == null) {
+			num = 1;
+		}
 		return num;
 	}
-	
+
 	@GetMapping("/checkEmail.do")
-	public @ResponseBody int checkEmail(@RequestParam("email") String email) {		
-		
+	public @ResponseBody int checkEmail(@RequestParam("email") String email) {
+
 		User mvo = userMapper.checkEmail(email);
-		
-		int num=0;		
-		if(mvo==null) {
-			num=1;
-		}		
+
+		int num = 0;
+		if (mvo == null) {
+			num = 1;
+		}
 		return num;
 	}
-		
-		
-	
+
+	// 회원가입
 	@PostMapping("/join.do")
-	  public String join(User m,HttpSession session, RedirectAttributes rttr) {		
+	public String join(User m, HttpSession session, RedirectAttributes rttr) {
+
+		int cnt = userMapper.join(m);
+
+		if (cnt == 1) {
+			rttr.addFlashAttribute("msgType", "성공 메세지");
+			rttr.addFlashAttribute("msg", "회원가입에 성공했습니다.");
+			// 회원가입 성공하면 로그인이 된 채로 main 페이지로 갈 거임
+			session.setAttribute("mvo", m);
+			return "redirect:/";
+		} else {
+			// 회원가입 실패
+			rttr.addFlashAttribute("msgType", "실패 메세지");
+			rttr.addFlashAttribute("msg", "회원가입에 실패했습니다.");
+
+			return "redirect:/joinForm.do";
+		}
+	}
+
+	// 마이 페이지 이동 /updateMain.do
+	@GetMapping("/updateMain.do")
+	public String updateMain() {
+		return "member/updateMain";
+	}
+
+	
+	// 이미지파일 받기 백업
+		@PostMapping("/profileUpdate.do")
+		public String profileUpdate(@RequestParam("user_profile") MultipartFile file, RedirectAttributes rttr,HttpSession session,HttpServletRequest req) {
 			
-			int cnt = userMapper.join(m);
+			String fileRealName = file.getOriginalFilename(); // 파일명을 얻어냄
+			long size = file.getSize(); // 파일 사이즈
+			
+			// 확장자
+			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+			
+			String uploadDir = "/resources/upload"; // 가상의 업로드 경로
+			String uploadFolder = session.getServletContext().getRealPath(uploadDir);			
+			
+			boolean extResult = fileExtension.equals(".JPG") || fileExtension.equals(".PNG") || fileExtension.equals(".GIF")||fileExtension.equals(".jpg") || fileExtension.equals(".png") || fileExtension.equals(".gif")|| fileExtension.equals(".jpeg")|| fileExtension.equals(".JPEG");
+			
+			if (!extResult) {
+	                rttr.addFlashAttribute("msgType", "실패 메세지");
+	                rttr.addFlashAttribute("msg", "이미지 파일만 가능합니다 (PNG, JPG, GIF)");
+	                return "redirect:/updateMain.do";
+	        }
 
-			if (cnt == 1) {
-				rttr.addFlashAttribute("msgType", "성공 메세지");
-				rttr.addFlashAttribute("msg", "회원가입에 성공했습니다.");
-				// 회원가입 성공하면 로그인이 된 채로 main 페이지로 갈 거임
-				session.setAttribute("mvo", m); 
-				return "redirect:/";
-			} else {
-				// 회원가입 실패
-				rttr.addFlashAttribute("msgType", "실패 메세지");
-				rttr.addFlashAttribute("msg", "회원가입에 실패했습니다.");
-
-				return "redirect:/joinForm.do";
+			
+			// 기존 파일 지우기
+			User vo = (User)session.getAttribute("mvo");
+			String oldImg= userMapper.getMember(vo.getUser_id()).getUser_profile();
+			
+			 // 기존 파일			
+			if(oldImg!=null) {
+				File oldFile = new File(uploadFolder+"/"+oldImg);
+				oldFile.delete();
 			}
+
+			
+			UUID uuid = UUID.randomUUID();
+			String[] uuids = uuid.toString().split("-");
+			String uniqueName = uuids[0];
+			
+			File saveFile = new File(uploadFolder+"\\"+uniqueName + fileRealName);
+			
+			try {
+				file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			// uuid 설정된 파일
+			String newFileName =  uniqueName + fileRealName;
+			vo.setUser_profile(newFileName);
+			
+			// db 에 업로드
+			userMapper.profileUpdate(vo);
+			
+			// 세션에 셋팅
+			session.setAttribute("mvo",vo);
+			
+			
+			return "redirect:/updateMain.do";
+					
+			
 		}
 
-	
-
+		
+		
 }

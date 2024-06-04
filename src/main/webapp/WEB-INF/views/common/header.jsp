@@ -5,7 +5,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" >
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -30,16 +30,18 @@
       
       <c:if test="${not empty mvo}">
       <ul class="nav navbar-nav navbar-right">
-             <li><a href="${contextPath}/updateForm.do">
+             <li><a href="${contextPath}/updateMain.do">
              <span class="glyphicon glyphicon-wrench">회원정보수정</span></a></li>
-        	 <li><a href="${contextPath}/imageForm.do"><span class="glyphicon glyphicon-picture">프로필사진등록</span></a></li>
         	 <li><a href="${contextPath}/logout.do"><span class="glyphicon glyphicon-log-out">로그아웃</a></span> </li>
           	
           	
           	<li>
-          		<img class="img-circle" src="${contextPath}/resources/images/person.png" style="width: 50px; height: 50px;">
-          		${mvo.user_nick}님 Welcome.
+          		<img class="img-circle " src="${contextPath}/resources/images/person.png" style="width: 40px; height: 40px; margin:5px;">
           	</li>
+          	<li>
+          		<a style="color:black;"><span>${mvo.user_nick}님</span></a>
+          	</li>
+          	
           
       </ul>
       </c:if>
