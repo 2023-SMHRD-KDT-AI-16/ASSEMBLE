@@ -39,6 +39,9 @@
 </head>
 
 <body>
+
+
+<form id="content" action="join.do" method="post" onsubmit="return modifyEmailAndSubmit()">
   <div class="container">
     <div class="input-form-background row">
       <div class="input-form col-md-12 mx-auto">
@@ -49,9 +52,9 @@
             <div class="col-md-6 mb-3">
               <label for="username">아이디</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="username" placeholder="아이디를 입력해주세요" required>
+                <input type="text" class="form-control" id="username" placeholder="아이디를 입력해주세요" name="user_id" required>
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-sm btn-primary" onclick="checkDuplicate('username')">중복확인</button>
+                  <button type="button" class="btn btn-sm btn-primary" onclick="checkDuplicate()">중복확인</button>
                 </div>
                 <div class="invalid-feedback">
                   아이디를 입력해주세요.
@@ -61,9 +64,9 @@
             <div class="col-md-6 mb-3">
               <label for="nickname">닉네임</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력해주세요" required>
+                <input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력해주세요" name="user_nick" required>
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-sm btn-primary" onclick="checkDuplicate('nickname')">중복확인</button>
+                  <button type="button" class="btn btn-sm btn-primary" onclick="checkNickDuplicate()">중복확인</button>
                 </div>
                 <div class="invalid-feedback">
                   닉네임을 입력해주세요.
@@ -74,7 +77,15 @@
 
           <div class="mb-3">
             <label for="password">비밀번호</label>
-            <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해주세요" required>
+            <input type="password" class="form-control" id="password1" placeholder="비밀번호를 입력해주세요" name="user_pw" required>
+            <div class="invalid-feedback">
+              비밀번호를 입력해주세요.
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="password">비밀번호 확인</label><p id="passwordMatchMessage"></p>
+            <input type="password" class="form-control" id="password2" placeholder="비밀번호를 입력해주세요" required>
             <div class="invalid-feedback">
               비밀번호를 입력해주세요.
             </div>
@@ -82,29 +93,30 @@
 
           <div class="mb-3">
             <label for="phone">휴대폰</label>
-            <input type="text" class="form-control" id="phone" placeholder="010-1234-1234" required>
+            <input type="tel" class="form-control" id="phone" placeholder="010-1234-1234" name="user_phone" required>
             <div class="invalid-feedback">
               휴대폰 번호를 입력해주세요.
             </div>
           </div>
 
           <div class="row mb-3">
-            <div class="col-md-5">
-              <label for="email1">이메일</label>
+            <div class="col-md-5">              
               <input type="text" class="form-control" id="email1" placeholder="이메일" required>
               <div class="invalid-feedback">
                 이메일을 입력해주세요.
               </div>
             </div>
-            <div class="col-md-5">
-              <label for="email2">이메일</label>
+            <div class="col-md-1" style="line-height: 2.3em;">
+              @              
+              </div>
+            <div class="col-md-4">
               <input type="text" class="form-control" id="email2" placeholder="이메일" required>
               <div class="invalid-feedback">
                 이메일
               </div>
             </div>
             <div class="col-md-2 d-flex align-items-end">
-              <button type="button" class="btn btn-sm btn-primary w-100" onclick="checkDuplicate('email')">중복확인</button>
+              <button type="button" class="btn btn-sm btn-primary w-100" onclick="checkEmail()">중복확인</button>
             </div>
           </div>
 
@@ -112,91 +124,27 @@
             <label>발전소를 보유하고 계십니까?</label>
             <div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="powerPlant" id="powerPlantYes" value="yes">
+                <input class="form-check-input" type="radio" name="user_type" id="powerPlantYes" value="plant">
                 <label class="form-check-label" for="powerPlantYes">네</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="powerPlant" id="powerPlantNo" value="no">
+                <input class="form-check-input" type="radio" name="user_type" id="powerPlantNo" value="normal" checked>
                 <label class="form-check-label" for="powerPlantNo">아니요</label>
               </div>
             </div>
           </div>
 
-          <div class="separator"></div>
 
-          <h5 class="mb-3">발전소 정보</h5>
-          <div class="mb-3">
-            <label for="powerStationName">발전소 명</label>
-            <input type="text" class="form-control" id="powerStationName" placeholder="발전소 명을 입력하세요" required>
-            <div class="invalid-feedback">
-              발전소 명을 입력해주세요.
-            </div>
-          </div>
-
-           <div class="mb-3">
-            <label for="powerStationAddress">주소</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="powerStationAddress" placeholder="주소를 입력하세요" required>
-              <div class="input-group-append">
-                <button type="button" class="btn btn-sm btn-primary">검색</button>
-              </div>
-              <div class="invalid-feedback">
-                주소를 입력해주세요.
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="powerStationPhone">전화번호</label>
-            <input type="text" class="form-control" id="powerStationPhone" placeholder="전화번호를 입력하세요" required>
-            <div class="invalid-feedback">
-              전화번호를 입력해주세요.
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="area">면적</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="area" placeholder="면적을 입력하세요" required>
-              <div class="input-group-append">
-                <span class="input-group-text">㎡</span>
-              </div>
-              <div class="invalid-feedback">
-                면적을 입력해주세요.
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="capacity">용량</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="capacity" placeholder="용량을 입력하세요" required>
-              <div class="input-group-append">
-                <span class="input-group-text">kW</span>
-              </div>
-              <div class="invalid-feedback">
-                용량을 입력해주세요.
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="image">이미지</label>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="image" required>
-              <label class="custom-file-label" for="image">파일을 선택하세요</label>
-              <div class="invalid-feedback">
-                이미지를 업로드해주세요.
-              </div>
-            </div>
-          </div>
 
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" >가입 완료</button>
           <button class="btn btn-secondary btn-lg btn-block" type="reset">취소</button>
         </form>
       </div>
     </div>
+    
+    </form>
+    
     <footer class="my-3 text-center text-small">
       <p class="mb-1">&copy; 2024 The Sun</p>
     </footer>
@@ -207,26 +155,115 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <!-- 폼 유효성 검사 -->
   <script>
-    window.addEventListener('load', () => {
-      const forms = document.getElementsByClassName('validation-form');
-
-      Array.prototype.filter.call(forms, (form) => {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-
+    
     function checkDuplicate(field) {
-      // 이 함수는 중복 확인 기능을 수행합니다.
-      // 예: 서버에 AJAX 요청을 보내고, 결과에 따라 적절한 동작을 수행합니다.
-      alert(field + " 중복 확인 기능을 구현하세요.");
+      
+    	// 아이디 중복체크
+		var user_id = $("#username").val();
+		
+				$.ajax({
+					url : "idCheck.do",
+					type : "get",
+					data : {
+						"user_id" : user_id
+					},
+					success : function(data) {
+						
+						if (data != 1) {
+							alert("사용할 수 없는 아이디 입니다.다른 아이디를 입력해 주세요.");
+						} else {
+							alert("사용할 수 있는 아이디 입니다.");
+						}
+					},
+					error : function() {
+						alert("error");
+					}
+				})
     }
+    
+    
+    function checkNickDuplicate() {
+        
+    	// 아이디 중복체크
+		var nickName = $("#nickname").val();
+		
+				$.ajax({
+					url : "nickCheck.do",
+					type : "get",
+					data : {
+						"nickName" : nickName
+					},
+					success : function(data) {
+						
+						if (data != 1) {
+							alert("사용할 수 없는 닉네임 입니다.다른 닉네임을 입력해 주세요.");
+						} else {
+							alert("사용할 수 있는 닉네임 입니다.");
+						}
+					},
+					error : function() {
+						alert("error");
+					}
+				})
+    }
+    
+    $('#password1, #password2').on('keyup', function() {
+        // 입력된 비밀번호 값 가져오기
+        var password1 = $('#password1').val();
+        var password2 = $('#password2').val();
+        
+        // 비밀번호가 일치하는지 확인하여 메시지 출력
+        if(password1 === password2) {
+            $('#passwordMatchMessage').text('비밀번호가 일치합니다.').css('color', 'green');
+        } else {
+            $('#passwordMatchMessage').text('비밀번호가 일치하지 않습니다.').css('color', 'red');
+        }
+    });
+    
+    
+    function checkEmail() {
+        
+    	// 아이디 중복체크
+		var email = $("#email1").val()+"@"+ $("#email2").val();
+    	
+				$.ajax({
+					url : "checkEmail.do",
+					type : "get",
+					data : {
+						"email" : email
+					},
+					success : function(data) {
+						
+						if (data != 1) {
+							alert("사용할 수 없는 이메일 입니다.다른 이메일를 입력해 주세요.");
+						} else {
+							alert("사용할 수 있는 이메일 입니다.");
+						}
+					},
+					error : function() {
+						alert("error");
+					}
+				})
+    }
+    
+    
+    function modifyEmailAndSubmit() {
+    	  // 이메일 입력 필드 값 가져오기
+    	  var email1 = document.getElementById('email1').value;
+    	  var email2 = document.getElementById('email2').value;
+    	  var fullEmail = email1 + '@' + email2;
+
+    	  // 숨겨진 입력 필드에 이메일 설정
+    	  var emailInput = document.createElement('input');
+    	  emailInput.type = 'hidden';
+    	  emailInput.name = 'user_email';
+    	  emailInput.value = fullEmail;
+    	  document.getElementById('content').appendChild(emailInput);
+			
+    	  return true; // 폼을 정상적으로 제출
+    	}
+    
+    
   </script>
 </body>
 
