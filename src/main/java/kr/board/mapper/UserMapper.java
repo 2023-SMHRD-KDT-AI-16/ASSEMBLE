@@ -19,7 +19,7 @@ public interface UserMapper {
 
 	public int update(User m);
 
-	public User getMember(String memID);
+	public User getMember(String user_id);
 
 	public void profileUpdate(User vo);
 

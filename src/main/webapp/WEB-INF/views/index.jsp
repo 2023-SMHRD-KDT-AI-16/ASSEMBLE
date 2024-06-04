@@ -124,7 +124,7 @@
 	<jsp:include page="common/header.jsp"></jsp:include>
 	
 	
-  <h3>Spring MVC03</h3>
+
   
   <div class="panel panel-default">
 	  <div>           <!-- 상대경로 -->                                 <!-- 꽉채우기 -->   <!-- 높이 -->
