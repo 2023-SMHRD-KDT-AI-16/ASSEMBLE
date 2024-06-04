@@ -82,7 +82,7 @@
                 
 				<tr>
 					<td colspan="2" align="center">
-						<a class="btn btn-info btn-sm" href="board/boardMain.do">돌아가기</a>
+						<a class="btn btn-info btn-sm" href="board/boardMain">돌아가기</a>
 						<button type="reset" class="btn btn-success btn-sm" id="fclear" onclick="reload()">취소</button>
 						<button class="btn btn-sm btn-warning" type="button" onclick="goInsert()">등록</button>
 					</td>
