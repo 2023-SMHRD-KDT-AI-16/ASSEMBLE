@@ -65,14 +65,13 @@
 
 							<c:choose>
 								<c:when test="${not empty mvo.user_profile }">
-									<img class="img-circle "
-										src="${contextPath}/resources/upload/${mvo.user_profile }"
-										style="width: 200px; , height: 200px;">
+									<img class="img-circle " src="<%=request.getContextPath() %>/resources/upload/${mvo.user_profile }"
+										style="width: 300px; , height: 300px;border-radius:50%;">									
 								</c:when>
 								<c:otherwise>
 									<img class="img-circle " id="imagePreview"
 										src="${contextPath}/resources/images/person.png"
-										style="width: 200px; , height: 200px;">
+										style="width: 300px; , height: 300px;">
 								</c:otherwise>
 							</c:choose>
 							
