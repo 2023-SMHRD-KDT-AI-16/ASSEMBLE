@@ -106,16 +106,28 @@
 }
 
 .embed-img{
-  width: 100%;
-  height: 128px;
-  object-position: center;
-  object-fit: cover;
-  border-radius: 8px;
+    width: 100%;
+    height: 128px;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 8px;
+    position: relative;
 }
-.embed-img:hover{
-	opacity: 50%;
-}  
-    
+.embed-img:hover .delete-button {
+            display: block;
+}
+.delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+     display: none;
+     background-color: red;
+     color: white;
+     border: none;
+     padding: 5px;
+     cursor: pointer;
+}
+ 
     </style>
 </head>
 <body>
@@ -140,11 +152,36 @@
 					      <div class="inner" id="inner">드래그하거나 클릭해서 업로드</div>
 					   </label>
 					   <input id="input" class="input" accept="image/*" type="file" required="true" multiple="true" hidden="true">
-					   <p class="preview-title">preview</p>
-					   <div class="preview" id="preview"></div>.
+					   <button class="delete-button" type="reset" class="btn btn-success btn-sm">삭제</button>
+					   <p class="preview-title">미리보기</p>
+					   <div class="preview" id="preview"></div>
 					<td>
 				</tr>
 		
+									
+				<tr>
+					<td>내용</td>
+                    <td class="card-body"><textarea id="postEditor" type="text" required="required" name="b_content"></textarea></td>
+                </tr>
+                
+				<tr>
+					<td colspan="2" align="center">
+						<a class="btn btn-info btn-sm" href="board/boardList.do">돌아가기</a>
+						<button type="reset" class="btn btn-success btn-sm" id="fclear">취소</button>
+						<button class="btn btn-sm btn-warning" type="button" onclick="goInsert()">등록</button>
+					</td>
+				</tr>
+			</table>
+			</form>	    	    
+	    </div>
+	  </div>
+	</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="resources/js/scripts.js"></script>
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js" crossorigin="anonymous"></script>
+    <script src="resources/js/markdown.js"></script>
+
+	
 		<script>
 		   var input = document.getElementById("input");
 		   var initLabel = document.getElementById("label");
@@ -212,6 +249,13 @@
 		               className: "embed-img",
 		               src: event.target?.result,
 		            });
+		            
+                    const deleteButton = el("button", {
+                        className: "delete-button",
+                        innerHTML: "삭제",
+                        onclick: () => imgContainer.remove()
+                    });
+		            
 		            const imgContainer = el("div", { className: "container-img" }, img);
 		            preview.append(imgContainer);
 		         });
@@ -252,29 +296,5 @@
 		      return node;
 		   }
 		</script>
-									
-				<tr>
-					<td>내용</td>
-                    <td class="card-body"><textarea id="postEditor" type="text" required="required" name="b_content"></textarea></td>
-                </tr>
-                
-				<tr>
-					<td colspan="2" align="center">
-						<a class="btn btn-info btn-sm" href="board/boardList.do">돌아가기</a>
-						<button type="reset" class="btn btn-success btn-sm" id="fclear">취소</button>
-						<button class="btn btn-sm btn-warning" type="button" onclick="goInsert()">등록</button>
-					</td>
-				</tr>
-			</table>
-			</form>	    	    
-	    </div>
-	  </div>
-	</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="resources/js/scripts.js"></script>
-    <script src="https://unpkg.com/easymde/dist/easymde.min.js" crossorigin="anonymous"></script>
-    <script src="resources/js/markdown.js"></script>
-
-	
 </body>
 </html>
