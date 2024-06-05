@@ -37,7 +37,16 @@
   		 reader.readAsDataURL(obj.files[0]); // 파일 읽기 시작
   	}
   	
-
+  	function validateForm() {
+  	    var fileInput = document.getElementById('user_profile');
+  	    if (fileInput.files.length === 0) {
+  	        alert('파일을 선택해주세요.');
+  	        return false;
+  	    }
+  	    return true;
+  	}
+  	
+  	
 </script>
 </head>
 <body>
@@ -57,7 +66,7 @@
 				<div id="home" class="tab-pane fade in active ">
 
 					<form action="profileUpdate.do" method="post"
-						enctype="multipart/form-data">
+						enctype="multipart/form-data" onsubmit="return validateForm()">
 
 						<h3 align="center">프로필사진 등록 및 변경</h3>
 
@@ -65,10 +74,10 @@
 
 							<c:choose>
 								<c:when test="${not empty mvo.user_profile }">
-									<img class="img-circle " src="<%=request.getContextPath() %>/resources/upload/${mvo.user_profile }"
-										style="width: 300px; , height: 300px;border-radius:50%;">									
+									<img class="img-circle " src="${pageContext.request.contextPath}/resources/upload/${mvo.user_profile }"
+										style="width: 300px; , height: 300px;border-radius:50%;">																			
 								</c:when>
-								<c:otherwise>
+								<c:otherwise>  
 									<img class="img-circle " id="imagePreview"
 										src="${contextPath}/resources/images/person.png"
 										style="width: 300px; , height: 300px;">
@@ -78,7 +87,7 @@
 						</div>
 
 						<input type="file" class="form-control" id="user_profile"
-							name="user_profile" onchange="chooseImage(this)"> <br>
+							name="user_profile" onchange="chooseImage(this)" required> <br>
 
 						<div class="text-center">
 							<button class="btn btn-primary" type="submit">등록</button>

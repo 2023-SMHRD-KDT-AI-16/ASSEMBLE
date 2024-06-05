@@ -23,6 +23,7 @@
 	
 	<!-- 해당되는 패키지에서 Controller(POJO)를 찾겠다 -->
 	<context:component-scan base-package="kr.board.controller" />
+	<context:component-scan base-package="kr.board.service" />
 
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">      
       <beans:property name="maxUploadSize" value="10485760" />
