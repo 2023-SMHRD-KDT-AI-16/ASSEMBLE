@@ -25,6 +25,8 @@
     
 	  function goInsert(){
 		  // 제목, 내용, 작성자를 DB에 입력
+		  var postEditor = document.getElementById("postEditor").value;
+          console.log(postEditor);
 		  var fData = $("#insertF").serialize();
 		  console.log(fData);
 		  
@@ -40,17 +42,97 @@
 		  
 	  }
 	  
-	  function reload(){
-			location.reload(); // 성공 시 페이지 새로고침
-		  
-	  }
+	 /*  function reload(){
+			location.reload(); // 성공 시 페이지 새로고침} */
 	  
-    
     </script>
+    
+    <style type="text/css">
+    	:root {
+  --bgColor: #3a3a3a;
+  --hoverBg: #616161;
+  --text: #bbb;
+}
+
+.container {
+  width: 100%;
+  margin: 32px auto;
+  text-align: center;
+}
+
+.label {
+  width: 100%;
+  height: 100%;
+  margin: 0px auto;
+  cursor: pointer;
+  background-color: var(--bgColor);
+}
+
+.inner {
+  width: 100%;
+  height: 128px
+  margin: 64px auto;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 128px;
+  background-color: var(--bgColor);
+  color: var(--text);
+}
+
+@media (any-hover: hover){
+  .inner:hover{
+    background-color: var(--hoverBg);
+  }
+}
+
+.label--hover{
+  background-color: var(--hoverBg);
+}
+
+.preview-title{
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  align-items: center;
+  background-color: var(--bgColor);
+}
+
+.embed-img{
+    width: 100%;
+    height: 128px;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 8px;
+    position: relative;
+}
+.embed-img:hover .delete-button {
+            display: block;
+}
+.delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+     display: none;
+     background-color: red;
+     color: white;
+     border: none;
+     padding: 5px;
+     cursor: pointer;
+}
+ 
+    </style>
 </head>
 <body>
 	<div class="container">
-	  <h2>Spring Day1</h2>
+	  <h2>게시판업로드</h2>
 	  <div class="panel panel-primary">
 	    <div class="panel-heading">Board</div>
 	    <div class="panel-body">
@@ -63,18 +145,20 @@
 					<td>제목</td>
 					<td><input required="required" class="form-control" type="text" name="b_title" ></td>
 				</tr>
-				
 				<tr>
-				    <th scope="row">첨부파일</th>
-				    <td id="files" colspan="3">
-				    
-				        </td>
-				 </tr>
-				
-				
-				
-				
-				
+					<td>첨부파일</td>
+					<td>
+					   <label class="label" id="label" for="input">
+					      <div class="inner" id="inner">드래그하거나 클릭해서 업로드</div>
+					   </label>
+					   <input id="input" class="input" accept="image/*" type="file" required="true" multiple="true" hidden="true">
+					   <button class="delete-button" type="reset" class="btn btn-success btn-sm">삭제</button>
+					   <p class="preview-title">미리보기</p>
+					   <div class="preview" id="preview"></div>
+					<td>
+				</tr>
+		
+									
 				<tr>
 					<td>내용</td>
                     <td class="card-body"><textarea id="postEditor" type="text" required="required" name="b_content"></textarea></td>
@@ -82,8 +166,8 @@
                 
 				<tr>
 					<td colspan="2" align="center">
-						<a class="btn btn-info btn-sm" href="board/boardMain">돌아가기</a>
-						<button type="reset" class="btn btn-success btn-sm" id="fclear" onclick="reload()">취소</button>
+						<a class="btn btn-info btn-sm" href="board/boardList.do">돌아가기</a>
+						<button type="reset" class="btn btn-success btn-sm" id="fclear">취소</button>
 						<button class="btn btn-sm btn-warning" type="button" onclick="goInsert()">등록</button>
 					</td>
 				</tr>
@@ -98,5 +182,119 @@
     <script src="resources/js/markdown.js"></script>
 
 	
+		<script>
+		   var input = document.getElementById("input");
+		   var initLabel = document.getElementById("label");
+		
+		   input.addEventListener("change", (event) => {
+		      const files = changeEvent(event);
+		      handleUpdate(files);
+		   });
+		
+		   initLabel.addEventListener("mouseover", (event) => {
+		      event.preventDefault();
+		      const label = document.getElementById("label");
+		      label?.classList.add("label--hover");
+		   });
+		
+		   initLabel.addEventListener("mouseout", (event) => {
+		      event.preventDefault();
+		      const label = document.getElementById("label");
+		      label?.classList.remove("label--hover");
+		   });
+		
+		   document.addEventListener("dragenter", (event) => {
+		      event.preventDefault();
+		      console.log("dragenter");
+		      if (event.target.className === "inner") {
+		         event.target.style.background = "#616161";
+		      }
+		   });
+		
+		   document.addEventListener("dragover", (event) => {
+		      console.log("dragover");
+		      event.preventDefault();
+		   });
+		
+		   document.addEventListener("dragleave", (event) => {
+		      event.preventDefault();
+		      console.log("dragleave");
+		      if (event.target.className === "inner") {
+		         event.target.style.background = "#3a3a3a";
+		      }
+		   });
+		
+		   document.addEventListener("drop", (event) => {
+		      event.preventDefault();
+		      console.log("drop");
+		      if (event.target.className === "inner") {
+		         const files = event.dataTransfer?.files;
+		         event.target.style.background = "#3a3a3a";
+		         handleUpdate([...files]);
+		      }
+		   });
+		
+		   function changeEvent(event) {
+		      const { target } = event;
+		      return [...target.files];
+		   };
+		
+		   function handleUpdate(fileList) {
+		      const preview = document.getElementById("preview");
+		
+		      fileList.forEach((file) => {
+		         const reader = new FileReader();
+		         reader.addEventListener("load", (event) => {
+		            const img = el("img", {
+		               className: "embed-img",
+		               src: event.target?.result,
+		            });
+		            
+                    const deleteButton = el("button", {
+                        className: "delete-button",
+                        innerHTML: "삭제",
+                        onclick: () => imgContainer.remove()
+                    });
+		            
+		            const imgContainer = el("div", { className: "container-img" }, img);
+		            preview.append(imgContainer);
+		         });
+		         reader.readAsDataURL(file);
+		      });
+		   };
+		
+		   function el(nodeName, attributes, ...children) {
+		      const node =
+		         nodeName === "fragment"
+		            ? document.createDocumentFragment()
+		            : document.createElement(nodeName);
+		
+		      Object.entries(attributes).forEach(([key, value]) => {
+		         if (key === "events") {
+		            Object.entries(value).forEach(([type, listener]) => {
+		               node.addEventListener(type, listener);
+		            });
+		         } else if (key in node) {
+		            try {
+		               node[key] = value;
+		            } catch (err) {
+		               node.setAttribute(key, value);
+		            }
+		         } else {
+		            node.setAttribute(key, value);
+		         }
+		      });
+		
+		      children.forEach((childNode) => {
+		         if (typeof childNode === "string") {
+		            node.appendChild(document.createTextNode(childNode));
+		         } else {
+		            node.appendChild(childNode);
+		         }
+		      });
+		
+		      return node;
+		   }
+		</script>
 </body>
 </html>
