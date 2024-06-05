@@ -74,7 +74,7 @@
 
 							<c:choose>
 								<c:when test="${not empty mvo.user_profile }">
-									<img class="img-circle " src="${pageContext.request.contextPath}/resources/upload/${mvo.user_profile }"
+									<img class="img-circle " src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }"
 										style="width: 300px; , height: 300px;border-radius:50%;">																			
 								</c:when>
 								<c:otherwise>  

@@ -320,7 +320,7 @@ public class UserController {
 			// 확장자
 			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
 			
-			String uploadDir = "/resources/upload"; // 가상의 업로드 경로
+			String uploadDir = "/resources/images"; // 가상의 업로드 경로
 			String uploadFolder = session.getServletContext().getRealPath(uploadDir);			
 			
 			boolean extResult = fileExtension.equals(".JPG") || fileExtension.equals(".PNG") || fileExtension.equals(".GIF")||fileExtension.equals(".jpg") || fileExtension.equals(".png") || fileExtension.equals(".gif")|| fileExtension.equals(".jpeg")|| fileExtension.equals(".JPEG");
