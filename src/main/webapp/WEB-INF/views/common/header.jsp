@@ -13,7 +13,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="${contextPath}/">home</a>
+      <a class="navbar-brand" href="${contextPath}/" style="padding: 3px"><img alt="logo" src="${contextPath}/resources/images/logo.png" style="height: 45px;"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
