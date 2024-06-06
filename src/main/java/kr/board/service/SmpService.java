@@ -15,7 +15,7 @@ import kr.board.entity.SmpRec;
 
 @Service
 public class SmpService {
-	private static String smp_url="https://www.kpx.or.kr/#section-2nd";
+	private static String smp_url="https://www.kpx.or.kr/main/#section-2nd";
 	
 	@PostConstruct
 	public SmpRec getSmpData() throws IOException {				

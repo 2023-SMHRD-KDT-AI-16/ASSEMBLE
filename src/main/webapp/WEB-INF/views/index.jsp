@@ -148,20 +148,20 @@
 							<col style="width: auto;">
 						</colgroup>
 						<tbody>
-							<tr>
-								<th scope="row">거래일</th>
+							<tr >
+								<th scope="row" class="info">거래일</th>
 								<td data-label="거래일">${smpData.smpDay }</td>
 							</tr>
 							<tr>
-								<th scope="row">최고가</th>
+								<th scope="row" class="info">최고가</th>
 								<td data-label="최고가">${smpData.maxSmp }</td>
 							</tr>
 							<tr>
-								<th scope="row">최소가</th>
+								<th scope="row" class="info">최소가</th>
 								<td data-label="최소가">${smpData.minSmp }</td>
 							</tr>
 							<tr>
-								<th scope="row">평균가</th>
+								<th scope="row" class="info">평균가</th>
 								<td data-label="평균가">${smpData.meanSmp }</td>
 							</tr>
 						</tbody>
@@ -180,21 +180,21 @@
 					<table class="table">
 
 						<tr>
-							<th scope="row">거래일</th>
+							<th scope="row" class="info">거래일</th>
 							<td data-label="거래일">${smpData.recDay }</td>
-							<th scope="row">거래량</th>
+							<th scope="row" class="info">거래량</th>
 							<td data-label="거래량">${smpData.totRecValue }</td>
 						</tr>
 						<tr>
-							<th scope="row">평균가</th>
+							<th scope="row" class="info">평균가</th>
 							<td data-label="평균가">${smpData.landAvgPrc }</td>
-							<th scope="row">최고가</th>
+							<th scope="row" class="info">최고가</th>
 							<td data-label="최고가">${smpData.landHgPrc }</td>
 						</tr>
 						<tr>
-							<th scope="row">최저가</th>
+							<th scope="row" class="info">최저가</th>
 							<td data-label="최저가">${smpData.landLwPrc }</td>
-							<th scope="row">종가</th>
+							<th scope="row" class="info">종가</th>
 							<td data-label="종가">${smpData.clsPrc }</td>
 						</tr>
 
