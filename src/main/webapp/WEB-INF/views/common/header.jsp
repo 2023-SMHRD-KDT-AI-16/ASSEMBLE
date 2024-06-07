@@ -39,12 +39,12 @@
           		<c:choose>
 								<c:when test="${not empty mvo.user_profile }">
 									<img class="img-circle " src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }"
-										style="width: 40px; , height: 40px; margin:5px;">																			
+										style="width: 40px; height: 40px; margin:5px;">																			
 								</c:when>
 								<c:otherwise>  
 									<img class="img-circle " id="imagePreview"
 										src="${contextPath}/resources/images/person.png"
-										style="width: 40px; , height: 40px; margin:5px;">
+										style="width: 40px; height: 40px; margin:5px;">
 								</c:otherwise>
 							</c:choose>
           	</li>
