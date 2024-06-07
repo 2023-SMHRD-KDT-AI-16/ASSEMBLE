@@ -13,7 +13,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="${contextPath}/">home</a>
+      <a class="navbar-brand" href="${contextPath}/" style="padding: 3px"><img alt="logo" src="${contextPath}/resources/images/logo.png" style="height: 45px;"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -36,7 +36,17 @@
           	
           	
           	<li>
-          		<img class="img-circle " src="${contextPath}/resources/images/person.png" style="width: 40px; height: 40px; margin:5px;">
+          		<c:choose>
+								<c:when test="${not empty mvo.user_profile }">
+									<img class="img-circle " src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }"
+										style="width: 40px; , height: 40px; margin:5px;">																			
+								</c:when>
+								<c:otherwise>  
+									<img class="img-circle " id="imagePreview"
+										src="${contextPath}/resources/images/person.png"
+										style="width: 40px; , height: 40px; margin:5px;">
+								</c:otherwise>
+							</c:choose>
           	</li>
           	<li>
           		<a style="color:black;"><span>${mvo.user_nick}님</span></a>
