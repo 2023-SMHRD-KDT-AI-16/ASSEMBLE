@@ -33,6 +33,7 @@
   		  // 콜백함수를 등록 readAsDataURL 끝나면 다음 함수를 실행해라 !
   		  	   // console.log(e);
   		       $('#imagePreview').attr("src",e.target.result);
+  		       $('#imageTemp').attr("src",e.target.result);
   		    }
   		 reader.readAsDataURL(obj.files[0]); // 파일 읽기 시작
   	}
@@ -74,13 +75,13 @@
 
 							<c:choose>
 								<c:when test="${not empty mvo.user_profile }">
-									<img class="img-circle " src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }"
-										style="width: 300px; , height: 300px;border-radius:50%;">																			
+									<img class="img-circle " id="imageTemp" src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }"
+										style="width: 300px; height: 300px; border-radius:50%;">																			
 								</c:when>
 								<c:otherwise>  
 									<img class="img-circle " id="imagePreview"
 										src="${contextPath}/resources/images/person.png"
-										style="width: 300px; , height: 300px;">
+										style="width: 300px; height: 300px;">
 								</c:otherwise>
 							</c:choose>
 							

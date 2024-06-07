@@ -1,9 +1,9 @@
 <%@page import="kr.board.entity.Board"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
@@ -34,8 +34,9 @@
   <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
 
-<body>
-
+<body class="nav-fixed">
+<div class="container">
+<jsp:include page="../common/header.jsp"></jsp:include>
   <main id="main" class="main">
 
     <section class="section">
@@ -82,7 +83,7 @@
     </section>
 
   </main><!-- End #main -->
-
+</div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
