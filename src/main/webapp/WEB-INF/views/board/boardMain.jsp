@@ -50,6 +50,7 @@
       
       
       <main id="main" class="main">
+         <h1>게시판</h1>
 
          <section class="section">
             <div class="row">
@@ -57,7 +58,6 @@
 
                   <div class="card">
                      <div class="card-body">
-                        <h5 class="card-title">게시판</h5>
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
@@ -87,7 +87,8 @@
                            </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
-
+						<a class="btn btn-warning btn-sm" style="align-content : center;" href="boardForm.do">글쓰기</a>
+						
                      </div>
                   </div>
 
