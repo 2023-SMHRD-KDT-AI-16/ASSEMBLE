@@ -15,6 +15,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+// 게시글 삭제 기능
+function goDelete(b_idx){
+	  $.ajax({
+			url : "board/"+b_idx,
+			type : "delete",
+			success : function() {
+	            window.location.href = "boardList.do";
+	        },
+			error : function(){ alert("error"); }
+	  });
+}
+</script>
+
 </head>
 <body>
 	<div class="container">
@@ -33,7 +48,7 @@
 				
 				<tr>
 					<td>작성자</td>
-					<td>${vo.user_nick}</td>
+					<td>${vo.user_id}</td>
 					<td>작성일</td>
 					<td>${vo.created_at}</td>				
 				</tr>
@@ -51,8 +66,8 @@
 				<tr>
 					<td colspan="2" align="center">
 						<a href="boardList.do"  class="btn btn-info btn-sm">돌아가기</a>
-						<a href="boardUdateForm.do?idx=${vo.b_idx}" class="btn btn-success btn-sm">수정화면</a>
-						<a href="boardDelete.do?idx=${vo.b_idx}" class="btn btn-warning btn-sm">삭제</a>
+						<a href="boardUdateForm.do?b_idx=${vo.b_idx}" class="btn btn-success btn-sm">수정화면</a>
+						<button class="btn btn-sm btn-warning" type="button" onclick="goDelete(${vo.b_idx})">삭제</button>
 					</td>
 				</tr>
 			</table>	    	    

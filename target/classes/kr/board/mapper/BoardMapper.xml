@@ -7,8 +7,8 @@
 	</select>
 	
 	<insert id="boardInsert" parameterType="kr.board.entity.Board">
-		insert into board_info(user_nick,b_title,b_content)
-		values({#{user_nick},#{b_title},#{b_content})
+		insert into board_info(user_id,b_title,b_content)
+		values(#{user_id},#{b_title},#{b_content})
 	</insert>
 	
 	<select id="boardContent" parameterType="int" resultType="kr.board.entity.Board">
@@ -16,13 +16,17 @@
 	</select>
 	
 	<delete id="boardDelete" parameterType="int">
-		delete from board where b_idx = #{b_idx}
+		delete from board_info where b_idx = #{b_idx}
 	</delete>
 	
 	<update id="boardUpdate" parameterType="kr.board.entity.Board">
 		update board
 		set title = #{title}, content = #{content}
 		where b_idx = #{b_idx}
+	</update>
+	
+	<update id="boardCount" parameterType="int">
+		UPDATE board_info SET b_views=b_views+1 WHERE b_idx=#{b_idx}
 	</update>
 
 

@@ -130,33 +130,7 @@
 	  <div>           <!-- 상대경로 -->                                 <!-- 꽉채우기 -->   <!-- 높이 -->
 			<img src="${contextPath}/resources/images/main1.jpg" style="width: 100%; height: 400px;" >
 	  </div>
-	  <div class="panel-body">
-	  
-	  		<ul class="nav nav-tabs">
-			    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-			    <li><a data-toggle="tab" href="#menu1">게시판</a></li>
-			    <li><a data-toggle="tab" href="#menu2">공지사항</a></li>
-			  </ul>
-			
-			  <div class="tab-content">
-			    <div id="home" class="tab-pane fade in active">
-			      <h3>HOME</h3>
-			      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			    </div>
-			    <div id="menu1" class="tab-pane fade">
-			      <h3>게시판</h3>
-			      <div class="panel-heading">Board</div>
-				    <div class="panel-body" id="view">
-			
-					</div>
-			    </div>
-			    <div id="menu2" class="tab-pane fade">
-			      <h3>공지사항</h3>
-			      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-			    </div>
-			  </div>
-	  </div>
-	  <div class="panel-footer">스프링게시판-이주희</div>
+
   </div>
   
 

@@ -20,8 +20,7 @@ public interface BoardMapper {
 
 	public void boardUpdate(Board vo);
 	
-	@Update("update board set count = count + 1 where idx = #{idx}")
-	public void boardCount(int idx);
+	public void boardCount(int b_idx);
 
 }
 
