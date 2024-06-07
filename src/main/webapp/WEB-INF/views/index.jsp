@@ -120,23 +120,10 @@
 
 </head>
 <body>
-
-
-<<<<<<< HEAD
   
-  <div class="panel panel-default">
-	  <div>           <!-- 상대경로 -->                                 <!-- 꽉채우기 -->   <!-- 높이 -->
-			<img src="${contextPath}/resources/images/main1.jpg" style="width: 100%; height: 400px;" >
-	  </div>
-
-  </div>
-  
-
 </div>
-=======
 	<div class="container">
 		<jsp:include page="common/header.jsp"></jsp:include>
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE.git
 
 
 
