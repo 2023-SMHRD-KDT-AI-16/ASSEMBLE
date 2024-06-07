@@ -5,95 +5,99 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Tables - SB Admin Pro</title>
-       <link href="resources/css/styles.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="resources/assets/img/favicon.png" />
-        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-  
-      <style>
-      tbody tr:nth-child(odd) {
-        background-color: lightgray;
-      }
-    </style>
-  
-    </head>
-        <body class="nav-fixed">
-        <jsp:include page="../common/header.jsp"></jsp:include>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_content">
-                <main>
-                    <!-- Main page content-->
-                    <div class="container-xl px-4 mt-4">
-                        <!-- Invoice-->
-                        <div class="card invoice">
-                            <div class="card-header p-4 p-md-5 border-bottom-0 bg-gradient-primary-to-secondary text-white-50">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col-12 col-lg-auto mb-5 mb-lg-0 text-center text-lg-start">
-                                        <!-- Invoice branding-->
-                                        <img class="invoice-brand-img rounded-circle mb-4" src="resources/assets/img/demo/demo-logo.svg" alt="" />
-                                        <div class="h2 text-white mb-0">게시판</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body p-4 p-md-5">
-                                <!-- Invoice table-->
-                                <div class="table-responsive">
-                                    <table class="table table-borderless mb-0">
-                                        <thead class="border-bottom">
-                                            <tr class="small text-uppercase text-muted">
-                                                <th class="text-center" scope="col">No.</th>
-                                                <th class="text-center" scope="col" style="width: 400px">제목</th>
-                                                <th class="text-center" scope="col">작성자</th>
-                                                <th class="text-center" scope="col">첨부파일</th>
-                                                <th class="text-center" scope="col">조회수</th>
-                                                <th class="text-center" scope="col">등록일</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                          	<c:forEach var="vo" items="${list}">
-                                        <tr>
-                                            <td class="text-center" scope="col">${vo.b_idx}</td>
-                                            <td class="text-center" scope="col"  style="width: 400px"><a href="boardContent.do?b_idx=${vo.b_idx}"><c:out value="${vo.b_title}"></c:out></a></td>
-                                            <td class="text-center" scope="col">${vo.user_id}</td>
-                                            <td class="text-center" scope="col">${vo.b_file}</td>
-                                            <td class="text-center" scope="col">${vo.b_views}</td>
-                                            <td class="text-center" scope="col">${fn:split(vo.created_at, " ")[0]}</td>
-                                        </tr>
-                                        </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 p-lg-5 border-top-0">
-								<a class="btn btn-warning btn-sm" href="boardForm.do">글쓰기</a>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-                <footer class="footer-admin mt-auto footer-light">
-                    <div class="container-xl px-4">
-                        <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
-                            <div class="col-md-6 text-md-end small">
-                                <a href="#!">Privacy Policy</a>
-                                &middot;
-                                <a href="#!">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="resources/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="resources/assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <main id="main" class="main">
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Datatables</h5>
+              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p>
+
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>첨부파일</th>
+                    <th>조회수</th>
+                    <th>등록일</th>
+                  </tr>
+                </thead>
+                <tbody>
+		            <c:forEach var="vo" items="${list}">
+		               <tr>
+		               	<td>${vo.b_idx}</td>
+		                <td style="width: 400px"><a href="boardContent.do?b_idx=${vo.b_idx}"><c:out value="${vo.b_title}"></c:out></a></td>
+		                <td>${vo.user_id}</td>
+		                <td>${vo.b_file}</td>
+		                <td>${vo.b_views}</td>
+		                <td>${fn:split(vo.created_at, " ")[0]}</td>
+		               </tr>
+		            </c:forEach>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
             </div>
+          </div>
+
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="resources/js/scripts.js"></script>
-    </body>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="resources/assets/vendor/quill/quill.js"></script>
+  <script src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="resources/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="resources/assets/js/main.js"></script>
+
+</body>
+
 </html>
