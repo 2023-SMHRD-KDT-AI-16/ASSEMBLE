@@ -120,8 +120,6 @@
 
 </head>
 <body>
-  
-</div>
 	<div class="container">
 		<jsp:include page="common/header.jsp"></jsp:include>
 
