@@ -7,7 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
 <meta charset="utf-8">
@@ -24,8 +24,8 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<!-- <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet"> 이부분이 다른 부트스트랩 css랑 충돌이 나는거 같음 일단 꺼놈.-->  
 <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
 <link href="resources/assets/vendor/boxicons/css/boxicons.min.css"
@@ -48,9 +48,9 @@
 		<jsp:include page="../common/header.jsp"></jsp:include>
 		
 		
+		<div class="panel panel-default">
 		
 		<main id="main" class="main">
-
 			<section class="section">
 				<div class="row">
 					<div class="col-lg-12">
@@ -96,6 +96,7 @@
 			</section>
 
 		</main>
+		</div>
 		<!-- End #main -->
 	</div>
 	<a href="#"
@@ -116,7 +117,15 @@
 
 	<!-- Template Main JS File -->
 	<script src="resources/assets/js/main.js"></script>
-
+	
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+	
 </body>
 
 </html>
