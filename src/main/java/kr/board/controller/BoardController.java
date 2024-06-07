@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.board.entity.Board;
 import kr.board.mapper.BoardMapper;
@@ -30,11 +31,12 @@ public class BoardController {
 //		return "board/boardMain";
 //	}
 	
+	// 게시판 전체 리스트
 	@GetMapping("boardList.do")
 	public String boardList(Model model) {
 				
 		List<Board> list = boardMapper.boardList();
-		
+		System.out.println("게시글의 갯수:  "+ list.size());
 		model.addAttribute("list",list); //model에다가 잠깐 값을 담아서 간다.
 		
 		return "board/boardMain";
@@ -43,7 +45,7 @@ public class BoardController {
 	@GetMapping("boardContent.do")
 	public String boardContent(@RequestParam("b_idx") int b_idx, Model model) {
 		// 조회수
-		//boardMapper.boardCount(b_idx);
+		boardMapper.boardCount(b_idx);
 		Board vo = boardMapper.boardContent(b_idx);
 		model.addAttribute("vo",vo);
 		//System.out.println(vo.toString()); //=> 값이 잘 있난 확인
@@ -55,9 +57,17 @@ public class BoardController {
 	public String boardForm() {
 		return "board/boardForm";
 	}
+	
+	// 게시글 작성
+	@PostMapping("boardInsert.do")
+	public String boardInsert(Board vo, RedirectAttributes rttr) {
+		boardMapper.boardInsert(vo);
+		rttr.addFlashAttribute("result","ok"); //result라는 값으로 ok값이 있으면 모달을 띄운다.
+		return "redirect:/boardList.do"; // 값없이 해당페이지로 보내려면 redirect로 보낸다.
+	
 
+   }
 }
-
 
 
 

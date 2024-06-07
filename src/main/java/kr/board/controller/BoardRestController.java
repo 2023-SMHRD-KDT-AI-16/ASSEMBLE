@@ -50,9 +50,9 @@ public class BoardRestController {
 	}
 
 	// 게시글 삭제 /boardDelte.do
-	@DeleteMapping("/{idx}")
-	public void boardDelte(@PathVariable("idx") int idx) {
-		boardMapper.boardDelete(idx);
+	@DeleteMapping("/{b_idx}")
+	public void boardDelte(@PathVariable("b_idx") int b_idx) {
+		boardMapper.boardDelete(b_idx);
 	}
 
 	// 게시글 수정 /boardUpdate.do
