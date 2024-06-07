@@ -17,7 +17,7 @@ public class Board {
 	private String b_content; // 내용
 	private String b_file; // 첨부파일
 	private String created_at; // 작성일
-	private String user_nick; // 작성자
+	private String user_id; // 작성자
 	private int b_views; // 조회수
 	
 	
