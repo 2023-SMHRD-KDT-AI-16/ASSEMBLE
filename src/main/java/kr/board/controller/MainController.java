@@ -1,16 +1,15 @@
 package kr.board.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.board.entity.SmpRec;
-import kr.board.entity.weatherVO;
 import kr.board.service.ApiService;
 import kr.board.service.SmpService;
 
@@ -25,13 +24,18 @@ public class MainController {
 	private ApiService apiService;
 	
 	@RequestMapping("/")
-	public String index(HttpSession session) {
+	public String index(HttpSession session,Model model) {
 		
 		SmpRec smpData = (SmpRec) session.getAttribute("smpData");		
 		
-		List<weatherVO> weatherList = apiService.fetchDataFromApi();
+		try {
+            StringBuilder data = apiService.fetchDataFromApi();
+            model.addAttribute("apiData", data);
+        } catch (IOException e) {
+            
+        }
 		
-		session.setAttribute("weather", weatherList);
+		// session.setAttribute("weather", weatherList);
 		
 		if (smpData == null) {			
 		

@@ -374,5 +374,25 @@ public class UserController {
 		}
 
 		
+		@PostMapping("/pwChange.do")
+		public String pwChange(@RequestParam("user_pw") String user_pw,User m, HttpSession session,RedirectAttributes rttr) {
+			
+			String user_id = ((User) session.getAttribute("mvo")).getUser_id();
+			
+			User vo = new User();
+			vo.setUser_id(user_id);
+			vo.setUser_pw(user_pw);		
+			
+			userMapper.pwChange(vo);
+				
+			User temp = userMapper.getMember(user_id);
+			
+			System.out.println(temp.toString());
+
+			session.setAttribute("mvo", temp);
+			
+			return "redirect:/updateMain.do";
+		}
+		
 		
 }

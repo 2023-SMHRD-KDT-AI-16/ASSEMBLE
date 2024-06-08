@@ -29,6 +29,8 @@ public interface UserMapper {
 
 	public User checkEmail(String email);
 
+	public int pwChange(User vo);
+
 
 }
 
