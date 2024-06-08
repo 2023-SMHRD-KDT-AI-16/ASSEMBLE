@@ -45,6 +45,11 @@
 		select * from user_info where user_email=#{user_email}
 	</select>
 	
+	<update id="pwChange" parameterType="kr.board.entity.User">
+		update user_info set user_pw = #{user_pw}
+		where user_id = #{user_id}
+	</update>
+	
 	
 	
 </mapper>

@@ -17,8 +17,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="${contextPath}/">Home</a></li>
+        <li><a href="${contextPath}/">Home</a></li>
         <li><a href="boardList.do">게시판</a></li>
+        <li><a href="${contextPath}/">내 발전소</a></li>
       </ul>
       
       <c:if test="${empty mvo}">
