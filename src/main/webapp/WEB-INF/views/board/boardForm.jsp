@@ -60,8 +60,8 @@
 			<table class="table table-hover">
 
 				<tr>
-					<th scope="row">공지글</th>
-	                <td><span class="chkbox"><input type="checkbox" id="isNotice" name="isNotice" class="chk" /><i></i><label for="isNotice"> 설정</label></span></td>
+				<th scope="row">공지글</th>
+                <td><span class="chkbox"><input type="checkbox" id="isNotice" name="isNotice" class="chk" /><i></i><label for="isNotice"> 설정</label></span></td>
 				</tr>
 				<tr>
 					<td>제목</td>
