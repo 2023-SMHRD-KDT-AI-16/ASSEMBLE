@@ -24,7 +24,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<!-- <link
+<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
@@ -32,7 +32,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script> -->
+	crossorigin="anonymous"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -247,180 +247,182 @@
 	  }
 
   </script>
-
-
+  
+  
 
 </head>
 <body>
 	<div class="container">
-
-		<div>
-
+	
+	
+	
+		<div style="display: flex; flex-direction: row;">
+		
 			<jsp:include page="common/header.jsp"></jsp:include>
-
-
+			
+			
 			<div class="panel panel-default">
-				<div>
-					<!-- 상대경로 -->
-					<!-- 꽉채우기 -->
-					<!-- 높이 -->
-					<img src="${contextPath}/resources/images/main1.jpg"
-						style="width: 100%; height: 400px;">
-				</div>
-				<div class="panel-body"
-					style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+			<div>
+				<!-- 상대경로 -->
+				<!-- 꽉채우기 -->
+				<!-- 높이 -->
+				<img src="${contextPath}/resources/images/main1.jpg"
+					style="width: 100%; height: 400px;">
+			</div>
+			<div class="panel-body"
+				style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
 
 
-					<div class="col-md-5 col-sm-5 col-xs-12 panel panel-default"
-						style="height: 260px;">
-						<h3>오늘의 SMP</h3>
-						<p style="text-align: right;">(단위:원/kWh)</p>
-						<table class="table">
-							<colgroup>
-								<col style="width: 133px;">
-								<col style="width: auto;">
-							</colgroup>
-							<tbody>
-								<tr>
-									<th scope="row" class="info">거래일</th>
-									<td data-label="거래일">${smpData.smpDay }</td>
-								</tr>
-								<tr>
-									<th scope="row" class="info">최고가</th>
-									<td data-label="최고가">${smpData.maxSmp }</td>
-								</tr>
-								<tr>
-									<th scope="row" class="info">최소가</th>
-									<td data-label="최소가">${smpData.minSmp }</td>
-								</tr>
-								<tr>
-									<th scope="row" class="info">평균가</th>
-									<td data-label="평균가">${smpData.meanSmp }</td>
-								</tr>
-							</tbody>
-						</table>
-
-
-
-					</div>
-
-					<div class="col-md-5 col-sm-5 col-xs-12 panel panel-default"
-						style="height: 260px;">
-
-						<h3>REC</h3>
-						<p style="text-align: right;">※ 매주 화, 목요일 10 : 00 ~ 16 : 00 개장
-							(단위:REC, 원/REC)</p>
-
-						<table class="table">
-
+				<div class="col-md-5 col-sm-5 col-xs-12 panel panel-default"
+					style="height: 260px;">
+					<h3>오늘의 SMP</h3>
+					<p style="text-align: right;">(단위:원/kWh)</p>
+					<table class="table">
+						<colgroup>
+							<col style="width: 133px;">
+							<col style="width: auto;">
+						</colgroup>
+						<tbody>
 							<tr>
 								<th scope="row" class="info">거래일</th>
-								<td data-label="거래일">${smpData.recDay }</td>
-								<th scope="row" class="info">거래량</th>
-								<td data-label="거래량">${smpData.totRecValue }</td>
+								<td data-label="거래일">${smpData.smpDay }</td>
+							</tr>
+							<tr>
+								<th scope="row" class="info">최고가</th>
+								<td data-label="최고가">${smpData.maxSmp }</td>
+							</tr>
+							<tr>
+								<th scope="row" class="info">최소가</th>
+								<td data-label="최소가">${smpData.minSmp }</td>
 							</tr>
 							<tr>
 								<th scope="row" class="info">평균가</th>
-								<td data-label="평균가">${smpData.landAvgPrc }</td>
-								<th scope="row" class="info">최고가</th>
-								<td data-label="최고가">${smpData.landHgPrc }</td>
+								<td data-label="평균가">${smpData.meanSmp }</td>
 							</tr>
-							<tr>
-								<th scope="row" class="info">최저가</th>
-								<td data-label="최저가">${smpData.landLwPrc }</td>
-								<th scope="row" class="info">종가</th>
-								<td data-label="종가">${smpData.clsPrc }</td>
-							</tr>
-
-						</table>
+						</tbody>
+					</table>
 
 
-					</div>
 
 				</div>
 
-				<!-- 온도 차트 -->
-				<div style="width: 100%; height: 150px;">
-					<canvas id="canvas"></canvas>
-				</div>
+				<div class="col-md-5 col-sm-5 col-xs-12 panel panel-default"
+					style="height: 260px;">
 
-				<div class="panel-body table-responsive">
-					<h2>오늘의 날씨</h2>
-					<table class="table " id="weatherTable">
+					<h3>REC</h3>
+					<p style="text-align: right;">※ 매주 화, 목요일 10 : 00 ~ 16 : 00 개장
+						(단위:REC, 원/REC)</p>
+
+					<table class="table">
 
 						<tr>
-							<td>시간</td>
-							<td>06</td>
-							<td>07</td>
-							<td>08</td>
-							<td>09</td>
-							<td>10</td>
-							<td>11</td>
-							<td>12</td>
-							<td>13</td>
-							<td>14</td>
-							<td>15</td>
-							<td>16</td>
-							<td>17</td>
-							<td>18</td>
-							<td>19</td>
-							<td>20</td>
-
+							<th scope="row" class="info">거래일</th>
+							<td data-label="거래일">${smpData.recDay }</td>
+							<th scope="row" class="info">거래량</th>
+							<td data-label="거래량">${smpData.totRecValue }</td>
 						</tr>
 						<tr>
-							<td>강수확률(%)</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-
+							<th scope="row" class="info">평균가</th>
+							<td data-label="평균가">${smpData.landAvgPrc }</td>
+							<th scope="row" class="info">최고가</th>
+							<td data-label="최고가">${smpData.landHgPrc }</td>
 						</tr>
 						<tr>
-							<td>날씨</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<th scope="row" class="info">최저가</th>
+							<td data-label="최저가">${smpData.landLwPrc }</td>
+							<th scope="row" class="info">종가</th>
+							<td data-label="종가">${smpData.clsPrc }</td>
 						</tr>
 
 					</table>
 
 
-					<div class="panel-footer">2024 ~ Solar Namdo ~</div>
-
 				</div>
-
 
 			</div>
 
+			<!-- 온도 차트 -->
+			<div style="width: 100%; height: 150px;">
+				<canvas id="canvas"></canvas>
+			</div>
+
+			<div class="panel-body table-responsive">
+				<h2>오늘의 날씨</h2>
+				<table class="table " id="weatherTable">
+
+					<tr>
+						<td>시간</td>
+						<td>06</td>
+						<td>07</td>
+						<td>08</td>
+						<td>09</td>
+						<td>10</td>
+						<td>11</td>
+						<td>12</td>
+						<td>13</td>
+						<td>14</td>
+						<td>15</td>
+						<td>16</td>
+						<td>17</td>
+						<td>18</td>
+						<td>19</td>
+						<td>20</td>
+
+					</tr>
+					<tr>
+						<td>강수확률(%)</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td>날씨</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+				</table>
+
+
+				<div class="panel-footer">2024 ~ Solar Namdo ~</div>
+
+			</div>
+
+
+		</div>
+			
 		</div>
 
 
 
 
-
+		
 
 
 

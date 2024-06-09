@@ -29,7 +29,6 @@
       </ul>
       </c:if>
       
-      
       <c:if test="${not empty mvo}">
       <ul class="nav navbar-nav navbar-right">
              <li><a href="${contextPath}/updateMain.do">
