@@ -20,9 +20,9 @@
 	</delete>
 	
 	<update id="boardUpdate" parameterType="kr.board.entity.Board">
-		update board
-		set title = #{title}, content = #{content}
-		where b_idx = #{b_idx}
+		update board_info
+		set b_title=#{b_title}, b_content=#{b_content}
+		where b_idx=#{b_idx}
 	</update>
 	
 	<update id="boardCount" parameterType="int">

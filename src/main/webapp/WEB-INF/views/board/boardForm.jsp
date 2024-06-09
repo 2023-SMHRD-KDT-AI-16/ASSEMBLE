@@ -4,87 +4,144 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Create Post - SB Admin Pro</title>
-    <link href="resources/css/styles.css" rel="stylesheet" />
-    <link href="https://unpkg.com/easymde/dist/easymde.min.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="resources/assets/img/favicon.png" />
-    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	
-    <script type="text/javascript">
-    
-/* 	  function goInsert(){
-		  // 제목, 내용, 작성자를 DB에 입력
-		 // var postEditor = document.getElementById("postEditor").value;
-          console.log(postEditor);
-		  var fData = $("#insertF").serialize();
-		  console.log(fData);
-		  
-		  $.ajax({
-			  url : "board/new",
-			  type : "post",
-			  data : fData,
-			  success : "board/boardMain",
-			  error : function(){ alert("error"); }
-		  });		  
-		  
-		  $("#fclear").trigger("click");
-		  
-	  } */
-	  
-	 /*  function reload(){
-			location.reload(); // 성공 시 페이지 새로고침} */
-	  
-    </script>
-    
-</head>
-<body>
-	<div class="container">
-	  <h2>게시판업로드</h2>
-	  <div class="panel panel-primary">
-	    <div class="panel-heading">Board</div>
-	    <div class="panel-body">
-	    
-	    	<form action="boardInsert.do" method="post">
-	    	<input type="hidden" name="user_id" value="${mvo.user_id}">
-			<table class="table table-hover">
 
-				<tr>
-				<th scope="row">공지글</th>
-                <td><span class="chkbox"><input type="checkbox" id="isNotice" name="isNotice" class="chk" /><i></i><label for="isNotice"> 설정</label></span></td>
-				</tr>
-				<tr>
-					<td>제목</td>
-					<td><input required="required" class="form-control" type="text" name="b_title" ></td>
-				</tr>
-								
-				<tr>
-					<td>내용</td>
-					<td><textarea required="required" class="form-control" name="b_content" rows="7" cols="" style="resize: none;"></textarea></td>
-				</tr>
-                
-				<tr>
-					<td colspan="2" align="center">
-						<a href="boardList.do"  class="btn btn-info btn-sm">돌아가기</a>
-						<button type="reset" class="btn btn-success btn-sm" id="fclear">취소</button>
-						<button type="submit" class="btn btn-warning btn-sm">등록</button>
-					</td>
-				</tr>
-			</table>
-			</form>	    	    
-	    </div>
-	  </div>
-	</div>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>edit board</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="resources/assets/img/favicon.png" rel="icon">
+  <link href="resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files-->
+  <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="resources/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="resources/assets/css/style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+  
+  function is_checked() {  //공지글 체크여부
+	  const checkbox = document.getElementById('gridCheck');
+	  var is_checked = checkbox.checked;
+		if(is_checked==true){
+			is_checked=1;
+		}else{
+			is_checked=0;
+		}
+	  //결과출력
+	  console.log(is_checked);
+	}
+  
+  $(document).ready(function(){
+      $('#editorForm').on('submit', function(e){
+          e.preventDefault();
+          var content = tinymce.get('editorForm').getContent();
+          console.log(content);
+      });
+  });
+  </script>
+</head>
+
+<body>
+
+  <main id="main" class="main">
+	<jsp:include page="../common/header.jsp"></jsp:include>
+    <div class="pagetitle">
+    </div><!-- End Page Title -->
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">게시글 작성하기</h2>
+
+              <!-- Multi Columns Form -->
+              <form action="boardInsert.do" method="post" class="row g-3" id="#editorForm" enctype="multipart/form-data">
+              <input type="hidden" name="user_id" value="${mvo.user_id}">
+
+                <div class="card-title">
+                	<label class="form-check-label" for="gridCheck">공지글
+					  <input class="form-check-input" type='checkbox' id='gridCheck' onclick='is_checked()'name="checkbox"> 
+					</label>
+                </div>
+                  
+                <div class="col-md-12">
+                  <label for="inputName5" class="card-title">제목</label>
+                  <input type="text" required="required" class="form-control" id="inputName5" name="b_title">
+                </div>
+
+                <div class="col-12">
+                    <div class="form-label">
+                        <h5 class="card-title">내용</h5>        
+                  
+                                <!-- TinyMCE Editor -->
+                            <textarea class="tinymce-editor" required="required" name="b_content" style="resize: none;">
+                            </textarea><!-- End TinyMCE Editor -->
+                  
+                     </div>          
+                </div>
+                  
+    
+                    </label>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <a href="boardList.do"  class="btn btn-success">돌아가기</a>
+                  <button type="submit" class="btn btn-primary">등록</button>
+                  <button type="reset" class="btn btn-secondary" id="fclear">취소</button>
+                </div>
+              </form><!-- End Multi Columns Form -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      <strong><span>SolarNamdo</span></strong>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="resources/assets/vendor/quill/quill.js"></script>
+  <script src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="resources/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="resources/assets/js/main.js"></script>
 
 </body>
+
 </html>

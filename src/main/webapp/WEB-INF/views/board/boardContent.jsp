@@ -72,8 +72,6 @@ function goDelete(b_idx){
 			</table>	    	    
 	    </div>
 	  </div>
-	</div>
-
-	
+	</div>	
 </body>
 </html>

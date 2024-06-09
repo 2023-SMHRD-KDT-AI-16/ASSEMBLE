@@ -13,7 +13,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Tables / Data - NiceAdmin Bootstrap Template</title>
+<title>board_main</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -87,10 +87,10 @@
                            </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
-
+						<a class="btn btn-warning btn-sm" style="align-content : center;" href="boardForm.do">글쓰기</a>
+						
                      </div>
                   </div>
-
                </div>
             </div>
          </section>

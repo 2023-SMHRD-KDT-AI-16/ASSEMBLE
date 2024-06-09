@@ -4,61 +4,141 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<% pageContext.setAttribute("line", "\n");%>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div class="container">
-	  <h2>게시판</h2>
-	  <div class="panel panel-primary">
-	    <div class="panel-heading">Board</div>
-	    <div class="panel-body">
-			<table class="table table-hover">
-				
-				<tr>
-					<td>글번호</td>
-					<td>${vo.b_idx}</td>		
-				</tr>
-				
-				<tr>
-					<td>작성자</td>
-					<td>${vo.user_nick}</td>
-					<td>작성일</td>
-					<td>${vo.created_at}</td>				
-				</tr>
-				
-				<tr>
-					<td>제목</td>
-					<input>
-					<td colspan="3" align="left">${vo.b_title}</td>
-				</tr>
-				
-				<tr>
-					<td>내용</td>
-					<td colspan="3" align="left" style="height: 300px;">${fn:replace(vo.b_content, line, "<br>")}</td>
-				</tr>
-				
-				<tr>
-					<td colspan="2" align="center">
-						<a href="boardList.do"  class="btn btn-info btn-sm">돌아가기</a>
-						<a href="boardUdateForm.do?idx=${vo.b_idx}" class="btn btn-success btn-sm">수정화면</a>
-						<a href="boardDelete.do?idx=${vo.b_idx}" class="btn btn-warning btn-sm">삭제</a>
-					</td>
-				</tr>
-			</table>	    	    
-	    </div>
-	  </div>
-	</div>
+<html lang="en">
 
-	
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>edit board</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="resources/assets/img/favicon.png" rel="icon">
+  <link href="resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files-->
+  <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="resources/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="resources/assets/css/style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+  
+  function is_checked() {  //공지글 체크여부
+	  const checkbox = document.getElementById('gridCheck');
+	  var is_checked = checkbox.checked;
+		if(is_checked==true){
+			is_checked=1; //공지글임
+		}else{
+			is_checked=0; //공지글 아님
+		}
+	  //결과출력
+	  console.log(is_checked);
+	}
+  
+  $(document).ready(function(){
+      $('#editorForm').on('submit', function(e){
+          e.preventDefault();
+          var content = tinymce.get('editorForm').getContent();
+          console.log(content);
+      });
+  });
+  </script>
+</head>
+
+<body>
+
+  <main id="main" class="main">
+	<jsp:include page="../common/header.jsp"></jsp:include>
+    <div class="pagetitle">
+    </div><!-- End Page Title -->
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">게시글 수정하기</h2>
+
+              <!-- Multi Columns Form -->
+              <form action="boardUpdate.do" method="post" class="row g-3" id="#editorForm" enctype="multipart/form-data">
+              <input type="hidden" name="b_idx" value="${vo.b_idx}">
+
+                <div class="card-title">
+                	<label class="form-check-label" for="gridCheck">공지글
+					  <input class="form-check-input" type='checkbox' id='gridCheck' onclick='is_checked()'name="checkbox"> 
+					</label>
+                </div>
+                  
+                <div class="col-md-12">
+                  <label for="inputName5" class="card-title">제목</label>
+                  <input type="text" required="required" value="${vo.b_title}" class="form-control" id="inputName5" name="b_title">
+                </div>
+
+                <div class="col-12">
+                    <div class="form-label">
+                        <h5 class="card-title">내용</h5>        
+                           <!-- TinyMCE Editor -->
+                           <textarea class="tinymce-editor" required="required" name="b_content" style="resize: none;">
+                           ${vo.b_content}
+                           </textarea>
+                     </div>          
+                </div>
+              </div>
+           </div>
+         		 <!-- 버 튼 -->
+                 <div class="text-center">
+	                  <a href="boardList.do"  class="btn btn-success">돌아가기</a>
+	                  <button type="submit" class="btn btn-primary">등록</button>
+	                  <button type="reset" class="btn btn-secondary" id="fclear">취소</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      <strong><span>SolarNamdo</span></strong>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="resources/assets/vendor/quill/quill.js"></script>
+  <script src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="resources/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="resources/assets/js/main.js"></script>
+
 </body>
+
 </html>

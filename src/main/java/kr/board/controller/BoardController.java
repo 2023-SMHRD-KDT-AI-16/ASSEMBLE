@@ -64,9 +64,23 @@ public class BoardController {
 		boardMapper.boardInsert(vo);
 		rttr.addFlashAttribute("result","ok"); //result라는 값으로 ok값이 있으면 모달을 띄운다.
 		return "redirect:/boardList.do"; // 값없이 해당페이지로 보내려면 redirect로 보낸다.
-	
-
    }
+	
+	// 게시글 수정화면 이동
+	@GetMapping("boardUdateForm.do")
+	public String boardUdateForm(@RequestParam("b_idx") int b_idx, Model model) {
+		Board vo = boardMapper.boardContent(b_idx);
+		model.addAttribute("vo", vo);
+		return "board/boardUdateForm";
+	}
+	
+	// 게시글 수정
+	@PostMapping("boardUpdate.do")
+	public String boardUpdate(Board vo) {
+		boardMapper.boardUpdate(vo);
+		return "redirect:/boardContent.do?b_idx="+vo.getB_idx();
+	}
+	
 }
 
 
