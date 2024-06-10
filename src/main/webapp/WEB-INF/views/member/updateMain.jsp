@@ -23,6 +23,7 @@
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
+
   <!-- Vendor CSS Files -->
   <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -32,9 +33,19 @@
   <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="resources/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+
+
   <!-- Template Main CSS File -->
   <link href="resources/assets/css/style.css" rel="stylesheet">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <style>
+  
+	.col-sm-10{
+		padding-left:0px !important; 
+	}
+     
+    </style>
+  
   <script>
   	  <!--우편번호 daum_API-->
       function sample6_execDaumPostcode() {
@@ -292,8 +303,8 @@
 		  <main id="main" class="main">
 
 			    <section class="section">
-			      <div class="row">
-			        <div class="col-lg-6">
+			      <div class="row" style="justify-content: center">
+			        <div class="col-lg-9">
 			
 			          <div class="card">
 			            <div class="card-body">
@@ -311,9 +322,9 @@
 			                <div class="row mb-3">
 			                    <label for="inputText" class="col-sm-2 col-form-label">주소</label>
 			                    <div class="col-sm-10">
-			                        <div class="col-md-6"  style="position: relative; display: flex;">
+			                        <div class="col-md-6"  style="position: relative; display: flex; padding-left: 0">
 			                            <input type="text" class="form-control" id="sample6_postcode" placeholder="우편번호">
-			                            <input type="button" class="btn btn-primary btn-sm" onclick="sample6_execDaumPostcode()" style="position: absolute; right: 5px; top: 5px; bottom: 5px;" value="우편번호 찾기"><br>
+			                            <input type="button" class="btn btn-primary btn-sm" onclick="sample6_execDaumPostcode()" style="position: absolute; right: 20px; top: 5px; bottom: 5px;" value="우편번호 찾기"><br>
 			                        </div>
 			                        <div class="col-12">
 			                            <input type="text" class="form-control" id="sample6_address" placeholder="주소">
@@ -334,17 +345,17 @@
 			
 			                <div class="row mb-3">
 			                  <label for="inputNumber" class="col-sm-2 col-form-label">면적</label>
-			                  <div  class="input-group mb-3" style="width: 50%;">
+			                  <div  class="input-group mb-3" style="width: 70%;display: flex; flex-direction: row; padding-left: 0px;">
 			                      <input type="number" class="form-control" style="width: 300px;">
-			                      <span class="input-group-text" style="font-size: large;">㎡</span>
+			                      <span class="input-group-text" style="font-size: large;"> ㎡</span>
 			                  </div>
 			                </div> 
 			                
 			                <div class="row mb-3">
 			                    <label for="inputNumber" class="col-sm-2 col-form-label">용량</label>
-			                    <div  class="input-group mb-3" style="width: 50%;">
+			                    <div  class="input-group mb-3" style="width: 70%;display: flex; flex-direction: row;  padding-left: 0px;">
 			                        <input type="number" class="form-control" style="width: 300px;">
-			                        <span class="input-group-text">wh</span>
+			                        <span class="input-group-text" style="font-size: large;">kW</span>
 			                    </div>
 			                  </div> 
 			
