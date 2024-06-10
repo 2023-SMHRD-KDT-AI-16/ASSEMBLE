@@ -72,10 +72,7 @@
   		var selectedSkyFcstValues = skyFcstValues.slice(0, 15);
   		var selectedPtyFcstValues = ptyFcstValues.slice(0, 15);
   		var selectedPopFcstValues = popFcstValues.slice(0, 15);
-  		
-  		// var today = new Date().toISOString().split('T')[0]
-  		// 6시 전에는 날짜가 하루 전 입력되어야함
-  		
+  		  				
   		//차트 데이터 입력
   		new Chart(document.getElementById("canvas"), {
   		    type: 'line',
@@ -149,9 +146,9 @@
   		        state = "소나기";
   		    } else {
   		        // 비가 아닐 경우 하늘 상태 체크
-  		        if (selectedSkyFcstValues[i] >= 5) {
+  		        if (selectedSkyFcstValues[i] <= 5) {
   		            state = "맑음";
-  		        } else if (selectedSkyFcstValues[i] >= 8) {
+  		        } else if (selectedSkyFcstValues[i] <= 8) {
   		            state = "구름많음";
   		        } else {
   		            state = "흐림";
@@ -246,6 +243,14 @@
 		  }
 	  }
 
+	  
+	  function noticeInsert(){	
+	  $("#noticeModal").modal("show");	  	  
+	  }
+	 
+	
+	  
+	 
   </script>
 
 
@@ -260,18 +265,63 @@
 
 
 			<div class="panel panel-default">
-				<div>
-					<!-- 상대경로 -->
-					<!-- 꽉채우기 -->
-					<!-- 높이 -->
-					<img src="${contextPath}/resources/images/main1.jpg"
-						style="width: 100%; height: 400px;">
-				</div>
+			
+							
+			
+				<div class="panel-body " >
+					
+						공지사항
+					<hr style="color: #333;">
+					
+					
+					<div style="display: flex; justify-content: center; align-items: center;">
+					
+						<div class="panel col-md-11 col-sm-12 col-xs-12 " >
+						
+													
+								
+								 <c:forEach var="item" items="${notice}">
+					            
+						            <div class="panel panel-primary ">								
+									<div class="panel-heading " style="display: flex; justify-content: space-between;">
+											<div class="left">${item.b_title}</div>
+				        					<div class="right">${item.created_at }</div>															
+									</div>								
+									<div class="panel-body">${item.b_content }</div>
+								
+									</div>	
+					           
+					           <!-- 관리자인 경우에만 수정 삭제버튼 표시 --> 
+					            <c:if test="${mvo.user_id == 'admin'}">
+					            	
+					                    <form action="noticeDelete.do" method="get" style="display:inline;">
+					                        <input type="hidden" name="b_idx" value="${item.b_idx}">					                        
+					                        <button type="submit" class="btn btn-danger">삭제</button>
+					                    </form>
+					                   
+					                 <br><br>
+					            </c:if>
+					            
+					            
+					            
+					    		</c:forEach>
+							
+								<c:if test="${mvo.user_id == 'admin'}">
+					            	<div>					                                         
+					                    <button type="button" class="btn btn-danger" onclick="noticeInsert()">공지사항 등록</button>					                    					                    
+					                </div>
+					            </c:if>
+							
+							
+						</div>
+						
+					</div>
+
 				<div class="panel-body"
 					style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
 
 
-					<div class="col-md-5 col-sm-5 col-xs-12 panel panel-default"
+					<div class="col-md-5 col-sm-5 col-xs-12 panel panel-primary"
 						style="height: 260px;">
 						<h3>오늘의 SMP</h3>
 						<p style="text-align: right;">(단위:원/kWh)</p>
@@ -304,7 +354,7 @@
 
 					</div>
 
-					<div class="col-md-5 col-sm-5 col-xs-12 panel panel-default"
+					<div class="col-md-5 col-sm-5 col-xs-12 panel panel-primary"
 						style="height: 260px;">
 
 						<h3>REC</h3>
@@ -345,7 +395,7 @@
 				</div>
 
 				<div class="panel-body table-responsive">
-					<h2>오늘의 날씨</h2>
+					<h3 id="tempDay">오늘의 날씨</h3>
 					<table class="table " id="weatherTable">
 
 						<tr>
@@ -445,6 +495,44 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		<!-- 등록 Modal -->
+		
+		<form action="noticeInsert.do" method="get">
+		
+		<div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">공지사항 등록하기</h4>
+		       		 </div>
+		        	<div class="modal-body">제목
+		        	  <input class="form-control" type="text" id="title" name="b_title" required="required" ><br>
+		          	<div class="form-label">
+		          	내용
+		          	<textarea class="form-control" required="required" name="b_content" style="resize: none; height:200px;">
+
+                  	</textarea>
+                 	 </div> 
+		          
+		          
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		          <button type="submit" class="btn btn-default" >등록하기</button>
+		        </div>
+		      </div>
+		      
+		    </div>
+		 </div>
+				  
+		</form>		
+		
+		
 </body>
 </html>
 

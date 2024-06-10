@@ -29,7 +29,16 @@
 		UPDATE board_info SET b_views=b_views+1 WHERE b_idx=#{b_idx}
 	</update>
 
-
+	<select id="noticeList" resultType="kr.board.entity.Board">
+		SELECT * FROM board_info WHERE b_category = 1 ORDER BY created_at DESC
+	</select>
+	
+	<insert id="noticeInsert" parameterType="kr.board.entity.Board">
+		insert into board_info(user_id,b_title,b_content,b_category)
+		values('admin',#{b_title},#{b_content},1)
+	</insert>
+	
+	
 </mapper>
 
 
