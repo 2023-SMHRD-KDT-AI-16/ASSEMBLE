@@ -7,71 +7,93 @@
 <% pageContext.setAttribute("line", "\n");%>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <title>게시글상세</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-<script type="text/javascript">
-// 게시글 삭제 기능
-function goDelete(b_idx){
-	  $.ajax({
-			url : "board/"+b_idx,
-			type : "delete",
-			success : function() {
-	            window.location.href = "boardList.do";
-	        },
-			error : function(){ alert("error"); }
-	  });
-}
-</script>
+  <!-- Favicons -->
+  <link href="resources/assets/img/favicon.png" rel="icon">
+  <link href="resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="resources/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
+
 <body>
-	<div class="container">
-	  <h2>게시판</h2>
-	  <div class="panel panel-primary">
-	    <div class="panel-heading">Board</div>
-	    <div class="panel-body">
-			<table class="table table-hover">
-				
-				<tr>
-					<td>글번호</td>
-					<td>${vo.b_idx}</td>
-					<td>조회수</td>
-					<td>${vo.b_views}</td>				
-				</tr>
-				
-				<tr>
-					<td>작성자</td>
-					<td>${vo.user_id}</td>
-					<td>작성일</td>
-					<td>${vo.created_at}</td>				
-				</tr>
-				
-				<tr>
-					<td>제목</td>
-					<td colspan="3" align="left">${vo.b_title}</td>
-				</tr>
-				
-				<tr>
-					<td>내용</td>
-					<td colspan="3" align="left" style="height: 300px;">${fn:replace(vo.b_content, line, "<br>")}</td>
-				</tr>
-				
-				<tr>
-					<td colspan="2" align="center">
-						<a href="boardList.do"  class="btn btn-info btn-sm">돌아가기</a>
-						<a href="boardUdateForm.do?b_idx=${vo.b_idx}" class="btn btn-success btn-sm">수정화면</a>
-						<button class="btn btn-sm btn-warning" type="button" onclick="goDelete(${vo.b_idx})">삭제</button>
-					</td>
-				</tr>
-			</table>	    	    
-	    </div>
-	  </div>
-	</div>	
+
+  <main id="main" class="main">
+
+          <div class="card">
+	            <div class="card-header">
+	                <h5 class="card-title">${vo.b_title}</h5>
+	                <nav style="--bs-breadcrumb-divider: '|';">
+	                <ol class="breadcrumb">
+	                  <li class="breadcrumb-item active"><i class="ri-account-circle-line" style="font-size:15px;"></i>${vo.user_id}</a></li>
+	                  <li class="breadcrumb-item active">${vo.created_at}</li>
+	                  <li class="breadcrumb-item active">조회수 ${vo.b_views}</li> 
+	                </ol>
+	                </nav>
+	            </div>
+            
+	            <div class="card-body">
+		            <div class="form-floating mb-3">
+		                <textarea class="form-control" readonly="readonly" id="floatingTextarea" style="resize:none; height: 100px;"></textarea>
+		                <label for="floatingTextarea">${fn:replace(vo.b_content, line, "<br>")}</label>
+		            </div>
+		        </div>
+          </div>
+                     		 <!-- 버 튼 -->
+              <div class="text-center">
+	              <a href="boardList.do"  class="btn btn-info">돌아가기</a>
+				  <a href="boardUdateForm.do?b_idx=${vo.b_idx}" class="btn btn-success">수정하기</a>
+				  <button class="btn btn-warning" type="button" onclick="goDelete(${vo.b_idx})">삭제</button>
+              </div>
+          <!-- End Card with header and footer -->
+		</div>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      <strong><span>SolarNamdo</span></strong>
+    </div>
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="resources/assets/vendor/quill/quill.js"></script>
+  <script src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="resources/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="resources/assets/js/main.js"></script>
+
 </body>
+
 </html>

@@ -78,7 +78,7 @@
               <form action="boardInsert.do" method="post" class="row g-3" id="#editorForm" enctype="multipart/form-data">
               <input type="hidden" name="user_id" value="${mvo.user_id}">
 
-                <div class="card-title">
+                <div class="col-md-12" style="display: none;"><!-- 관리자에게만 노출될수 있도록 -->
                 	<label class="form-check-label" for="gridCheck">공지글
 					  <input class="form-check-input" type='checkbox' id='gridCheck' onclick='is_checked()'name="checkbox"> 
 					</label>
