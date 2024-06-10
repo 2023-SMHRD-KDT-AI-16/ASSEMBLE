@@ -36,6 +36,19 @@
 
   <!-- Template Main CSS File -->
   <link href="resources/assets/css/style.css" rel="stylesheet">
+  <script type="text/javascript">
+// 게시글 삭제 기능
+function goDelete(b_idx){
+	  $.ajax({
+			url : "board/"+b_idx,
+			type : "delete",
+			success : function() {
+	            window.location.href = "boardList.do";
+	        },
+			error : function(){ alert("error"); }
+	  });
+}
+</script>
 </head>
 
 <body>
