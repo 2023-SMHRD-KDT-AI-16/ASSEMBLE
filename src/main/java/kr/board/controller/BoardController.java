@@ -81,6 +81,22 @@ public class BoardController {
 		return "redirect:/boardContent.do?b_idx="+vo.getB_idx();
 	}
 	
+	// 공지사항 등록
+	@GetMapping("noticeInsert.do")
+	public String noticeInsert(Board vo) {
+		boardMapper.noticeInsert(vo);
+		
+		return "redirect:/";
+		
+	}
+	
+	// 공지사항 삭제
+	@GetMapping("noticeDelete.do")
+	public String noticeDelete(@RequestParam("b_idx") int b_idx) {
+		boardMapper.boardDelete(b_idx);
+		return "redirect:/";
+	}
+	
 }
 
 

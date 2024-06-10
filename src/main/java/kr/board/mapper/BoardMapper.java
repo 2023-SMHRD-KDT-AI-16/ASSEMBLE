@@ -22,6 +22,10 @@ public interface BoardMapper {
 	
 	public void boardCount(int b_idx);
 
+	public List<Board> noticeList();
+
+	public void noticeInsert(Board vo);
+
 }
 
 

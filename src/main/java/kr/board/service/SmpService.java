@@ -45,12 +45,12 @@ public class SmpService {
         Element recMinElement = recTable.select("[data-label=최저가]").first();
         Element recCloseElement = recTable.select("[data-label=종가]").first();
         
-        String rectradeDate = recDayElement != null ? tradeDateElement.text() : "No data";
-        String recMountPrice = recMountElement != null ? maxElement.text() : "No data";
-        String recMeanPrice = recMeanElement != null ? minElement.text() : "No data";
-        String recMaxPrice = recMaxElement != null ? meanElement.text() : "No data";
-        String recMinPrice = recMinElement != null ? meanElement.text() : "No data";
-        String recClosePrice = recCloseElement != null ? meanElement.text() : "No data";
+        String rectradeDate = recDayElement != null ? recDayElement.text() : "No data";
+        String recMountPrice = recMountElement != null ? recMountElement.text() : "No data";
+        String recMeanPrice = recMeanElement != null ? recMeanElement.text() : "No data";
+        String recMaxPrice = recMaxElement != null ? recMaxElement.text() : "No data";
+        String recMinPrice = recMinElement != null ? recMinElement.text() : "No data";
+        String recClosePrice = recCloseElement != null ? recCloseElement.text() : "No data";
         
 		SmpRec smp = new SmpRec(tradeDate,maxPrice,minPrice,meanPrice,rectradeDate,recMountPrice,recMeanPrice,
 				recMaxPrice,recMinPrice,recClosePrice);

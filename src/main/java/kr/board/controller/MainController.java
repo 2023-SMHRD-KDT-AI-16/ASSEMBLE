@@ -1,6 +1,7 @@
 package kr.board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.board.entity.Board;
 import kr.board.entity.SmpRec;
+import kr.board.mapper.BoardMapper;
 import kr.board.service.ApiService;
 import kr.board.service.SmpService;
 
@@ -23,11 +26,14 @@ public class MainController {
 	@Autowired
 	private ApiService apiService;
 	
+	@Autowired
+	private BoardMapper boardMapper;
+	
 	@RequestMapping("/")
 	public String index(HttpSession session,Model model) {
 		
-		SmpRec smpData = (SmpRec) session.getAttribute("smpData");		
-		
+		SmpRec smpData = (SmpRec) session.getAttribute("smpData");			
+				
 		try {
             StringBuilder data = apiService.fetchDataFromApi();
             model.addAttribute("apiData", data);
@@ -49,6 +55,11 @@ public class MainController {
 		}
 		
 		}
+		
+		// 공지사항 가져가기
+		List<Board> list = boardMapper.noticeList();
+		System.out.println("게시글의 갯수:  "+ list.size());
+		model.addAttribute("notice",list);		
 		
 		return "index";
 	}

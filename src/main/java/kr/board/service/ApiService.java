@@ -39,7 +39,7 @@ public class ApiService {
         // 날짜를 "yyyyMMdd" 형식으로 포맷합니다.
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         String formattedDate = now.format(formatter); 
-        
+        System.out.println(formattedDate);
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=V2jLg68b4QzcHu0yBsyBNO0Xb%2Bw0LsLWrYhYCt2tyWrC83zm7gpkN%2FAIYHMJa%2FkMQutUWfnXcO2dPLDC1dUSfg%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
