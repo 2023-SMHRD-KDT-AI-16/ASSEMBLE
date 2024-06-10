@@ -43,7 +43,7 @@
 	  const checkbox = document.getElementById('gridCheck');
 	  var is_checked = checkbox.checked;
 		if(is_checked==true){
-			is_checked=1;
+			is_checked=1; // 공지글
 		}else{
 			is_checked=0;
 		}

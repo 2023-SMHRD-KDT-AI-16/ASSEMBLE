@@ -9,6 +9,86 @@
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Forms / Elements - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="resources/assets/img/favicon.png" rel="icon">
+  <link href="resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="resources/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="resources/assets/css/style.css" rel="stylesheet">
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+  	  <!--우편번호 daum_API-->
+      function sample6_execDaumPostcode() {
+          new daum.Postcode({
+              oncomplete: function(data) {
+                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+  
+                  // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var addr = ''; // 주소 변수
+                  var extraAddr = ''; // 참고항목 변수
+  
+                  //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                  if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                      addr = data.roadAddress;
+                  } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                      addr = data.jibunAddress;
+                  }
+  
+                  // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                  if(data.userSelectedType === 'R'){
+                      // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                      // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                      if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                          extraAddr += data.bname;
+                      }
+                      // 건물명이 있고, 공동주택일 경우 추가한다.
+                      if(data.buildingName !== '' && data.apartment === 'Y'){
+                          extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                      }
+                      // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                      if(extraAddr !== ''){
+                          extraAddr = ' (' + extraAddr + ')';
+                      }
+                      // 조합된 참고항목을 해당 필드에 넣는다.
+                      document.getElementById("sample6_extraAddress").value = extraAddr;
+                  
+                  } else {
+                      document.getElementById("sample6_extraAddress").value = '';
+                  }
+  
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('sample6_postcode').value = data.zonecode;
+                  document.getElementById("sample6_address").value = addr;
+                  // 커서를 상세주소 필드로 이동한다.
+                  document.getElementById("sample6_detailAddress").focus();
+              }
+          }).open();
+      }
+  </script>
+
+
+
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
@@ -207,11 +287,81 @@
 
 
 
-		<div id="menu2" class="tab-pane fade">
-			<h3>발전소 등록</h3>
-			<p>발전소를 등록합니다.</p>		
-		</div>
-		
+	<div id="menu2" class="tab-pane fade">
+			<h3>발전소 등록</h3>	
+		  <main id="main" class="main">
+
+			    <section class="section">
+			      <div class="row">
+			        <div class="col-lg-6">
+			
+			          <div class="card">
+			            <div class="card-body">
+			              <h5 class="card-title"></h5>
+			
+			              <!-- General Form Elements -->
+			              <form>
+			                <div class="row mb-3">
+			                  <label for="inputText" class="col-sm-2 col-form-label">발전소이름</label>
+			                  <div class="col-sm-10">
+			                    <input type="text" class="form-control">
+			                  </div>
+			                </div>
+			
+			                <div class="row mb-3">
+			                    <label for="inputText" class="col-sm-2 col-form-label">주소</label>
+			                    <div class="col-sm-10">
+			                        <div class="col-md-6"  style="position: relative; display: flex;">
+			                            <input type="text" class="form-control" id="sample6_postcode" placeholder="우편번호">
+			                            <input type="button" class="btn btn-primary btn-sm" onclick="sample6_execDaumPostcode()" style="position: absolute; right: 5px; top: 5px; bottom: 5px;" value="우편번호 찾기"><br>
+			                        </div>
+			                        <div class="col-12">
+			                            <input type="text" class="form-control" id="sample6_address" placeholder="주소">
+			                            <input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소">
+			                        </div>
+			                        <div class="col-md-6">
+			                            <input type="hidden"  id="sample6_extraAddress" placeholder="참고항목">
+			                        </div>
+			                    </div>
+			                  </div>
+			
+			                <div class="row mb-3">
+			                  <label for="inputPassword" class="col-sm-2 col-form-label">전화번호</label>
+			                  <div class="col-sm-10">
+			                    <input type="text" class="form-control">
+			                  </div>
+			                </div>
+			
+			                <div class="row mb-3">
+			                  <label for="inputNumber" class="col-sm-2 col-form-label">면적</label>
+			                  <div  class="input-group mb-3" style="width: 50%;">
+			                      <input type="number" class="form-control" style="width: 300px;">
+			                      <span class="input-group-text" style="font-size: large;">㎡</span>
+			                  </div>
+			                </div> 
+			                
+			                <div class="row mb-3">
+			                    <label for="inputNumber" class="col-sm-2 col-form-label">용량</label>
+			                    <div  class="input-group mb-3" style="width: 50%;">
+			                        <input type="number" class="form-control" style="width: 300px;">
+			                        <span class="input-group-text">wh</span>
+			                    </div>
+			                  </div> 
+			
+			                <div class="text-center">
+			                    <button type="submit" class="btn btn-primary">등록</button>
+			                    <button type="reset" class="btn btn-secondary">취소</button>
+			                  </div>
+			              </form><!-- End General Form Elements -->
+			            </div>
+			        </div>			
+			        </div>
+			      </div>
+			    </section>
+
+ 			 </main><!-- End #main -->
+ 		</div>
+	</div>
 	</div>
 	</div>
 
@@ -263,6 +413,20 @@
 			</div>
 		</div>
 	</div>
+
+  <!-- Vendor JS Files -->
+  <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="resources/assets/vendor/quill/quill.js"></script>
+  <script src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="resources/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="resources/assets/js/main.js"></script>
+
 </body>
 </html>
 
