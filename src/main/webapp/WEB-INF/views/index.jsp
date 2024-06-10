@@ -487,7 +487,7 @@
 					</table>
 
 
-					<div class="panel-footer">2024 ~ Solar Namdo ~</div>
+					<div class="panel-footer" style="text-align:center;">2024 ~ Solar Namdo ~</div>
 
 				</div>
 
