@@ -292,7 +292,7 @@
 		  <main id="main" class="main">
 
 			    <section class="section">
-			      <div class="row">
+			      <div class="row" style="justify-content: center">
 			        <div class="col-lg-6">
 			
 			          <div class="card">
