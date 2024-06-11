@@ -13,7 +13,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>board_detail</title>
+<title>board_main</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -41,6 +41,20 @@
 
 <!-- Template Main CSS File -->
 <link href="resources/assets/css/style.css" rel="stylesheet">
+<script type="text/javascript">
+// 게시글 삭제 기능
+function goDelete(b_idx){
+	  $.ajax({
+			url : "board/"+b_idx,
+			type : "delete",
+			success : function() {
+	            window.location.href = "boardList.do";
+	        },
+			error : function(){ alert("error"); }
+	  });
+}
+</script>
+
 </head>
 
 <body>
@@ -56,39 +70,28 @@
                <div class="col-lg-12">
 
                   <div class="card">
-                     <div class="card-body">
-                        <h5 class="card-title">게시판</h5>
-
-                        <!-- Table with stripped rows -->
-                        <table class="table datatable">
-                           <thead>
-                              <tr>
-                                 <th>No.</th>
-                                 <th>제목</th>
-                                 <th>작성자</th>
-                                 <th>첨부파일</th>
-                                 <th>조회수</th>
-                                 <th>등록일</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <c:forEach var="vo" items="${list}">
-                                 <tr>
-                                    <td>${vo.b_idx}</td>
-                                    <td style="width: 400px"><a
-                                       href="boardContent.do?b_idx=${vo.b_idx}"><c:out
-                                             value="${vo.b_title}"></c:out></a></td>
-                                    <td>${vo.user_id}</td>
-                                    <td>${vo.b_file}</td>
-                                    <td>${vo.b_views}</td>
-                                    <td>${fn:split(vo.created_at, " ")[0]}</td>
-                                 </tr>
-                              </c:forEach>
-                           </tbody>
-                        </table>
-                        <!-- End Table with stripped rows -->
-						<a class="btn btn-warning btn-sm" style="align-content : center;" href="boardForm.do">글쓰기</a>
-						
+					<div class="card-header">
+		                <h5 class="card-title">${vo.b_title}</h5>
+		                <nav style="--bs-breadcrumb-divider: '|';">
+			                <ol class="breadcrumb">
+			                  <li class="breadcrumb-item active"><i class="ri-account-circle-line" style="font-size:15px;"></i>${vo.user_id}</a></li>
+			                  <li class="breadcrumb-item active">${vo.created_at}</li>
+			                  <li class="breadcrumb-item active">조회수 ${vo.b_views}</li> 
+			                </ol>
+		                </nav>
+					</div>
+					
+					<div class="card-body">
+						<div class="form-floating mb-3">
+			                <label for="floatingTextarea">${fn:replace(vo.b_content, line, "<br>")}</label>
+		           		</div>
+                     
+			 			  <!-- 버 튼 -->
+			              <div class="text-center">
+				              <a href="boardList.do"  class="btn btn-info">돌아가기</a>
+							  <a href="boardUdateForm.do?b_idx=${vo.b_idx}" class="btn btn-success">수정하기</a>
+							  <button class="btn btn-warning" type="button" onclick="goDelete(${vo.b_idx})">삭제</button>
+			              </div>
                      </div>
                   </div>
                </div>
