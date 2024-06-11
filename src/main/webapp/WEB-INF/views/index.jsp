@@ -248,7 +248,11 @@
 	  $("#noticeModal").modal("show");	  	  
 	  }
 	 
-	
+	  function noticeUpdate(num){
+		  alert(num);
+	  $("#noticeModal2").modal("show");	  	  
+
+	}
 	  
 	 
   </script>
@@ -276,7 +280,7 @@
 					
 					<div style="display: flex; justify-content: center; align-items: center;">
 					
-						<div class="panel col-md-11 col-sm-12 col-xs-12 " >
+						<div class="panel col-md-10 col-sm-12 col-xs-12 " >
 						
 													
 								
@@ -325,26 +329,26 @@
 						style="height: 260px;">
 						<h3>오늘의 SMP</h3>
 						<p style="text-align: right;">(단위:원/kWh)</p>
-						<table class="table">
+						<table class="table" style="text-align: center;" >
 							<colgroup>
 								<col style="width: 133px;">
 								<col style="width: auto;">
 							</colgroup>
 							<tbody>
 								<tr>
-									<th scope="row" class="info">거래일</th>
+									<th scope="row" class="info" style="text-align: center;">거래일</th>
 									<td data-label="거래일">${smpData.smpDay }</td>
 								</tr>
 								<tr>
-									<th scope="row" class="info">최고가</th>
+									<th scope="row" class="info" style="text-align: center;">최고가</th>
 									<td data-label="최고가">${smpData.maxSmp }</td>
 								</tr>
 								<tr>
-									<th scope="row" class="info">최소가</th>
+									<th scope="row" class="info" style="text-align: center;">최소가</th>
 									<td data-label="최소가">${smpData.minSmp }</td>
 								</tr>
 								<tr>
-									<th scope="row" class="info">평균가</th>
+									<th scope="row" class="info" style="text-align: center;">평균가</th>
 									<td data-label="평균가">${smpData.meanSmp }</td>
 								</tr>
 							</tbody>
@@ -361,24 +365,24 @@
 						<p style="text-align: right;">※ 매주 화, 목요일 10 : 00 ~ 16 : 00 개장
 							(단위:REC, 원/REC)</p>
 
-						<table class="table">
+						<table class="table" style="text-align: center;">
 
 							<tr>
-								<th scope="row" class="info">거래일</th>
+								<th scope="row" class="info" style="text-align: center;">거래일</th>
 								<td data-label="거래일">${smpData.recDay }</td>
-								<th scope="row" class="info">거래량</th>
+								<th scope="row" class="info" style="text-align: center;">거래량</th>
 								<td data-label="거래량">${smpData.totRecValue }</td>
 							</tr>
 							<tr>
-								<th scope="row" class="info">평균가</th>
+								<th scope="row" class="info" style="text-align: center;">평균가</th>
 								<td data-label="평균가">${smpData.landAvgPrc }</td>
-								<th scope="row" class="info">최고가</th>
+								<th scope="row" class="info" style="text-align: center;">최고가</th>
 								<td data-label="최고가">${smpData.landHgPrc }</td>
 							</tr>
 							<tr>
-								<th scope="row" class="info">최저가</th>
+								<th scope="row" class="info" style="text-align: center;">최저가</th>
 								<td data-label="최저가">${smpData.landLwPrc }</td>
-								<th scope="row" class="info">종가</th>
+								<th scope="row" class="info" style="text-align: center;">종가</th>
 								<td data-label="종가">${smpData.clsPrc }</td>
 							</tr>
 
@@ -394,8 +398,33 @@
 					<canvas id="canvas"></canvas>
 				</div>
 
+ 		<%
+        // 현재 시간을 가져옵니다.   날씨 API 아침 5시 데이터를 이용-> 5:30분 전에는 어제 데이터 5:30분 이후에는 오늘데이터를 출력
+        java.util.Calendar now = java.util.Calendar.getInstance();
+        
+        // 어제 날짜를 계산하기 위한 Calendar 객체를 복사합니다.
+        java.util.Calendar targetDate = (java.util.Calendar) now.clone();
+        
+        // 현재 시간이 05:30:00 이전인지 확인합니다.
+        if (now.get(java.util.Calendar.HOUR_OF_DAY) < 5 || 
+            (now.get(java.util.Calendar.HOUR_OF_DAY) == 5 && now.get(java.util.Calendar.MINUTE) < 30)) {
+            // 어제 날짜를 설정합니다.
+            targetDate.add(java.util.Calendar.DATE, -1);
+        }
+        
+        // 설정된 날짜를 YYYY-MM-DD 형식의 문자열로 변환합니다.
+        int year = targetDate.get(java.util.Calendar.YEAR);
+        int month = targetDate.get(java.util.Calendar.MONTH) + 1; // Calendar.MONTH는 0부터 시작하므로 1을 더합니다.
+        int day = targetDate.get(java.util.Calendar.DAY_OF_MONTH);
+        
+        String formattedDate = String.format("%04d-%02d-%02d", year, month, day);
+   		 %>
+
+
+
+
 				<div class="panel-body table-responsive">
-					<h3 id="tempDay">오늘의 날씨</h3>
+					<h3 id="tempDay"><%=formattedDate %>의 날씨</h3>
 					<table class="table " id="weatherTable">
 
 						<tr>
@@ -458,7 +487,7 @@
 					</table>
 
 
-					<div class="panel-footer">2024 ~ Solar Namdo ~</div>
+					<div class="panel-footer" style="text-align:center;">2024 ~ Solar Namdo ~</div>
 
 				</div>
 
