@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import kr.board.entity.Plant;
 import kr.board.entity.User;
 import kr.board.mapper.UserMapper;
 
@@ -207,6 +208,15 @@ public class UserController {
 			rttr.addFlashAttribute("msgType", "성공 메세지");
 			rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
 			session.setAttribute("mvo", mvo);
+			
+			Plant p = null;
+			
+			// 발전소를 가지고 있는지 확인
+			if(Integer.valueOf(mvo.getPlant_idx())!=null) {
+				p = userMapper.getPlant(mvo.getPlant_idx());
+				session.setAttribute("plant", p);
+			}			
+			
 			return "redirect:/";
 		}
 
@@ -390,6 +400,49 @@ public class UserController {
 			System.out.println(temp.toString());
 
 			session.setAttribute("mvo", temp);
+			
+			return "redirect:/updateMain.do";
+		}
+		
+		@GetMapping("plantInsert.do")
+		public String plantInsert(Plant p,HttpSession session,RedirectAttributes rttr) {
+			
+			int num = 0;
+			num = userMapper.plantInsert(p);
+			
+			System.out.println(p.getPlant_idx());
+			
+			if (num == 1) {
+				rttr.addFlashAttribute("msgType", "성공 메세지");
+				rttr.addFlashAttribute("msg", "발전소 정보를 입력했습니다.");
+				
+				// 플랜트정보를 mvo에 plant_idx로 인서트해서 다시 세션화 
+				User m = ((User) session.getAttribute("mvo"));
+				m.setPlant_idx(p.getPlant_idx());
+				userMapper.plantUpdateUser(m);
+				session.setAttribute("mvo", m);
+				session.setAttribute("plant", p);
+				
+			} else {
+				// 회원가입 실패
+				rttr.addFlashAttribute("msgType", "실패 메세지");
+				rttr.addFlashAttribute("msg", "입력에 실패했습니다.");
+			}
+			
+			return "redirect:/updateMain.do";
+
+		}
+		
+		
+		@GetMapping("plantUpdate.do")
+		public String plantUpdate(Plant p,HttpSession session,RedirectAttributes rttr) {
+		 
+			int num = userMapper.plantUpdate(p);
+			
+			session.setAttribute("plant", p);
+			
+			rttr.addFlashAttribute("msgType", "성공 메세지");
+			rttr.addFlashAttribute("msg", "발전소 정보를 입력했습니다.");
 			
 			return "redirect:/updateMain.do";
 		}

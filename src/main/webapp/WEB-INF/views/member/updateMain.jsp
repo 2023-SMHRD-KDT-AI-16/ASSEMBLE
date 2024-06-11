@@ -27,7 +27,8 @@
 	rel="stylesheet">
 
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script>
   	  <!--우편번호 daum_API-->
@@ -93,16 +94,30 @@
   
   	$(document).ready(function(){
   		if(${not empty msgType}){
-  			if(${msgType eq "실패 메세지"}){
-  				$("#messageType").attr("class", "modal-content panel-warning");
-  			}
+  			
   			$("#myMessage").modal("show");
   		}
+  			
+  		
+  		// 2번탭 클릭시 데이터가 있으면 수정하기 
+  		
+  		 $('#menu2Tab').on('click', function() {
+  	         
+  			 var plant = "${plant}";
+  			 
+  		    if (plant === "" || plant === null) {
+  		        alert("플랜트정보가 없습니다.");
+  		    } else {
+  		        alert("플랜트정보가 있습니다."); 
+  		    } 	  			 
+  			 
+  			 
+  	     });
   		
   		
   		
   		
-  		
+  		 
   	});
   	
   	function chooseImage(obj){
@@ -168,8 +183,6 @@
     }
 
   	
-  	
-  	
 </script>
 </head>
 <body>
@@ -182,7 +195,8 @@
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#home">사진등록</a></li>
 				<li><a data-toggle="tab" href="#menu1">비밀번호 변경</a></li>
-				<li><a data-toggle="tab" href="#menu2">발전소등록</a></li>
+				<li><a data-toggle="tab" href="#menu2" id="menu2Tab">발전소
+						등록및 수정</a></li>
 			</ul>
 
 			<div class="tab-content">
@@ -277,96 +291,210 @@
 
 
 				<div id="menu2" class="tab-pane fade">
-					<h3>발전소 등록</h3>
+					<h3>발전소 등록및 수정</h3>
 					<main id="main" class="main">
 
 
+						<c:choose>
+							<c:when test="${empty plant}">
 
-						<section class="section">
-						
-						
-							<div class="row" style="justify-content: center">
-								<div class="col-lg-12">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h3 class="panel-title">발전소를 등록해 주세요</h3>
-										</div>
-										<div class="panel-body">
-											<form>
-												<div class="form-group">
-													<label for="inputText" class="col-sm-2 control-label">발전소이름</label>
-													<div class="col-lg-12">
-														<input type="text" class="form-control" id="inputText">
-													</div>
+								<section class="section">
+
+
+									<div class="row" style="justify-content: center">
+										<div class="col-lg-12">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h3 class="panel-title">발전소를 등록해 주세요</h3>
 												</div>
-
-												<div class="form-group">
-													<label for="inputText" class="col-sm-2 control-label">주소</label>
-													<div class="col-lg-12">
-														<div style="position: relative; display: flex; padding-left:0; ">
-															<input type="text" class="form-control"
-																id="sample6_postcode" placeholder="우편번호"> <input
-																type="button" class="btn btn-primary btn-sm"
-																onclick="sample6_execDaumPostcode()"
-																style="position: absolute; right: 5px; top: 5px; bottom: 5px;"
-																value="우편번호 찾기">
-														</div><br>
-														<div style="margin-bottom:10px;">
-															<input type="text" class="form-control"
-																id="sample6_address" placeholder="주소"><br> <input
-																type="text" class="form-control"
-																id="sample6_detailAddress" placeholder="상세주소">
+												<div class="panel-body">
+													<form action="plantInsert.do" id="plantForm">
+														<div class="form-group">
+															<label for="inputText" class="col-sm-2 control-label">발전소이름</label>
+															<div class="col-lg-12">
+																<input type="text" class="form-control" id="inputText"
+																	name="plant_name" required>
+															</div>
 														</div>
-														<div >
-															<input type="hidden" id="sample6_extraAddress"
-																placeholder="참고항목">
-														</div><br>
-													</div>
-												</div>
 
-												<div class="form-group">
-													<label for="inputPassword" class="col-sm-2 control-label">전화번호</label>
-													<div class="col-lg-12">
-														<input type="text" class="form-control" id="inputPassword">
-													</div>
-												</div>
-
-												<div class="form-group">
-													<label for="inputNumber" class="col-sm-2 control-label">면적</label>
-													<div class="col-lg-12">
-														<div class="input-group" style="width: 70%;">
-															<input type="number" class="form-control"
-																> <span
-																class="input-group-addon" style="font-size: large;">㎡</span>
+														<div class="form-group">
+															<label for="inputText" class="col-sm-2 control-label">주소</label>
+															<div class="col-lg-12">
+																<div
+																	style="position: relative; display: flex; padding-left: 0;">
+																	<input type="text" class="form-control"
+																		id="sample6_postcode" name="region" placeholder="우편번호">
+																	<input type="button" class="btn btn-primary btn-sm"
+																		onclick="sample6_execDaumPostcode()"
+																		style="position: absolute; right: 5px; top: 5px; bottom: 5px;"
+																		value="우편번호 찾기">
+																</div>
+																<br>
+																<div style="margin-bottom: 10px;">
+																	<input type="text" class="form-control"
+																		id="sample6_address" placeholder="주소" required name="plant_addr"><br>
+																	<input type="text" class="form-control"
+																		id="sample6_detailAddress" placeholder="상세주소" name="plant_addr_add">
+																</div>
+																<div>
+																	<input type="hidden" id="sample6_extraAddress"
+																		placeholder="참고항목">
+																</div>
+																<br>
+															</div>
 														</div>
-													</div>
-												</div>
 
-												<div class="form-group">
-													<label for="inputNumber" class="col-sm-2 control-label">용량</label>
-													<div class="col-lg-12">
-														<div class="input-group" style="width: 70%;">
-															<input type="number" class="form-control"
-																> <span
-																class="input-group-addon" style="font-size: large;">kW</span>
+														<div class="form-group">
+															<label for="inputPassword" class="col-sm-2 control-label">전화번호</label>
+															<div class="col-lg-12">
+																<input type="text" class="form-control"
+																	id="inputPassword" name="plant_tel" required>
+															</div>
 														</div>
-													</div>
-												</div>
 
-												<div class="form-group">
-													<div class="col-sm-offset-2 col-sm-10 text-center"><br>
-														<button type="submit" class="btn btn-primary">등록</button>
-														<button type="reset" class="btn btn-default">취소</button>
-													</div>
+														<div class="form-group">
+															<label for="inputNumber" class="col-sm-2 control-label">면적</label>
+															<div class="col-lg-12">
+																<div class="input-group" style="width: 70%;">
+																	<input type="number" class="form-control"
+																		name="plant_are" required> <span
+																		class="input-group-addon" style="font-size: large;">㎡</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label for="inputNumber" class="col-sm-2 control-label">용량</label>
+															<div class="col-lg-12">
+																<div class="input-group" style="width: 70%;">
+																	<input type="number" class="form-control"
+																		name="plant_volume" required> <span
+																		class="input-group-addon" style="font-size: large;">kW</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<div class="col-sm-offset-2 col-sm-10 text-center">
+																<br>
+																<button type="submit" class="btn btn-primary">등록</button>
+																<button type="reset" class="btn btn-default">취소</button>
+															</div>
+														</div>
+													</form>
 												</div>
-											</form>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
 
 
-						</section>
+								</section>
+
+
+
+
+							</c:when>
+							<c:otherwise>
+       
+       						<section class="section">
+					        	<div class="row" style="justify-content: center">
+										<div class="col-lg-12">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h3 class="panel-title">발전소를 등록해 주세요</h3>
+												</div>
+												<div class="panel-body">
+													<form action="plantUpdate.do" id="plantForm">
+														<div class="form-group">
+															<label for="inputText" class="col-sm-2 control-label">발전소이름</label>
+															<div class="col-lg-12">
+																<input type="text" class="form-control" id="inputText"
+																	name="plant_name" required value="${plant.plant_name }">
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label for="inputText" class="col-sm-2 control-label">주소</label>
+															<div class="col-lg-12">
+																<div
+																	style="position: relative; display: flex; padding-left: 0;">
+																	<input type="text" class="form-control"
+																		id="sample6_postcode" name="region" placeholder="우편번호" value="${plant.region }" required>
+																	<input type="button" class="btn btn-primary btn-sm"
+																		onclick="sample6_execDaumPostcode()"
+																		style="position: absolute; right: 5px; top: 5px; bottom: 5px;"
+																		value="우편번호 찾기">
+																</div>
+																<br>
+																<div style="margin-bottom: 10px;">
+																	<input type="text" class="form-control"
+																		id="sample6_address" placeholder="주소" required name="plant_addr" value="${plant.plant_addr }"><br>
+																	<input type="text" class="form-control"
+																		id="sample6_detailAddress" placeholder="상세주소" name="plant_addr_add" value="${plant.plant_addr_add }">
+																</div>
+																<div>
+																	<input type="hidden" id="sample6_extraAddress" name="plant_idx" value="${plant.plant_idx }">
+																</div>
+																<br>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label for="inputPassword" class="col-sm-2 control-label">전화번호</label>
+															<div class="col-lg-12">
+																<input type="text" class="form-control"
+																	id="inputPassword" name="plant_tel" required value="${plant.plant_tel }">
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label for="inputNumber" class="col-sm-2 control-label">면적</label>
+															<div class="col-lg-12">
+																<div class="input-group" style="width: 70%;">
+																	<input type="number" class="form-control"
+																		name="plant_are" required value="${plant.plant_are }"> <span
+																		class="input-group-addon" style="font-size: large;">㎡</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label for="inputNumber" class="col-sm-2 control-label">용량</label>
+															<div class="col-lg-12">
+																<div class="input-group" style="width: 70%;">
+																	<input type="number" class="form-control"
+																		name="plant_volume" required value="${plant.plant_volume }"> <span
+																		class="input-group-addon" style="font-size: large;">kW</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<div class="col-sm-offset-2 col-sm-10 text-center">
+																<br>
+																<button type="submit" class="btn btn-primary">수정</button>
+																<button type="reset" class="btn btn-default">취소</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
+									
+
+
+							</section>
+					        
+					    </c:otherwise>
+						</c:choose>
+
+
+
+
 
 
 					</main>
@@ -405,18 +533,19 @@
 
 
 
+		<!-- 회원가입 성공 시 나오게될 모달창 -->
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal fade" id="myMessage" role="dialog">
 			<div class="modal-dialog">
 
 				<!-- Modal content-->
-				<div id="checkType" class="modal-content panel-info">
+				<div id="messageType" class="modal-content panel-info">
 					<div class="modal-header panel-heading">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">메세지 확인</h4>
+						<h4 class="modal-title">${msgType}</h4>
 					</div>
 					<div class="modal-body">
-						<p id="checkMessage"></p>
+						<p id="">${msg}</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
