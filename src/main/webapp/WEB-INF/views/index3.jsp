@@ -411,7 +411,7 @@
 
 
 				<div class="panel-footer">2024 ~ Solar Namdo ~</div>
-
+				${plant }
 			</div>
 
 

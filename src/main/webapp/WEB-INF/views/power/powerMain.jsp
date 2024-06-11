@@ -45,6 +45,30 @@
           font-size: 3.5rem;
         }
       }
+       
+        /* Bootstrap 3 container widths in Bootstrap 5 */
+
+        @media (min-width: 768px) {
+          .container {
+            max-width: 750px;
+          }
+        }
+
+        @media (min-width: 992px) {
+          .container {
+            max-width: 970px;
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .container {
+            max-width: 1170px;
+          }
+        }
+    	
+    	.navbar-nav .nav-link {
+		    font-size: 14px;
+		  }
     </style>
     
     	
@@ -54,14 +78,63 @@
 	<main>
 		<div class="container">
 
-				<div style="display: flex; flex-direction: row;">
-				<jsp:include page="../common/dash.jsp"></jsp:include>
+				<div style="display: flex; flex-direction: column;">
+				<jsp:include page="../common/head2.jsp"></jsp:include>
 
 				<div class="container-fluid">
 					<div class="row">
 						
 
-						<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+						<main class="col-md-12 ms-sm-auto col-lg-12 px-md-12">
+						
+						<!-- rec smp -->
+							<div class="container">
+							
+							<br>
+							  <div class="row">
+							  							    
+							      <div class="col-lg-4 col-md-6 mb-4">
+							        <div class="card bg-dark text-gray border border-primary">
+							          <img class="card-img" alt="sample" src="${contextPath}/resources/images/sampleBackBlue.jpg">
+							          <div class="card-img-overlay">
+							            <h4 class="card-title font-weight-bold text-center">SMP</h4>
+							            <p class="card-text text-lg font-weight-bold">거래일 : ${smpData.smpDay}</p>
+							            <p class="card-text font-weight-bold">최고가 : ${smpData.maxSmp}</p>
+							            <p class="card-text font-weight-bold">최소가 : ${smpData.minSmp}</p>
+							            <p class="card-text font-weight-bold">평균가 : ${smpData.meanSmp}</p>
+							          </div>
+							        </div>
+							      </div>
+							   
+							      <div class="col-lg-4 col-md-6 mb-4">
+							        <div class="card bg-dark text-gray border border-primary">
+										<img class="card-img" alt="sample" src="${contextPath}/resources/images/sampleBackBlue.jpg">							          <div class="card-img-overlay">
+							            <h4 class="card-title font-weight-bold text-center">REC</h4>
+							            <p class="card-text font-weight-bold">거래일 : ${smpData.recDay}</p>
+							            <p class="card-text font-weight-bold">거래량 : ${smpData.totRecValue} 평균가 : ${smpData.landAvgPrc}</p>
+							            <p class="card-text font-weight-bold">최고가 : ${smpData.landHgPrc} 최저가 : ${smpData.landLwPrc}</p>
+							            <p class="card-text font-weight-bold">종가 : ${smpData.clsPrc}</p>
+							          </div>
+							        </div>
+							      </div>
+							      
+							      <div class="col-lg-4 col-md-6 mb-4">
+							        <div class="card bg-dark text-gray border border-primary">
+							          <img class="card-img" alt="sample" src="${contextPath}/resources/images/sampleBackBlue.jpg">
+							          <div class="card-img-overlay">
+							            <h4 class="card-title font-weight-bold text-center">여기다가는 무엇을 넣을까</h4>
+							            <p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
+							            <p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
+							            <p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
+							         
+							          </div>
+							        </div>
+							      </div>
+							      
+							      
+							  </div>
+							</div>
+						
 							<div class="chartjs-size-monitor">
 								<div class="chartjs-size-monitor-expand">
 									<div class=""></div>
