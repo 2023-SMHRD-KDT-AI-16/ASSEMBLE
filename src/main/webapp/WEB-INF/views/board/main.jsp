@@ -201,7 +201,7 @@
  
 	<div class="container">
 	
-	  <jsp:include page="../common/head2.jsp"></jsp:include>
+	  <jsp:include page="../common/header.jsp"></jsp:include>
 		
 	  <h2>Spring MVC03</h2>
 	  <div class="panel panel-default">

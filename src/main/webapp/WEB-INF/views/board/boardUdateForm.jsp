@@ -69,7 +69,7 @@
 
 <body>
    <div class="container">
-      <jsp:include page="../common/head2.jsp"></jsp:include>
+      <jsp:include page="../common/header.jsp"></jsp:include>
       
       
       <div class="panel panel-default">
