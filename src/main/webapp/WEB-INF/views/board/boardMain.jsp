@@ -51,7 +51,17 @@
 
 <body>
 
-   
+   <!-- Vendor JS Files -->
+   <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+   <script
+      src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+   <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+   <script src="resources/assets/vendor/quill/quill.js"></script>
+   <script
+      src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+   <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+   <script src="resources/assets/vendor/php-email-form/validate.js"></script>
 
 
    
@@ -136,17 +146,6 @@
    <!-- Template Main JS File -->
    <script src="resources/assets/js/main.js"></script>
    
-   <!-- Vendor JS Files -->
-   <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
-   <script
-      src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-   <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
-   <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
-   <script src="resources/assets/vendor/quill/quill.js"></script>
-   <script
-      src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
-   <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
-   <script src="resources/assets/vendor/php-email-form/validate.js"></script>
    
    
 </body>
