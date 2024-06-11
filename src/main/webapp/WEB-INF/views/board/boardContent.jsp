@@ -87,11 +87,13 @@ function goDelete(b_idx){
 		           		</div>
                      
 			 			  <!-- 버 튼 -->
-			              <div class="text-center">
+			            <div class="text-center">
 				              <a href="boardList.do"  class="btn btn-info">돌아가기</a>
+			              <c:if test="${mvo.user_id eq vo.user_id}">
 							  <a href="boardUdateForm.do?b_idx=${vo.b_idx}" class="btn btn-success">수정하기</a>
 							  <button class="btn btn-warning" type="button" onclick="goDelete(${vo.b_idx})">삭제</button>
-			              </div>
+					      </c:if>
+			            </div>
                      </div>
                   </div>
                </div>
