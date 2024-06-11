@@ -69,7 +69,7 @@
     </div><!-- End Page Title -->
     <section class="section">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-9">
           <div class="card">
             <div class="card-body">
               <h2 class="card-title">게시글 수정하기</h2>

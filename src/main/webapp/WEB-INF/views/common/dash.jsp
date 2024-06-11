@@ -128,9 +128,7 @@
 					</c:choose></li>
 			
 			
-			<li><span style="color: black;">${mvo.user_nick}님</span>				
-				
-				</li>
+			<li><span style="color: black;">${mvo.user_nick}님</span></li>
 		</a>
 		<ul class="dropdown-menu text-small shadow"
 			aria-labelledby="dropdownUser2">
