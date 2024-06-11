@@ -72,12 +72,13 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <c:forEach var="vo" items="${list}">
+                              <c:forEach var="vo" items="${list}" varStatus="status">
+                              <input type="hidden" name="b_idx" value="${vo.b_idx}">
                                  <tr>
-                                    <td>${vo.b_idx}</td>
+                                    <td>${status.count}</td>
+                                    <input type="hidden" name="b_idx" value="${vo.b_idx}">
                                     <td style="width: 400px"><a
-                                       href="boardContent.do?b_idx=${vo.b_idx}"><c:out
-                                             value="${vo.b_title}"></c:out></a></td>
+                                       href="boardContent.do?b_idx=${vo.b_idx}"><c:out value="${vo.b_title}"></c:out></a></td>
                                     <td>${vo.user_id}</td>
                                     <td>${vo.b_file}</td>
                                     <td>${vo.b_views}</td>
@@ -86,9 +87,13 @@
                               </c:forEach>
                            </tbody>
                         </table>
-                        <!-- End Table with stripped rows -->
-						<a class="btn btn-warning btn-sm" style="align-content : center;" href="boardForm.do">글쓰기</a>
-						
+                        <!-- 글쓰기 버튼 -->
+                         <c:if test="${empty mvo}">
+                        	<a class="btn btn-warning btn-sm" style="align-content : center; display: none;" href="boardForm.do">글쓰기</a>
+					     </c:if>
+					     <c:if test="${not empty mvo}">
+							<a class="btn btn-warning btn-sm" style="align-content : center;" href="boardForm.do">글쓰기</a>
+						 </c:if>
                      </div>
                   </div>
                </div>
@@ -124,7 +129,6 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   
    
 </body>
 

@@ -3,7 +3,7 @@
 <mapper namespace="kr.board.mapper.BoardMapper">
 
 	<select id="boardList" resultType="kr.board.entity.Board">
-		select * from board_info order by created_at desc
+		select * from board_info WHERE b_category = 0 order by created_at desc
 	</select>
 	
 	<insert id="boardInsert" parameterType="kr.board.entity.Board">
