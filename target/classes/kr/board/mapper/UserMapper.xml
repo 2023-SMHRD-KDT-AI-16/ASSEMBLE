@@ -48,10 +48,30 @@
 	<update id="pwChange" parameterType="kr.board.entity.User">
 		update user_info set user_pw = #{user_pw}
 		where user_id = #{user_id}
+	</update>		
+
+	<insert id="plantInsert" parameterType="kr.board.entity.Plant" useGeneratedKeys="true" keyProperty="plant_idx" keyColumn="plant_idx">
+		insert into power_plant_info(plant_name,plant_addr,plant_tel,plant_are, 
+		region,plant_volume,plant_addr_add)
+		values(#{plant_name}, #{plant_addr}, #{plant_tel}, #{plant_are}, 
+		#{region}, #{plant_volume},#{plant_addr_add})
+	</insert>
+	
+	<update id="plantUpdateUser" parameterType="kr.board.entity.User">
+		update user_info set plant_idx = #{plant_idx}, user_type = 'plant'
+		where user_id = #{user_id}
 	</update>
 	
+	<select id="getPlant" resultType="kr.board.entity.Plant">
+		select * from power_plant_info where plant_idx=#{plant_idx}
+	</select>
 	
 	
+	<update id="plantUpdate" parameterType="kr.board.entity.Plant">
+		update power_plant_info set plant_name = #{plant_name},plant_addr=#{plant_addr},plant_addr_add=#{plant_addr_add},
+		plant_tel=#{plant_tel},plant_are=#{plant_are},region=#{region},plant_volume=#{plant_volume}
+		where plant_idx = #{plant_idx}
+	</update>
 </mapper>
 
 
