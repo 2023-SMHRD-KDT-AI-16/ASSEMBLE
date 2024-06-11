@@ -38,7 +38,6 @@ public class BoardController {
 		List<Board> list = boardMapper.boardList();
 		System.out.println("게시글의 갯수:  "+ list.size());
 		model.addAttribute("list",list); //model에다가 잠깐 값을 담아서 간다.
-		
 		return "board/boardMain";
 	}
 	

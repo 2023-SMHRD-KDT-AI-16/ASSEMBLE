@@ -6,6 +6,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+ <!-- 리스트 크기를 size 변수에 설정 -->
+<c:set var="listSize" value="${fn:length(list)}" />
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -50,17 +52,20 @@
       
       <div class="panel panel-default">
       
-      <main id="main" class="main">
+      <main id="main" class="main" style="margin-bottom: 0px;">
+          <div class="pagetitle">
+		      <h1>게시판</h1>
+		  </div>
          <section class="section">
             <div class="row">
                <div class="col-lg-12">
 
                   <div class="card">
                      <div class="card-body">
-                        <h5 class="card-title">게시판</h5>
+                        <!-- <h5 class="card-title">게시판</h5> -->
 
                         <!-- Table with stripped rows -->
-                        <table class="table datatable">
+                        <table class="table datatable table-hover">
                            <thead>
                               <tr>
                                  <th>No.</th>
@@ -75,9 +80,8 @@
                               <c:forEach var="vo" items="${list}" varStatus="status">
                               <input type="hidden" name="b_idx" value="${vo.b_idx}">
                                  <tr>
-                                    <td>${status.count}</td>
-                                    <input type="hidden" name="b_idx" value="${vo.b_idx}">
-                                    <td style="width: 400px"><a
+                                    <td>${listSize - status.index}</td>
+                                    <td style="width:400px;cursor:pointer;"><a style="color: black; width:400px;"
                                        href="boardContent.do?b_idx=${vo.b_idx}"><c:out value="${vo.b_title}"></c:out></a></td>
                                     <td>${vo.user_id}</td>
                                     <td>${vo.b_file}</td>
