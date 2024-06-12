@@ -38,7 +38,8 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/5.3.3/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   	  <!--우편번호 daum_API-->
       function sample6_execDaumPostcode() {
@@ -92,6 +93,8 @@
 
 
   <script>
+
+  
   	$(document).ready(function(){
   		if(${not empty msgType}){
   			
@@ -110,18 +113,15 @@
   		    } else {
   		        alert("플랜트정보가 있습니다."); 
   		    } 	  			 
-  			 
-  			 
+  			 			 
   	     });
-  		
-  		
-  		
-  		
-  		 
+		 
   	});
   	
   	function chooseImage(obj){
-  		
+  	  console.log("chooseImage function called");
+      $('#user_profile').click();
+      
   		let reader = new FileReader();
   		reader.onload = function (e){ 
   		  // 콜백함수를 등록 readAsDataURL 끝나면 다음 함수를 실행해라 !
@@ -140,6 +140,8 @@
   	    }
   	    return true;
   	}
+  	
+
   	
     var tempPw = "${mvo.user_pw}";
   	
@@ -181,7 +183,21 @@
        	});
                  
     }
-
+  	
+  	var user_id = "${mvo.user_id}";
+  	function goProDel(user_id){
+  		console.log("goProDel function called");
+  	  $.ajax({
+  			url : "goProDel.do",
+  			method: 'POST',
+  			data : {"user_id" : user_id},
+  			type : "delete",
+  			success : function() {
+  	            window.location.href = "updateMain.do";
+  	        },
+  			error : function(){ alert("error"); }
+  	  });
+  }
   	
 </script>
 
@@ -194,20 +210,44 @@
     <div class="pagetitle">
       <h1>Profile</h1>
     </div><!-- End Page Title -->
-
     <section class="section profile">
-      <div class="row">
-        <div class="col-xl-4">
+     <div class="row">
 
+	  <form action="profileUpdate.do" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <div class="col-xl-4">
+		
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-              <img src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }" alt="Profile" class="rounded-circle">
-              <h3>${mvo.user_id }님</h3>
-            </div>
-          </div>
-
+            	<div class="panel-body" id="view" align="center">
+	
+					<c:choose>
+						<c:when test="${not empty mvo.user_profile}">
+							<img style="width: 100px; height: 100px; border-radius: 50%;" id="imageTemp" alt="Profile" 
+								src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }">
+						</c:when>
+						<c:otherwise>
+							<img style="width: 100px; height: 100px; border-radius: 50%;" id="imagePreview" alt="Profile" 
+								src="${contextPath}/resources/images/person.png">
+						</c:otherwise>
+					</c:choose>
+					<div class="col-md-8 col-lg-9">
+                        <div class="pt-2">
+                          <button class="btn btn-pr btn-sm" title="Upload new profile image" type="submit">
+                          	<i class="bi bi-upload" onclick="chooseImage()"></i><input style="display: none;" type="file" class="form-control" id="user_profile" name="user_profile">
+                          </button>
+                          <a class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash" onclick="goProDel(${mvo.user_id })"></i></a>
+                        </div>
+                    </div>
+	 				<h3>[ ${mvo.user_id } ]</h3>
+				</div>
+            
+             
+             </div>
+           </div>
         </div>
+      </form>  
+        
+        
 
         <div class="col-xl-8">
 
@@ -224,171 +264,238 @@
                 </li>
                 
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">발전소등록</button>
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#plant_info">발전소등록</button>
                 </li>
-
-
-
               </ul>
+              
+              
               <div class="tab-content pt-2">
+              
+	              	<div id="profile-edit" class="tab-pane fade in active ">
+	
+						<form action="profileUpdate.do" method="post"
+							enctype="multipart/form-data" onsubmit="return validateForm()">
+	
+							<h3 align="center">프로필사진 등록 및 변경</h3>
+	
+							<div class="panel-body" id="view" align="center">
+	
+								<c:choose>
+									<c:when test="${not empty mvo.user_profile }">
+										<img class="img-circle " id="imageTemp"
+											src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }"
+											style="width: 300px; height: 300px; border-radius: 50%;">
+									</c:when>
+									<c:otherwise>
+										<img class="img-circle " id="imagePreview"
+											src="${contextPath}/resources/images/person.png"
+											style="width: 300px; height: 300px;">
+									</c:otherwise>
+								</c:choose>
+	
+							</div>
+	
+							<input type="file" class="form-control" id="user_profile"
+								name="user_profile" onchange="chooseImage(this)" required>
+							<br>
+	
+							<div class="text-center">
+								<button class="btn btn-pr" type="submit">등록</button>
+								<button class="btn btn-warning" type="button" onclick="goProDel(${mvo.user_id})">삭제</button>
+							</div>
+						</form>
+					</div>
+					
+					
+					
+              
+                <div class="tab-pane fade show active profile-overview" id="plant_info">
+					<main id="main" class="main">
+						<c:choose>
+							<c:when test="${empty plant}">
 
-                <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">About</h5>
-                  <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+								<section class="section">
 
-                  <h5 class="card-title">Profile Details</h5>
+									<div class="row" style="justify-content: center">
+										<div class="col-lg-12">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+												</div>
+												<div class="panel-body">
+													<form action="plantInsert.do" id="plantForm">
+														<div class="form-group">
+															<label for="inputText" class="col-sm-2 control-label">발전소명</label>
+															<div class="col-lg-12">
+																<input type="text" class="form-control" id="inputText" name="plant_name" required>
+															</div>
+														</div>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
-                  </div>
+														<div class="form-group">
+															<label for="inputText" class="col-sm-2 control-label">주소</label>
+															<div class="col-lg-12">
+																<div
+																	style="position: relative; display: flex; padding-left: 0;">
+																	<input type="text" class="form-control"
+																		id="sample6_postcode" name="region" placeholder="우편번호">
+																	<input type="button" class="btn btn-primary btn-sm"
+																		onclick="sample6_execDaumPostcode()"
+																		style="position: absolute; right: 5px; top: 5px; bottom: 5px;"
+																		value="우편번호 찾기">
+																</div>
+																<br>
+																<div style="margin-bottom: 10px;">
+																	<input type="text" class="form-control"
+																		id="sample6_address" placeholder="주소" required name="plant_addr"><br>
+																	<input type="text" class="form-control"
+																		id="sample6_detailAddress" placeholder="상세주소" name="plant_addr_add">
+																</div>
+																<div>
+																	<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+																</div>
+																<br>
+															</div>
+														</div>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Company</div>
-                    <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
-                  </div>
+														<div class="form-group">
+															<label for="inputPassword" class="col-sm-2 control-label">전화번호</label>
+															<div class="col-lg-12">
+																<input type="text" class="form-control"
+																	id="inputPassword" name="plant_tel" required>
+															</div>
+														</div>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Job</div>
-                    <div class="col-lg-9 col-md-8">Web Designer</div>
-                  </div>
+														<div class="form-group">
+															<label for="inputNumber" class="col-sm-2 control-label">면적</label>
+															<div class="col-lg-12">
+																<div class="input-group" style="width: 70%;">
+																	<input type="number" class="form-control" name="plant_are" required> <span class="input-group-addon" style="font-size: large;">㎡</span>
+																</div>
+															</div>
+														</div>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Country</div>
-                    <div class="col-lg-9 col-md-8">USA</div>
-                  </div>
+														<div class="form-group">
+															<label for="inputNumber" class="col-sm-2 control-label">용량</label>
+															<div class="col-lg-12">
+																<div class="input-group" style="width: 70%;">
+																	<input type="number" class="form-control"
+																		name="plant_volume" required> <span
+																		class="input-group-addon" style="font-size: large;">kW</span>
+																</div>
+															</div>
+														</div>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Address</div>
-                    <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
-                  </div>
+														<div class="form-group">
+															<div class="col-sm-offset-2 col-sm-10 text-center">
+																<br>
+																<button type="submit" class="btn btn-primary">등록</button>
+																<button type="reset" class="btn btn-default">취소</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+							</c:when>
+							<c:otherwise>
+       
+       						<section class="section">
+					        	<div class="row" style="justify-content: center">
+										<div class="col-lg-12">
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<form action="plantUpdate.do" id="plantForm">
+														<div class="form-group">
+															<label for="inputText" class="col-sm-2 control-label">발전소이름</label>
+															<div class="col-lg-12">
+																<input type="text" class="form-control" id="inputText"
+																	name="plant_name" required value="${plant.plant_name }">
+															</div>
+														</div>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Phone</div>
-                    <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
-                  </div>
+														<div class="form-group">
+															<label for="inputText" class="col-sm-2 control-label">주소</label>
+															<div class="col-lg-12">
+																<div
+																	style="position: relative; display: flex; padding-left: 0;">
+																	<input type="text" class="form-control"
+																		id="sample6_postcode" name="region" placeholder="우편번호" value="${plant.region }" required>
+																	<input type="button" class="btn btn-pr btn-sm"
+																		onclick="sample6_execDaumPostcode()"
+																		style="position: absolute; right: 5px; top: 5px; bottom: 5px;"
+																		value="우편번호 찾기">
+																</div>
+																<br>
+																<div style="margin-bottom: 10px;">
+																	<input type="text" class="form-control"
+																		id="sample6_address" placeholder="주소" required name="plant_addr" value="${plant.plant_addr }"><br>
+																	<input type="text" class="form-control"
+																		id="sample6_detailAddress" placeholder="상세주소" name="plant_addr_add" value="${plant.plant_addr_add }">
+																</div>
+																<div>
+																	<input type="hidden" id="sample6_extraAddress" name="plant_idx" value="${plant.plant_idx }">
+																</div>
+																<br>
+															</div>
+														</div>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
-                  </div>
+														<div class="form-group">
+															<label for="inputPassword" class="col-sm-2 control-label">전화번호</label>
+															<div class="col-lg-12">
+																<input type="text" class="form-control"
+																	id="inputPassword" name="plant_tel" required value="${plant.plant_tel }">
+															</div>
+														</div>
 
+														<div class="form-group">
+															<label for="inputNumber" class="col-sm-2 control-label">면적</label>
+															<div class="col-lg-12">
+																<div class="input-group" style="width: 70%;">
+																	<input type="number" class="form-control"
+																		name="plant_are" required value="${plant.plant_are }"> <span
+																		class="input-group-addon" style="font-size: large;">㎡</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label for="inputNumber" class="col-sm-2 control-label">용량</label>
+															<div class="col-lg-12">
+																<div class="input-group" style="width: 70%;">
+																	<input type="number" class="form-control"
+																		name="plant_volume" required value="${plant.plant_volume }"> <span
+																		class="input-group-addon" style="font-size: large;">kW</span>
+																</div>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<div class="col-sm-offset-2 col-sm-10 text-center">
+																<br>
+																<button type="submit" class="btn btn-pr">수정</button>
+																<button class="btn btn-secondary" type="reset">취소</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+							</section>				        
+					    </c:otherwise>
+						</c:choose>
+					</main>
                 </div>
+                
 
-                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                  <!-- Profile Edit Form -->
-                  <form>
-                    <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                      <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
-                      <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" class="form-control" id="Country" value="USA">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                  </form><!-- End Profile Edit Form -->
-
-                </div>
-
-                <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
+                <div class="tab-pane fade pt-3" id="profile-change-password">
                   <form>
-
                     <div class="row mb-3">
                       <label for="password" class="col-md-4 col-lg-3 col-form-label">현재 비밀번호</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword" placeholder="사용중인 비밀번호를 입력해주세요" required>
+                        <input name="currentPassword" type="password" class="form-control" id="currentPassword" placeholder="사용중인 비밀번호를 입력해주세요" required>
                       </div>
                     </div>
 
@@ -407,7 +514,7 @@
                     </div>
 
                     <div class="text-center">
-                      <button class="btn btn-primary" type="button"
+                      <button class="btn btn-pr" type="button"
 								onclick="changePassword()">비밀번호 변경</button>
                       <button class="btn btn-secondary" type="reset">취소</button>
                     </div>

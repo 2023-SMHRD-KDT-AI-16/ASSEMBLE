@@ -181,6 +181,18 @@ h6 {
 }
 
 /* Light Backgrounds */
+.btn-pr{
+	  background-color: #5C9ADD;
+	  border-bottom-color: #5C9ADD;
+	  color: white;
+}
+.btn-pr:hover{
+	  background-color:#0d6efd;
+	  border-bottom-color: #0d6efd;
+	  color: white;
+}
+
+
 .bg-primary-light {
   background-color: #cfe2ff;
   border-color: #cfe2ff;

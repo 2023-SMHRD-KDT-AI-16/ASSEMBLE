@@ -98,7 +98,7 @@
                     </div>
 
                       <div class="col-12">
-                        <button class="btn w-100" type="submit" style="background-color:#5C9ADD; border-bottom-color: #5C9ADD;">
+                        <button class="btn btn-pr w-100" type="submit">
                           로그인
                         </button>
                       </div>

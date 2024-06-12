@@ -72,6 +72,10 @@
 		plant_tel=#{plant_tel},plant_are=#{plant_are},region=#{region},plant_volume=#{plant_volume}
 		where plant_idx = #{plant_idx}
 	</update>
+
+	<update id="goProDel" parameterType="String">
+		update user_info set user_profile=#{NULL} where user_id=#{user_id}
+	</update>
 </mapper>
 
 

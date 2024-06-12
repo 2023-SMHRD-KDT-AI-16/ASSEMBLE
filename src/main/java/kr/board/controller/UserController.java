@@ -447,5 +447,12 @@ public class UserController {
 			return "redirect:/updateMain.do";
 		}
 		
+		@PostMapping("goProDel.do")
+		public String goProDel(@RequestParam("user_id") String user_id, HttpSession session,RedirectAttributes rttr) {
+			user_id = ((User) session.getAttribute("mvo")).getUser_id();
+			System.out.println("여기는 프로필삭제"+user_id);
+			userMapper.goProDel(user_id);
+			return "redirect:/updateMain.do";
+		}
 		
 }
