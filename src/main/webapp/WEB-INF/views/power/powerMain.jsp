@@ -231,133 +231,11 @@
 						        <div class="card-body">	
 
 							<h2>나의 발전소의 발전량</h2>
-							<div class="table-responsive">
-								<table class="table table-striped table-sm">
-									<thead>
-										<tr>
-											<th scope="col">#</th>
-											<th scope="col">Header</th>
-											<th scope="col">Header</th>
-											<th scope="col">Header</th>
-											<th scope="col">Header</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1,001</td>
-											<td>random</td>
-											<td>data</td>
-											<td>placeholder</td>
-											<td>text</td>
-										</tr>
-										<tr>
-											<td>1,002</td>
-											<td>placeholder</td>
-											<td>irrelevant</td>
-											<td>visual</td>
-											<td>layout</td>
-										</tr>
-										<tr>
-											<td>1,003</td>
-											<td>data</td>
-											<td>rich</td>
-											<td>dashboard</td>
-											<td>tabular</td>
-										</tr>
-										<tr>
-											<td>1,003</td>
-											<td>information</td>
-											<td>placeholder</td>
-											<td>illustrative</td>
-											<td>data</td>
-										</tr>
-										<tr>
-											<td>1,004</td>
-											<td>text</td>
-											<td>random</td>
-											<td>layout</td>
-											<td>dashboard</td>
-										</tr>
-										<tr>
-											<td>1,005</td>
-											<td>dashboard</td>
-											<td>irrelevant</td>
-											<td>text</td>
-											<td>placeholder</td>
-										</tr>
-										<tr>
-											<td>1,006</td>
-											<td>dashboard</td>
-											<td>illustrative</td>
-											<td>rich</td>
-											<td>data</td>
-										</tr>
-										<tr>
-											<td>1,007</td>
-											<td>placeholder</td>
-											<td>tabular</td>
-											<td>information</td>
-											<td>irrelevant</td>
-										</tr>
-										<tr>
-											<td>1,008</td>
-											<td>random</td>
-											<td>data</td>
-											<td>placeholder</td>
-											<td>text</td>
-										</tr>
-										<tr>
-											<td>1,009</td>
-											<td>placeholder</td>
-											<td>irrelevant</td>
-											<td>visual</td>
-											<td>layout</td>
-										</tr>
-										<tr>
-											<td>1,010</td>
-											<td>data</td>
-											<td>rich</td>
-											<td>dashboard</td>
-											<td>tabular</td>
-										</tr>
-										<tr>
-											<td>1,011</td>
-											<td>information</td>
-											<td>placeholder</td>
-											<td>illustrative</td>
-											<td>data</td>
-										</tr>
-										<tr>
-											<td>1,012</td>
-											<td>text</td>
-											<td>placeholder</td>
-											<td>layout</td>
-											<td>dashboard</td>
-										</tr>
-										<tr>
-											<td>1,013</td>
-											<td>dashboard</td>
-											<td>irrelevant</td>
-											<td>text</td>
-											<td>visual</td>
-										</tr>
-										<tr>
-											<td>1,014</td>
-											<td>dashboard</td>
-											<td>illustrative</td>
-											<td>rich</td>
-											<td>data</td>
-										</tr>
-										<tr>
-											<td>1,015</td>
-											<td>random</td>
-											<td>tabular</td>
-											<td>information</td>
-											<td>text</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+								
+								<div style="width:100%; height:400px;">
+									<canvas id="canvas"></canvas>
+								</div>
+								
 							
 							</div>
 							</div>
@@ -489,6 +367,35 @@
 				
 					 <div class="row">
 					 
+					 
+						 <div class="col-lg-3 col-md-6 mb-4">
+				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
+								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=fourHoursAgoFormattedDate%><%=fourHoursAgoFormattedTime %>.thn.png">
+					          <div class="card-img-overlay" >
+					          	<h3 class="card-title " style="background-color:white; "><%=fourHoursAgoFormattedDateTimeKST %></h3>
+				          	  </div>
+							</div>
+					     </div>
+					 
+					 	 <div class="col-lg-3 col-md-6 mb-4">
+				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
+								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=threeHoursAgoFormattedDate%><%=threeHoursAgoFormattedTime %>.thn.png">
+					          <div class="card-img-overlay" >
+					          	<h3 class="card-title " style="background-color:white; "><%=threeHoursAgoFormattedDateTimeKST %></h3>
+				          	  </div>
+							</div>
+					     </div>					     
+					     
+					      <div class="col-lg-3 col-md-6 mb-4">
+				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
+								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=twoHoursAgoFormattedDate%><%=twoHoursAgoFormattedTime %>.thn.png">
+					          <div class="card-img-overlay" >
+					          	<h3 class="card-title " style="background-color:white; "><%=twoHoursAgoFormattedDateTimeKST %></h3>
+				          	  </div>
+							</div>
+					     </div>
+					     
+					 
 				 	     <div class="col-lg-3 col-md-6 mb-4">
 				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
 								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=oneHourAgoFormattedDate%><%=oneHourAgoFormattedTime %>.thn.png">
@@ -498,32 +405,8 @@
 							</div>
 					     </div>
 				 	     
-				 	     <div class="col-lg-3 col-md-6 mb-4">
-				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
-								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=twoHoursAgoFormattedDate%><%=twoHoursAgoFormattedTime %>.thn.png">
-					          <div class="card-img-overlay" >
-					          	<h3 class="card-title " style="background-color:white; "><%=twoHoursAgoFormattedDateTimeKST %></h3>
-				          	  </div>
-							</div>
-					     </div>
+				 	    
 				 	     
-				 	     <div class="col-lg-3 col-md-6 mb-4">
-				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
-								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=threeHoursAgoFormattedDate%><%=threeHoursAgoFormattedTime %>.thn.png">
-					          <div class="card-img-overlay" >
-					          	<h3 class="card-title " style="background-color:white; "><%=threeHoursAgoFormattedDateTimeKST %></h3>
-				          	  </div>
-							</div>
-					     </div>
-				 	     
-				 	     <div class="col-lg-3 col-md-6 mb-4">
-				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
-								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=fourHoursAgoFormattedDate%><%=fourHoursAgoFormattedTime %>.thn.png">
-					          <div class="card-img-overlay" >
-					          	<h3 class="card-title " style="background-color:white; "><%=fourHoursAgoFormattedDateTimeKST %></h3>
-				          	  </div>
-							</div>
-					     </div>
 					</div>		
 					<!-- 위성사진 카드 끝 -->	
 							
@@ -554,7 +437,65 @@
 				<script src="${contextPath}/resources/js/dashboard.js"></script>
 
 
-
+				<script>
+					
+					new Chart(document.getElementById("canvas"), {
+					    type: 'horizontalBar',
+					    data: {
+					        labels: ['06-13', '06-14', '06-15', '06-16', '06-17', '06-18', '06-19'],
+					        datasets: [{
+					            label: "태양광",
+					            data: [100, 80, 70, 88, 65, 90, 110],
+					            borderColor: "rgba(255, 201, 14, 1)",
+					            backgroundColor: "rgba(98,200,198, 0.5)",
+					            fill: false,
+					        }]
+					    },
+					    options: {
+					    	maintainAspectRatio: false,
+					        responsive: true,
+					        title: {
+					            display: true,
+					            text: '태양광 발전량'
+					        },
+					        tooltips: {
+					            mode: 'index',
+					            intersect: false,
+					        },
+					        hover: {
+					            mode: 'nearest',
+					            intersect: true
+					        },
+					        scales: {
+					            xAxes: [{
+					                display: true,
+					                scaleLabel: {
+					                    display: true,
+					                    labelString: '발전량(MWh)'
+					                },
+					                    ticks: {
+					                    min: 0  // x축 최소값을 0으로 설정
+					                },
+					            }],
+					            yAxes: [{
+					                display: true,
+					                ticks: {
+					                    autoSkip: false,
+					                },
+					                scaleLabel: {
+					                    display: true,
+					                    labelString: '날짜'
+					                },
+					                
+					            }]
+					        },
+					        legend: {
+					            display: false  // 범례(legend)를 숨김
+					        }
+					    }
+					});
+					
+					</script>
 
 		</div>
 	</main>
