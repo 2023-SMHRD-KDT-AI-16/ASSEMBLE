@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.board.mapper.PredictionInfoMapper">
+
+	  <select id="getPredictionInfo" resultType="kr.board.entity.PredictionInfo">
+        SELECT pred_idx AS predIdx, plant_idx AS plantIdx, pred_date AS predDate, 
+               pred_time AS predTime, pred_power AS predPower, pred_result AS predResult
+        FROM prediction_info
+        WHERE pred_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+        ORDER BY pred_date, pred_time
+    </select>
+
+</mapper>
