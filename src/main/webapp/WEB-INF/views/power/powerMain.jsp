@@ -69,12 +69,22 @@
     	.navbar-nav .nav-link {
 		    font-size: 14px;
 		  }
+		  
+		  
+		  .powerDiv {
+ 			 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  			transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+			}
+
+		.powerDiv:hover {
+  			box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+				}
     </style>
     
     	
 </head>
 
-<body>
+<body style="background: #f6f9ff">
 	<main>
 		<div class="container">
 
@@ -94,7 +104,8 @@
 							  <div class="row">
 							  							    
 							      <div class="col-lg-4 col-md-6 mb-4">
-							        <div class="card bg-white text-gray border border-default shadow" style="height: 220px;">
+
+							        <div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
 							          <div class="card-body">
 							            <h4 class="card-title font-weight-bold ">SMP</h4>
 							            <p class="card-text font-weight-bold">거래일 : ${smpData.smpDay}</p>
@@ -106,9 +117,10 @@
 							      </div>
 							   
 							      <div class="col-lg-4 col-md-6 mb-4">
-							        <div class="card bg-white text-gray border border-default shadow" style="height: 220px;">
-							        	<div class="card-body">
-							        	<h4 class="card-title font-weight-bold">REC</h4>
+
+							       	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
+							          <div class="card-body">						          
+							            <h4 class="card-title font-weight-bold text-center">REC</h4>
 							            <p class="card-text font-weight-bold">거래일 : ${smpData.recDay}</p>
 							            <p class="card-text font-weight-bold">거래량 : ${smpData.totRecValue} 평균가 : ${smpData.landAvgPrc}</p>
 							            <p class="card-text font-weight-bold">최고가 : ${smpData.landHgPrc} 최저가 : ${smpData.landLwPrc}</p>
@@ -118,7 +130,7 @@
 							      </div>
 							      
 							      <div class="col-lg-4 col-md-6 mb-4">
-							        <div class="card bg-white text-gray border border-default shadow" style="height: 220px;">
+							        <div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
 							          <div class="card-body">
 							            <h4 class="card-title font-weight-bold text-center">여기다가는 무엇을 넣을까</h4>
 							            <p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>

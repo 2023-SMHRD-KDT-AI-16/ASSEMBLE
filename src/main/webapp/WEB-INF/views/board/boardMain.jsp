@@ -51,7 +51,7 @@
 
 </head>
 
-<body>
+<body style="background: #f6f9ff">
 
    <!-- Vendor JS Files -->
    <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
