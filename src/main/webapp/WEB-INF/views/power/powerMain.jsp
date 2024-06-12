@@ -87,18 +87,17 @@
 
 						<main class="col-md-12 ms-sm-auto col-lg-12 px-md-12">
 						
-						<!-- rec smp -->
+						<!-- rec smp 카드 -->
 							<div class="container">
 							
 							<br>
 							  <div class="row">
 							  							    
 							      <div class="col-lg-4 col-md-6 mb-4">
-							        <div class="card bg-dark text-gray border border-primary">
-							          <img class="card-img" alt="sample" src="${contextPath}/resources/images/sampleBackBlue.jpg">
-							          <div class="card-img-overlay">
-							            <h4 class="card-title font-weight-bold text-center">SMP</h4>
-							            <p class="card-text text-lg font-weight-bold">거래일 : ${smpData.smpDay}</p>
+							        <div class="card bg-white text-gray border border-default shadow" style="height: 220px;">
+							          <div class="card-body">
+							            <h4 class="card-title font-weight-bold ">SMP</h4>
+							            <p class="card-text font-weight-bold">거래일 : ${smpData.smpDay}</p>
 							            <p class="card-text font-weight-bold">최고가 : ${smpData.maxSmp}</p>
 							            <p class="card-text font-weight-bold">최소가 : ${smpData.minSmp}</p>
 							            <p class="card-text font-weight-bold">평균가 : ${smpData.meanSmp}</p>
@@ -107,9 +106,9 @@
 							      </div>
 							   
 							      <div class="col-lg-4 col-md-6 mb-4">
-							        <div class="card bg-dark text-gray border border-primary">
-										<img class="card-img" alt="sample" src="${contextPath}/resources/images/sampleBackBlue.jpg">							          <div class="card-img-overlay">
-							            <h4 class="card-title font-weight-bold text-center">REC</h4>
+							        <div class="card bg-white text-gray border border-default shadow" style="height: 220px;">
+							        	<div class="card-body">
+							        	<h4 class="card-title font-weight-bold">REC</h4>
 							            <p class="card-text font-weight-bold">거래일 : ${smpData.recDay}</p>
 							            <p class="card-text font-weight-bold">거래량 : ${smpData.totRecValue} 평균가 : ${smpData.landAvgPrc}</p>
 							            <p class="card-text font-weight-bold">최고가 : ${smpData.landHgPrc} 최저가 : ${smpData.landLwPrc}</p>
@@ -119,9 +118,8 @@
 							      </div>
 							      
 							      <div class="col-lg-4 col-md-6 mb-4">
-							        <div class="card bg-dark text-gray border border-primary">
-							          <img class="card-img" alt="sample" src="${contextPath}/resources/images/sampleBackBlue.jpg">
-							          <div class="card-img-overlay">
+							        <div class="card bg-white text-gray border border-default shadow" style="height: 220px;">
+							          <div class="card-body">
 							            <h4 class="card-title font-weight-bold text-center">여기다가는 무엇을 넣을까</h4>
 							            <p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
 							            <p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
@@ -134,43 +132,14 @@
 							      
 							  </div>
 							</div>
+						<!-- rec smp 카드 끝 -->
 						
-							<div class="chartjs-size-monitor">
-								<div class="chartjs-size-monitor-expand">
-									<div class=""></div>
-								</div>
-								<div class="chartjs-size-monitor-shrink">
-									<div class=""></div>
-								</div>
-							</div>
-							<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-								<h1 class="h2">Dashboard</h1>
-								<div class="btn-toolbar mb-2 mb-md-0">
-									<div class="btn-group me-2">
-										<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-									</div>
-									<button type="button"
-										class="btn btn-sm btn-outline-secondary dropdown-toggle">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-											viewBox="0 0 24 24" fill="none" stroke="currentColor"
-											stroke-width="2" stroke-linecap="round"
-											stroke-linejoin="round" class="feather feather-calendar"
-											aria-hidden="true">
-											<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-											<line x1="16" y1="2" x2="16" y2="6"></line>
-											<line x1="8" y1="2" x2="8" y2="6"></line>
-											<line x1="3" y1="10" x2="21" y2="10"></line></svg>
-										This week
-									</button>
-								</div>
-							</div>
+						<!-- 표 카드 -->
+							<div class="col-12 mb-4">
+						      <div class="card bg-white text-gray border border-default shadow">
+						        <div class="card-body">	
 
-							<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart"
-								width="1055" height="444"
-								style="display: block; height: 254px; width: 603px;"></canvas>
-
-							<h2>Section title</h2>
+							<h2>나의 발전소의 발전량</h2>
 							<div class="table-responsive">
 								<table class="table table-striped table-sm">
 									<thead>
@@ -298,6 +267,97 @@
 									</tbody>
 								</table>
 							</div>
+							
+							</div>
+							</div>
+							</div>
+							<!-- 표 카드 끝 -->
+						
+						
+						
+						 <div class="row">
+							  							    
+							      <div class="col-lg-6 col-md-6 mb-4">
+							        <div class="card bg-white text-gray border border-default shadow" style="height: 350px;">
+							          <div class="card-body">
+							            발전량 정확도 원 차트
+							            
+							          </div>
+							        </div>
+							      </div>
+						
+						
+							      <div class="col-lg-6 col-md-6 mb-4">
+							        <div class="card bg-white text-gray border border-default shadow" style="height: 350px;">
+							          <div class="card-body">
+							            
+							            내일 예측 발전량
+							            
+							          </div>
+							        </div>
+							      </div>
+							      
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						<!-- 차트 카드 -->
+							<div class="col-12 mb-4">
+						      <div class="card bg-white text-gray border border-default shadow">
+						        <div class="card-body">
+						
+						
+							<div class="chartjs-size-monitor">
+								<div class="chartjs-size-monitor-expand">
+									<div class=""></div>
+								</div>
+								<div class="chartjs-size-monitor-shrink">
+									<div class=""></div>
+								</div>
+							</div>
+							
+							<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+								<h1 class="h2">나의 발전소의 (예측한)발전량</h1>
+								<div class="btn-toolbar mb-2 mb-md-0">
+									<div class="btn-group me-2">
+										<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+										<button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+									</div>
+									<button type="button"
+										class="btn btn-sm btn-outline-secondary dropdown-toggle">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-calendar"
+											aria-hidden="true">
+											<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+											<line x1="16" y1="2" x2="16" y2="6"></line>
+											<line x1="8" y1="2" x2="8" y2="6"></line>
+											<line x1="3" y1="10" x2="21" y2="10"></line></svg>
+										This week
+									</button>
+								</div>
+							</div>
+							
+							<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart"
+								width="1055" height="444"
+								style="display: block; height: 254px; width: 603px;"></canvas>
+							
+						</div>
+						</div>
+						</div>	
+						<!-- 차트 카드 끝 -->	
+							
+							
+	
+						
+							
+							
+							
 						</main>
 					</div>
 				</div>
