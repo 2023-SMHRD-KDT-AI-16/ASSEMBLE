@@ -45,7 +45,31 @@
 <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background: #f6f9ff">
+
+   <!-- Vendor JS Files -->
+   <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+   <script
+      src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+   <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+   <script src="resources/assets/vendor/quill/quill.js"></script>
+   <script
+      src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+   <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+   <script src="resources/assets/vendor/php-email-form/validate.js"></script>
+
+
+   
+   <link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
+   
+
    <div class="container">
       <jsp:include page="../common/header.jsp"></jsp:include>
       

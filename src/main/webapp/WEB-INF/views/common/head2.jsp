@@ -5,7 +5,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
   <div class="container-fluid">
     <a class="navbar-brand" href="${contextPath}/" style="padding: 3px">
       <img alt="logo" src="${contextPath}/resources/images/logo.png" style="height: 45px;">
