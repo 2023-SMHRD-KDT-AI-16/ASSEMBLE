@@ -79,6 +79,10 @@
 		.powerDiv:hover {
   			box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 				}
+				
+		 p{
+		 text-align: center
+		 }
     </style>
     
     	
@@ -98,21 +102,48 @@
 						<main class="col-md-12 ms-sm-auto col-lg-12 px-md-12">
 						
 						<!-- rec smp 카드 -->
-							<div class="container">
+							<div class="container" style=" padding: 0">
 							
 							<br>
 							  <div class="row">
 							  							    
 							      <div class="col-lg-4 col-md-6 mb-4">
-
 							        <div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
 							          <div class="card-body">
-							            <h4 class="card-title font-weight-bold ">SMP</h4>
-							            <p class="card-text font-weight-bold">거래일 : ${smpData.smpDay}</p>
-							            <p class="card-text font-weight-bold">최고가 : ${smpData.maxSmp}</p>
-							            <p class="card-text font-weight-bold">최소가 : ${smpData.minSmp}</p>
-							            <p class="card-text font-weight-bold">평균가 : ${smpData.meanSmp}</p>
-							          </div>
+							            <h4 class="card-title font-weight-bold text-center" style="margin: 0">SMP</h4>
+							            <p class="card-text font-weight-bold text-center" style="border-bottom: 1px solid #999999;">${smpData.smpDay}</p>
+		
+
+												<div style="display: flex; justify-content: space-around;">
+													<div>
+														<p class="card-text font-weight-bold" style="margin-bottom: 0px; color: red;">최고가</p>
+														<p class="card-text font-weight-bold" style="color: red;">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16"
+																height="16" fill="currentColor"
+																class="bi bi-caret-up-fill" viewBox="0 0 16 16" style="color: red">
+ 																		<path
+																	d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+															</svg>
+														${smpData.maxSmp}</p>
+														<p class="card-text font-weight-bold" style="margin-bottom: 0px; color: blue;">최소가</p>
+														<p class="card-text font-weight-bold" style="color: blue;">
+														
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16" style="color: blue">
+  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+</svg>
+														
+														${smpData.minSmp}</p>
+													</div>
+
+													<div style="display: flex; justify-content:space-around; flex-direction: column; font-style: bold">
+														<p class="card-text font-weight-bold" style=" font-size: 1.8rem; margin: 0;">평균가</p>
+														<p class="card-text font-weight-bold" style=" font-size: 2.2rem">${smpData.meanSmp}</p>
+													</div>
+												</div>
+
+
+
+											</div>
 							        </div>
 							      </div>
 							   
@@ -120,23 +151,64 @@
 
 							       	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
 							          <div class="card-body">						          
-							            <h4 class="card-title font-weight-bold text-center">REC</h4>
-							            <p class="card-text font-weight-bold">거래일 : ${smpData.recDay}</p>
-							            <p class="card-text font-weight-bold">거래량 : ${smpData.totRecValue} 평균가 : ${smpData.landAvgPrc}</p>
-							            <p class="card-text font-weight-bold">최고가 : ${smpData.landHgPrc} 최저가 : ${smpData.landLwPrc}</p>
-							            <p class="card-text font-weight-bold">종가 : ${smpData.clsPrc}</p>
-							          </div>
+							            <h4 class="card-title font-weight-bold text-center" style="margin: 0">REC</h4>
+							            <p class="card-text font-weight-bold text-center" style="border-bottom: 1px solid #999999;">${smpData.recDay}</p>
+
+
+												<div style="display: flex; justify-content: space-around;">
+													<div>
+														<p class="card-text font-weight-bold"
+															style="margin-bottom: 0px; color: red;">최고가</p>
+														
+														
+														<p class="card-text font-weight-bold" style="color: red;">
+														
+														<svg xmlns="http://www.w3.org/2000/svg" width="16"
+																height="16" fill="currentColor"
+																class="bi bi-caret-up-fill" viewBox="0 0 16 16" style="color: red">
+ 																		<path
+																	d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+															</svg>
+															
+														${smpData.landHgPrc}</p>
+														<p class="card-text font-weight-bold" style="margin-bottom: 0px; color: blue;">최소가</p>
+														<p class="card-text font-weight-bold" style="color: blue;">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16" style="color: blue">
+  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+</svg>
+														${smpData.landLwPrc}</p>
+													</div>
+
+
+													<div style="display: flex; justify-content:space-around; flex-direction: column; font-style: bold">
+														<p class="card-text font-weight-bold" style=" font-size: 1.8rem; margin: 0;">종가</p>
+														<p class="card-text font-weight-bold" style=" font-size: 2.2rem">${smpData.clsPrc}</p>
+													</div>
+
+												</div>
+
+
+
+
+
+
+
+
+
+
+
+											</div>
 							        </div>
 							      </div>
 							      
-							      <div class="col-lg-4 col-md-6 mb-4">
+							    <div class="col-lg-4 col-md-6 mb-4">
 							        <div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
 							          <div class="card-body">
 							            <h4 class="card-title font-weight-bold text-center">여기다가는 무엇을 넣을까</h4>
 							            <p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
 							            <p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
 							            <p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
-							         
+							         s
 							          </div>
 							        </div>
 							      </div>
