@@ -260,7 +260,7 @@
 
 
 </head>
-<body>
+<body style="background: #f6f9ff">
 	<div class="container">
 
 		<div>
