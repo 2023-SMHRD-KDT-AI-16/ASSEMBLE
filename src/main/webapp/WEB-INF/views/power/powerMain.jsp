@@ -2,6 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.LocalTime" %>
+<%@ page import="java.time.ZoneOffset" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.temporal.ChronoUnit" %>
+<%@ page import="java.util.TimeZone" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
@@ -435,9 +442,94 @@
 						</div>
 						</div>	
 						<!-- 차트 카드 끝 -->	
+						
+						
 							
+							<!-- 위성사진 카드  -->	
+					
+				<%
+				    // 현재 시각과 날짜를 GMT로 가져옵니다. 
+				    LocalDateTime currentDateTime = LocalDateTime.now(ZoneOffset.UTC);
+				    LocalDate currentDate = currentDateTime.toLocalDate();
+				    LocalTime currentTime = currentDateTime.toLocalTime();
+				
+				    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+				    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH00");
+				
+				    // 1시간 전, 2시간 전, 3시간 전 시각을 계산합니다.
+				    LocalDateTime oneHourAgo = currentDateTime.minus(1, ChronoUnit.HOURS);
+				    LocalDateTime twoHoursAgo = currentDateTime.minus(2, ChronoUnit.HOURS);
+				    LocalDateTime threeHoursAgo = currentDateTime.minus(3, ChronoUnit.HOURS);
+				    LocalDateTime fourHoursAgo = currentDateTime.minus(4, ChronoUnit.HOURS);
+				
+				    // 시각과 날짜를 문자열로 변환합니다.
+				    String oneHourAgoFormattedDate = oneHourAgo.format(dateFormatter);
+				    String twoHoursAgoFormattedDate = twoHoursAgo.format(dateFormatter);
+				    String threeHoursAgoFormattedDate = threeHoursAgo.format(dateFormatter);
+				    String fourHoursAgoFormattedDate = fourHoursAgo.format(dateFormatter);
+				
+				    String oneHourAgoFormattedTime = oneHourAgo.format(timeFormatter);
+				    String twoHoursAgoFormattedTime = twoHoursAgo.format(timeFormatter);
+				    String threeHoursAgoFormattedTime = threeHoursAgo.format(timeFormatter);
+				    String fourHoursAgoFormattedTime = fourHoursAgo.format(timeFormatter);
+				
+				    
+				    LocalDateTime oneHourAgoKST = oneHourAgo.plusHours(9);
+				    LocalDateTime twoHoursAgoKST = twoHoursAgo.plusHours(9);
+				    LocalDateTime threeHoursAgoKST = threeHoursAgo.plusHours(9);
+				    LocalDateTime fourHoursAgoKST = fourHoursAgo.plusHours(9);
+				
+				    // 한국 시간을 원하는 형식으로 포맷팅합니다.
+				    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:00");
+				    String oneHourAgoFormattedDateTimeKST = oneHourAgoKST.format(formatter);
+				    String twoHoursAgoFormattedDateTimeKST = twoHoursAgoKST.format(formatter);
+				    String threeHoursAgoFormattedDateTimeKST = threeHoursAgoKST.format(formatter);
+				    String fourHoursAgoFormattedDateTimeKST = fourHoursAgoKST.format(formatter);
+				%>
+				
+					 <div class="row">
+					 
+				 	     <div class="col-lg-3 col-md-6 mb-4">
+				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
+								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=oneHourAgoFormattedDate%><%=oneHourAgoFormattedTime %>.thn.png">
+					          <div class="card-img-overlay" >
+					          	<h3 class="card-title " style="background-color:white; "><%=oneHourAgoFormattedDateTimeKST%></h3>
+				          	  </div>
+							</div>
+					     </div>
+				 	     
+				 	     <div class="col-lg-3 col-md-6 mb-4">
+				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
+								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=twoHoursAgoFormattedDate%><%=twoHoursAgoFormattedTime %>.thn.png">
+					          <div class="card-img-overlay" >
+					          	<h3 class="card-title " style="background-color:white; "><%=twoHoursAgoFormattedDateTimeKST %></h3>
+				          	  </div>
+							</div>
+					     </div>
+				 	     
+				 	     <div class="col-lg-3 col-md-6 mb-4">
+				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
+								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=threeHoursAgoFormattedDate%><%=threeHoursAgoFormattedTime %>.thn.png">
+					          <div class="card-img-overlay" >
+					          	<h3 class="card-title " style="background-color:white; "><%=threeHoursAgoFormattedDateTimeKST %></h3>
+				          	  </div>
+							</div>
+					     </div>
+				 	     
+				 	     <div class="col-lg-3 col-md-6 mb-4">
+				 	     	<div class="card bg-white text-gray border border-default powerDiv" style="height: 220px;">
+								<img class="card-img" alt="sample" src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=fourHoursAgoFormattedDate%><%=fourHoursAgoFormattedTime %>.thn.png">
+					          <div class="card-img-overlay" >
+					          	<h3 class="card-title " style="background-color:white; "><%=fourHoursAgoFormattedDateTimeKST %></h3>
+				          	  </div>
+							</div>
+					     </div>
+					</div>		
+					<!-- 위성사진 카드 끝 -->	
 							
 	
+					
+					
 						
 							
 							
