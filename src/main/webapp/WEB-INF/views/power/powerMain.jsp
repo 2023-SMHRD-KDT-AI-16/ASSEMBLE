@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.LocalDateTime" %>
 <%@ page import="java.time.LocalTime" %>
@@ -31,6 +33,9 @@
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
 	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+	
 	
 	
 	
@@ -39,6 +44,13 @@
 	
 	
 <style>
+@font-face {
+    font-family: 'Ownglyph_eunbyul21-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_eunbyul21-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -95,7 +107,7 @@
     	
 </head>
 
-<body style="background: #f6f9ff">
+<body style="background: #f6f9ff; font-family: 'Ownglyph_eunbyul21-Rg',sans-serif;">
 	<main>
 		<div class="container">
 
@@ -226,157 +238,55 @@
 						<!-- rec smp 카드 끝 -->
 						
 						<!-- 표 카드 -->
+						
+						<!-- **********나의발전량 그래프*********** -->
 							<div class="col-12 mb-4">
-						      <div class="card bg-white text-gray border border-default shadow">
-						        <div class="card-body">	
+								<div
+									class="card bg-white text-gray border border-default shadow">
+									<div class="card-body">
 
-							<h2>나의 발전소의 발전량</h2>
-							<div class="table-responsive">
-								<table class="table table-striped table-sm">
-									<thead>
-										<tr>
-											<th scope="col">#</th>
-											<th scope="col">Header</th>
-											<th scope="col">Header</th>
-											<th scope="col">Header</th>
-											<th scope="col">Header</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1,001</td>
-											<td>random</td>
-											<td>data</td>
-											<td>placeholder</td>
-											<td>text</td>
-										</tr>
-										<tr>
-											<td>1,002</td>
-											<td>placeholder</td>
-											<td>irrelevant</td>
-											<td>visual</td>
-											<td>layout</td>
-										</tr>
-										<tr>
-											<td>1,003</td>
-											<td>data</td>
-											<td>rich</td>
-											<td>dashboard</td>
-											<td>tabular</td>
-										</tr>
-										<tr>
-											<td>1,003</td>
-											<td>information</td>
-											<td>placeholder</td>
-											<td>illustrative</td>
-											<td>data</td>
-										</tr>
-										<tr>
-											<td>1,004</td>
-											<td>text</td>
-											<td>random</td>
-											<td>layout</td>
-											<td>dashboard</td>
-										</tr>
-										<tr>
-											<td>1,005</td>
-											<td>dashboard</td>
-											<td>irrelevant</td>
-											<td>text</td>
-											<td>placeholder</td>
-										</tr>
-										<tr>
-											<td>1,006</td>
-											<td>dashboard</td>
-											<td>illustrative</td>
-											<td>rich</td>
-											<td>data</td>
-										</tr>
-										<tr>
-											<td>1,007</td>
-											<td>placeholder</td>
-											<td>tabular</td>
-											<td>information</td>
-											<td>irrelevant</td>
-										</tr>
-										<tr>
-											<td>1,008</td>
-											<td>random</td>
-											<td>data</td>
-											<td>placeholder</td>
-											<td>text</td>
-										</tr>
-										<tr>
-											<td>1,009</td>
-											<td>placeholder</td>
-											<td>irrelevant</td>
-											<td>visual</td>
-											<td>layout</td>
-										</tr>
-										<tr>
-											<td>1,010</td>
-											<td>data</td>
-											<td>rich</td>
-											<td>dashboard</td>
-											<td>tabular</td>
-										</tr>
-										<tr>
-											<td>1,011</td>
-											<td>information</td>
-											<td>placeholder</td>
-											<td>illustrative</td>
-											<td>data</td>
-										</tr>
-										<tr>
-											<td>1,012</td>
-											<td>text</td>
-											<td>placeholder</td>
-											<td>layout</td>
-											<td>dashboard</td>
-										</tr>
-										<tr>
-											<td>1,013</td>
-											<td>dashboard</td>
-											<td>irrelevant</td>
-											<td>text</td>
-											<td>visual</td>
-										</tr>
-										<tr>
-											<td>1,014</td>
-											<td>dashboard</td>
-											<td>illustrative</td>
-											<td>rich</td>
-											<td>data</td>
-										</tr>
-										<tr>
-											<td>1,015</td>
-											<td>random</td>
-											<td>tabular</td>
-											<td>information</td>
-											<td>text</td>
-										</tr>
-									</tbody>
-								</table>
+										<h2>나의 발전소의 발전량</h2>
+										
+										<div class="container">
+											<!-- 그래프 컨테이너 -->
+											<div class="row">
+												<div class="col-md-12">
+													<canvas id="myChart" width="400" height="200"></canvas>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
 							</div>
+							<!-- **********나의발전량 그래프*********** -->
 							
-							</div>
-							</div>
-							</div>
+							
 							<!-- 표 카드 끝 -->
 						
 						
 						
 						 <div class="row">
-							  							    
+							<!-- **********모델 정확도 원차트*********** -->
+						  							    
 							      <div class="col-lg-6 col-md-6 mb-4">
 							        <div class="card bg-white text-gray border border-default shadow" style="height: 350px;">
 							          <div class="card-body">
-							            발전량 정확도 원 차트
-							            
-							          </div>
+											<div class="container">
+												<div class="row justify-content-center">
+													<div class="col-md-8">
+														<canvas id="accuracyChart" width="380" height="320"></canvas>
+														<div class="text-center mt-4">
+															<strong>발전량 정확도</strong>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
 							        </div>
 							      </div>
-						
+							<!-- **********모델 정확도 원차트*********** -->				
 						
 							      <div class="col-lg-6 col-md-6 mb-4">
 							        <div class="card bg-white text-gray border border-default shadow" style="height: 350px;">
@@ -539,7 +449,7 @@
 				</div>
 
 
-				<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
+				<!-- <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
 					integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 					crossorigin="anonymous"></script>
 
@@ -550,14 +460,165 @@
 				<script
 					src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
 					integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
-					crossorigin="anonymous"></script>
-				<script src="${contextPath}/resources/js/dashboard.js"></script>
+					crossorigin="anonymous"></script> -->
 
 
 
 
 		</div>
 	</main>
+	
+	<script>
+        $(document).ready(function() {
+            function fetchPredictionData() {
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/getPredictionData",
+                    method: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        var labels = data.map(function(e) {
+                            var date = new Date(e.predDate).toISOString().split('T')[0];
+                            var hours = e.predTime.toString().padStart(2, '0');
+                            return date + " " + hours + ":00";
+                        });
+                        var dataPower = data.map(function(e) {
+                            return e.predPower;
+                        });
+
+                        var chartData = {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Power Data',
+                                data: dataPower,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgba(92, 154, 221, 1)',
+                                borderWidth: 1, // 선의 두께
+                                pointBackgroundColor: 'rgba(255, 99, 132, 1)', // 포인트 색상
+                                pointBorderColor: 'rgba(255, 99, 132, 1)', // 포인트 테두리 색상
+                                pointRadius: 2, // 포인트 크기
+                                pointHoverRadius: 6, // 포인트 호버 크기
+                                pointHoverBackgroundColor: 'rgba(75, 192, 192, 1)', // 호버 시 포인트 색상
+                                pointHoverBorderColor: 'rgba(75, 192, 192, 1)', // 호버 시 포인트 테두리 색상
+                                fill: true // 채우기 있음
+                            }]
+                        };
+
+                        var ctx = document.getElementById('myChart').getContext('2d');
+
+                        new Chart(ctx, {
+                            type: 'line', // 꺾은선 그래프
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        ticks: {
+                                            autoSkip: true,
+                                            maxTicksLimit: 20
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            return 'Power: ' + tooltipItem.yLabel.toLocaleString();
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+            function drawAccuracyChart() {
+                var ctx = document.getElementById('accuracyChart').getContext('2d');
+                var data = {
+                    datasets: [{
+                        data: [55, 45],
+                        backgroundColor: ['#4caf50', '#dcdcdc'],
+                        hoverBackgroundColor: ['#388e3c', '#c0c0c0'],
+                        borderWidth: 0
+                    }]
+                };
+
+                var options = {
+                	    rotation: 1 * Math.PI,
+                	    circumference: 1 * Math.PI,
+                	    cutoutPercentage: 80,
+                	    tooltips: {
+                	        enabled: true, // 툴팁 활성화
+                	        callbacks: {
+                	            label: function(tooltipItem, data) {
+                	                var dataset = data.datasets[tooltipItem.datasetIndex];
+                	                var currentValue = dataset.data[tooltipItem.index];
+                	                return currentValue + '%';
+                	            }
+                	        }
+                	    },
+                	    hover: {
+                	        mode: 'nearest',
+                	        intersect: true
+                	    },
+                	    plugins: {
+                	        datalabels: {
+                	            display: true,
+                	            formatter: function(value, context) {
+                	                if (context.dataIndex === 0) {
+                	                    return value + '%';
+                	                } else {
+                	                    return '';
+                	                }
+                	            },
+                	            color: '#333',
+                	            font: {
+                	                weight: 'bold',
+                	                size: '16'
+                	            }
+                	        }
+                	    }
+                	};
+
+                var myDoughnutChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: data,
+                    options: options
+                });
+
+                // 중앙에 텍스트 추가
+                Chart.pluginService.register({
+                    beforeDraw: function(chart) {
+                        if (chart.config.type === 'doughnut') {
+                            var width = chart.chart.width,
+                                height = chart.chart.height,
+                                ctx = chart.chart.ctx;
+
+                            ctx.restore();
+                            var fontSize = (height / 114).toFixed(2);
+                            ctx.font = fontSize + "em sans-serif";
+                            ctx.textBaseline = "middle";
+
+                            var text = "55%",
+                                textX = Math.round((width - ctx.measureText(text).width) / 2),
+                                textY = height / 1.3;
+
+                            ctx.fillText(text, textX, textY);
+                            ctx.save();
+                        }
+                    }
+                });
+
+                myDoughnutChart.update();
+            }
+
+            fetchPredictionData();
+            drawAccuracyChart(); // 모델 정확도 그래프 그리기 함수 호출
+        });
+    </script>
 
 
 
