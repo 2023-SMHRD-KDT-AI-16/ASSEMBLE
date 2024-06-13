@@ -1,35 +1,45 @@
+<%@page import="kr.board.entity.Board"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Bootstrap Example</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+  <title>Users / Profile - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-<title>Forms / Elements - NiceAdmin Bootstrap Template</title>
-<meta content="" name="description">
-<meta content="" name="keywords">
+  <!-- Favicons -->
+  <link href="resources/assets/img/favicon.png" rel="icon">
+  <link href="resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-<!-- Favicons -->
-<link href="resources/assets/img/favicon.png" rel="icon">
-<link href="resources/assets/img/apple-touch-icon.png"
-	rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-<!-- Google Fonts -->
-<link href="https://fonts.gstatic.com" rel="preconnect">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="resources/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="resources/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-
+  <!-- Template Main CSS File -->
+  <link href="resources/assets/css/style.css" rel="stylesheet">
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   	  <!--우편번호 daum_API-->
       function sample6_execDaumPostcode() {
@@ -82,15 +92,8 @@
   </script>
 
 
+  <script>
 
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript">
   
   	$(document).ready(function(){
   		if(${not empty msgType}){
@@ -110,18 +113,15 @@
   		    } else {
   		        alert("플랜트정보가 있습니다."); 
   		    } 	  			 
-  			 
-  			 
+  			 			 
   	     });
-  		
-  		
-  		
-  		
-  		 
+		 
   	});
   	
   	function chooseImage(obj){
-  		
+  	  console.log("chooseImage function called");
+      $('#user_profile').click();
+      
   		let reader = new FileReader();
   		reader.onload = function (e){ 
   		  // 콜백함수를 등록 readAsDataURL 끝나면 다음 함수를 실행해라 !
@@ -141,15 +141,17 @@
   	    return true;
   	}
   	
+
+  	
     var tempPw = "${mvo.user_pw}";
   	
   	function changePassword() {
         
         var currentPassword = $('#currentPassword').val();
         var newPassword = $('#newPassword').val();
-        var confirmPassword = $('#confirmPassword').val();
+        var renewPassword = $('#renewPassword').val();
 	       
-        if (!newPassword || !confirmPassword) {
+        if (!newPassword || !renewPassword) {
             alert('비밀번호를 입력해주세요.');
             return;
         }     
@@ -159,7 +161,7 @@
             return;
         }
                 	
-        if (newPassword !== confirmPassword) {
+        if (newPassword !== renewPassword) {
             alert('바꿀 비밀번호 확인이 일치하지 않습니다.');
             return;
         }
@@ -172,7 +174,7 @@
        	       alert("비밀번호 변경 성공");
        	       $('#currentPassword').val('');
        	       $('#newPassword').val('');
-       	       $('#confirmPassword').val('');
+       	       $('#renewPassword').val('');
        	       tempPw = newPassword;
        	    },
        	    error: function() {
@@ -181,139 +183,110 @@
        	});
                  
     }
-
+  	
+  	var user_id = "${mvo.user_id}";
+  	function goProDel(user_id){
+  		console.log("goProDel function called");
+  	  $.ajax({
+  			url : "goProDel.do",
+  			method: 'POST',
+  			data : {"user_id" : user_id},
+  			type : "delete",
+  			success : function() {
+  	            window.location.href = "updateMain.do";
+  	        },
+  			error : function(){ alert("error"); }
+  	  });
+  }
   	
 </script>
+
 </head>
+
 <body>
+<div class="container">
+	 <jsp:include page="../common/head2.jsp"></jsp:include>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Profile</h1>
+    </div><!-- End Page Title -->
+    <section class="section profile">
+     <div class="row">
 
-	<div class="container">
-		<jsp:include page="../common/header.jsp"></jsp:include>
-
-		<div class="panel-body">
-
-			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#home">사진등록</a></li>
-				<li><a data-toggle="tab" href="#menu1">비밀번호 변경</a></li>
-				<li><a data-toggle="tab" href="#menu2" id="menu2Tab">발전소
-						등록및 수정</a></li>
-			</ul>
-
-			<div class="tab-content">
-				<div id="home" class="tab-pane fade in active ">
-
-					<form action="profileUpdate.do" method="post"
-						enctype="multipart/form-data" onsubmit="return validateForm()">
-
-						<h3 align="center">프로필사진 등록 및 변경</h3>
-
-						<div class="panel-body" id="view" align="center">
-
-							<c:choose>
-								<c:when test="${not empty mvo.user_profile }">
-									<img class="img-circle " id="imageTemp"
-										src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }"
-										style="width: 300px; height: 300px; border-radius: 50%;">
-								</c:when>
-								<c:otherwise>
-									<img class="img-circle " id="imagePreview"
-										src="${contextPath}/resources/images/person.png"
-										style="width: 300px; height: 300px;">
-								</c:otherwise>
-							</c:choose>
-
-						</div>
-
-						<input type="file" class="form-control" id="user_profile"
-							name="user_profile" onchange="chooseImage(this)" required>
-						<br>
-
-						<div class="text-center">
-							<button class="btn btn-primary" type="submit">등록</button>
-						</div>
-
-					</form>
-
-
+	  <form action="profileUpdate.do" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <div class="col-xl-4">
+		
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+            	<div class="panel-body" id="view" align="center">
+	
+					<c:choose>
+						<c:when test="${not empty mvo.user_profile}">
+							<img style="width: 100px; height: 100px; border-radius: 50%;" id="imageTemp" alt="Profile" 
+								src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }">
+						</c:when>
+						<c:otherwise>
+							<img style="width: 100px; height: 100px; border-radius: 50%;" id="imagePreview" alt="Profile" 
+								src="${contextPath}/resources/images/person.png">
+						</c:otherwise>
+					</c:choose>
+					<div class="col-md-8 col-lg-9">
+                        <div class="pt-2">
+                          <button class="btn btn-pr btn-sm" title="Upload new profile image" type="submit">
+                          	<i class="bi bi-upload" onclick="chooseImage()"></i><input style="display: none;" type="file" class="form-control" id="user_profile" name="user_profile">
+                          </button>
+                          <a class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash" onclick="goProDel(${mvo.user_id })"></i></a>
+                        </div>
+                    </div>
+	 				<h3>[ ${mvo.user_id } ]</h3>
 				</div>
+          
+             </div>
+           </div>
+        </div>
+      </form>  
+        
+        
 
+        <div class="col-xl-8">
 
-				<div id="menu1" class="tab-pane fade">
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
 
-
-					<form action="pwChange.do" method="post" id="pwChangeForm">
-
-						<div class="input-form col-md-12 mx-auto">
-							<h3 class="mb-3">아이디 : ${mvo.user_id }님</h3>
-
-							<div class="mb-3">
-								<h4>닉네임 : ${mvo.user_nick }</h4>
-							</div>
-							<div class="mb-3">
-								<h4>이메일 : ${mvo.user_email }</h4>
-							</div>
-							<div class="mb-3">
-								<h4>휴대폰번호 : ${mvo.user_phone }</h4>
-							</div>
-
-							<div class="mb-3">
-								<label for="password">현재 비밀번호</label> <input type="password"
-									class="form-control" id="currentPassword"
-									placeholder="비밀번호를 입력해주세요" required>
-							</div>
-							<div class="mb-3">
-								<label for="password">바꿀 비밀번호</label> <input type="password"
-									class="form-control" id="newPassword"
-									placeholder="비밀번호를 입력해주세요" required>
-							</div>
-							<div class="mb-3" style="margin-bottom: 20px;">
-								<label for="password">비밀번호 확인</label> <input type="password"
-									class="form-control" id="confirmPassword"
-									placeholder="비밀번호를 입력해주세요" required>
-							</div>
-						</div>
-
-
-						<div class="input-form col-md-12 mx-auto">
-							<button class="btn btn-primary btn-sm btn-block" type="button"
-								onclick="changePassword()">비밀번호 변경</button>
-							<button class="btn btn-secondary btn-sm btn-block" type="reset">취소</button>
-						</div>
-					</form>
-
-					<footer class="my-3 text-center text-small">
-						<p class="mb-1">&copy; 2024 The Sun</p>
-					</footer>
-				</div>
-
-
-
-
-
-				<div id="menu2" class="tab-pane fade">
-					<h3>발전소 등록및 수정</h3>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">개인정보수정</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">비밀번호 변경</button>
+                </li>
+                
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#plant_info">발전소등록</button>
+                </li>
+              </ul>
+              
+              
+                       
+                <div class="tab-pane fade show active profile-overview" id="plant_info">
 					<main id="main" class="main">
-
-
 						<c:choose>
 							<c:when test="${empty plant}">
 
 								<section class="section">
 
-
 									<div class="row" style="justify-content: center">
 										<div class="col-lg-12">
 											<div class="panel panel-default">
 												<div class="panel-heading">
-													<h3 class="panel-title">발전소를 등록해 주세요</h3>
 												</div>
 												<div class="panel-body">
 													<form action="plantInsert.do" id="plantForm">
 														<div class="form-group">
-															<label for="inputText" class="col-sm-2 control-label">발전소이름</label>
+															<label for="inputText" class="col-sm-2 control-label">발전소명</label>
 															<div class="col-lg-12">
-																<input type="text" class="form-control" id="inputText"
-																	name="plant_name" required>
+																<input type="text" class="form-control" id="inputText" name="plant_name" required>
 															</div>
 														</div>
 
@@ -337,8 +310,7 @@
 																		id="sample6_detailAddress" placeholder="상세주소" name="plant_addr_add">
 																</div>
 																<div>
-																	<input type="hidden" id="sample6_extraAddress"
-																		placeholder="참고항목">
+																	<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 																</div>
 																<br>
 															</div>
@@ -356,9 +328,7 @@
 															<label for="inputNumber" class="col-sm-2 control-label">면적</label>
 															<div class="col-lg-12">
 																<div class="input-group" style="width: 70%;">
-																	<input type="number" class="form-control"
-																		name="plant_are" required> <span
-																		class="input-group-addon" style="font-size: large;">㎡</span>
+																	<input type="number" class="form-control" name="plant_are" required> <span class="input-group-addon" style="font-size: large;">㎡</span>
 																</div>
 															</div>
 														</div>
@@ -386,13 +356,7 @@
 											</div>
 										</div>
 									</div>
-
-
 								</section>
-
-
-
-
 							</c:when>
 							<c:otherwise>
        
@@ -400,9 +364,6 @@
 					        	<div class="row" style="justify-content: center">
 										<div class="col-lg-12">
 											<div class="panel panel-default">
-												<div class="panel-heading">
-													<h3 class="panel-title">발전소를 등록해 주세요</h3>
-												</div>
 												<div class="panel-body">
 													<form action="plantUpdate.do" id="plantForm">
 														<div class="form-group">
@@ -420,7 +381,7 @@
 																	style="position: relative; display: flex; padding-left: 0;">
 																	<input type="text" class="form-control"
 																		id="sample6_postcode" name="region" placeholder="우편번호" value="${plant.region }" required>
-																	<input type="button" class="btn btn-primary btn-sm"
+																	<input type="button" class="btn btn-pr btn-sm"
 																		onclick="sample6_execDaumPostcode()"
 																		style="position: absolute; right: 5px; top: 5px; bottom: 5px;"
 																		value="우편번호 찾기">
@@ -472,8 +433,8 @@
 														<div class="form-group">
 															<div class="col-sm-offset-2 col-sm-10 text-center">
 																<br>
-																<button type="submit" class="btn btn-primary">수정</button>
-																<button type="reset" class="btn btn-default">취소</button>
+																<button type="submit" class="btn btn-pr">수정</button>
+																<button class="btn btn-secondary" type="reset">취소</button>
 															</div>
 														</div>
 													</form>
@@ -481,96 +442,89 @@
 											</div>
 										</div>
 									</div>
-
-
-
-									
-
-
-							</section>
-					        
+							</section>				        
 					    </c:otherwise>
 						</c:choose>
-
-
-
-
-
-
 					</main>
-					<!-- End #main -->
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+                
 
+                  <!-- Change Password Form -->
+                <div class="tab-pane fade pt-3" id="profile-change-password">
+                  <form>
+                    <div class="row mb-3">
+                      <label for="password" class="col-md-4 col-lg-3 col-form-label">현재 비밀번호</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="currentPassword" type="password" class="form-control" id="currentPassword" placeholder="사용중인 비밀번호를 입력해주세요" required>
+                      </div>
+                    </div>
 
-	<!-- 다이얼로그창(모달) -->
-	<!-- 회원가입 실패시 나오게될 모달창 -->
-	<!-- Modal -->
-	<div class="modal fade" id="myMessage" role="dialog">
-		<div class="modal-dialog">
+                    <div class="row mb-3">
+                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새 비밀번호</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="newpassword" type="password" class="form-control" id="newPassword" placeholder="새로운 비밀번호를 입력해주세요" required>
+                      </div>
+                    </div>
 
-			<!-- Modal content-->
-			<div id="messageType" class="modal-content panel-info">
-				<div class="modal-header panel-heading">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">${msgType}</h4>
-				</div>
-				<div class="modal-body">
-					<p id="">${msg}</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
+                    <div class="row mb-3">
+                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">새 비밀번호 확인</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="renewpassword" type="password" style="outline-color: primary;" class="form-control" id="renewPassword" placeholder="한번 더 비밀번호를 입력해주세요" required>
+                      </div>
+                    </div>
 
+                    <div class="text-center">
+                      <button class="btn btn-pr" type="button"
+								onclick="changePassword()">비밀번호 변경</button>
+                      <button class="btn btn-secondary" type="reset">취소</button>
+                    </div>
+                  </form><!-- End Change Password Form -->
 
+                </div>
 
+              </div><!-- End Bordered Tabs -->
 
+            </div>
+          </div>
 
+        </div>
+      </div>
+    </section>
 
+  </main><!-- End #main -->
+</div>	
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
 
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-		<!-- 회원가입 성공 시 나오게될 모달창 -->
-		<!-- Modal -->
-		<div class="modal fade" id="myMessage" role="dialog">
-			<div class="modal-dialog">
+  <!-- Vendor JS Files -->
+  <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="resources/assets/vendor/quill/quill.js"></script>
+  <script src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="resources/assets/vendor/php-email-form/validate.js"></script>
 
-				<!-- Modal content-->
-				<div id="messageType" class="modal-content panel-info">
-					<div class="modal-header panel-heading">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">${msgType}</h4>
-					</div>
-					<div class="modal-body">
-						<p id="">${msg}</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
+  <!-- Template Main JS File -->
+  <script src="resources/assets/js/main.js"></script>
+  
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-		<!-- Vendor JS Files -->
-		<script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
-		<script
-			src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
-		<script src="resources/assets/vendor/echarts/echarts.min.js"></script>
-		<script src="resources/assets/vendor/quill/quill.js"></script>
-		<script
-			src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
-		<script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
-		<script src="resources/assets/vendor/php-email-form/validate.js"></script>
-
-		<!-- Template Main JS File -->
-		<script src="resources/assets/js/main.js"></script>
 </body>
+
 </html>
-
-
-
-

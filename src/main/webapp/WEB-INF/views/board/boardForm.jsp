@@ -112,7 +112,7 @@
                      
 			                <div class="text-center">
 			                  <a href="boardList.do"  class="btn btn-success">돌아가기</a>
-			                  <button type="submit" class="btn btn-primary">등록</button>
+			                  <button type="submit" class="btn btn-pr">등록</button>
 			                  <button type="reset" class="btn btn-secondary" id="fclear">취소</button>
 			                </div>
 			              </form>

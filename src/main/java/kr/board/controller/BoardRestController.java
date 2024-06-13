@@ -73,6 +73,18 @@ public class BoardRestController {
 	public void boardCount(@PathVariable("idx") int idx) {
 		boardMapper.boardCount(idx);
 	}
+	
+	
+	// 공지사항 확인
+	@GetMapping("/noticeContent.do") 
+	public Board noticeContent(@RequestParam("b_idx") int b_idx) {
+		
+		Board vo = boardMapper.boardContent(b_idx);
+		
+		return vo;	
+	}
+	
+	
 
 }
 

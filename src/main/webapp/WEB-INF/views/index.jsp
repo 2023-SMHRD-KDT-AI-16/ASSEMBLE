@@ -12,7 +12,30 @@
 <title>SolarNamDo</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link
+   href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+   rel="stylesheet">
 
+<!-- Vendor CSS Files -->
+<!-- <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+   rel="stylesheet"> 이부분이 다른 부트스트랩 css랑 충돌이 나는거 같음 일단 꺼놈.-->  
+<link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/boxicons/css/boxicons.min.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/quill/quill.snow.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/quill/quill.bubble.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/remixicon/remixicon.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/simple-datatables/style.css"
+   rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="resources/assets/css/style.css" rel="stylesheet">
 
 
 <link rel="stylesheet"
@@ -247,16 +270,54 @@
 	  function noticeInsert(){	
 	  $("#noticeModal").modal("show");	  	  
 	  }
-	 
-	  function noticeUpdate(num){
-		  alert(num);
-	  $("#noticeModal2").modal("show");	  	  
 
+	  
+	function showNoticeDetails(index) {
+		
+		 $.ajax({
+	       	    url: 'board/noticeContent.do', 
+	       	    method: 'GET',
+	       	    data: { b_idx : index },
+	       	    dataType:'json',
+	       	    success: function(data) {
+	       	    	document.getElementById("titleDetail").value = data.b_title;
+	       	    	document.getElementById("contentDetail").innerText = data.b_content;
+	       	   		document.getElementById("hiddenIdx").value = data.b_idx;
+	       	   $('#noticeContent').modal('show');
+	       	    },
+	       	    error: function() {
+	       	    	alert("에러"); 
+	       	    	
+	       	    }
+	       	});
+		
+					
 	}
+	  
 	  
 	 
   </script>
 
+
+<style>
+
+#notice p{
+font-size:18px;
+}
+
+.n_detail{
+	cursor: pointer;
+}
+
+#noticeContent{
+z-index:9999;
+}
+
+input[readonly] {
+        background-color: #fff; /* 흰색 배경색 지정 */
+    }
+    
+</style>
 
 
 </head>
@@ -273,54 +334,50 @@
 							
 			
 				<div class="panel-body " >
-					
-						공지사항
-					<hr style="color: #333;">
-					
-					
-					<div style="display: flex; justify-content: center; align-items: center;">
-					
-						<div class="panel col-md-10 col-sm-12 col-xs-12 " >
+			
+			
+			<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">		
 						
-													
-								
-								 <c:forEach var="item" items="${notice}">
-					            
-						            <div class="panel panel-primary ">								
-									<div class="panel-heading " style="display: flex; justify-content: space-between;">
-											<div class="left">${item.b_title}</div>
-				        					<div class="right">${item.created_at }</div>															
-									</div>								
-									<div class="panel-body">${item.b_content }</div>
-								
-									</div>	
-					           
-					           <!-- 관리자인 경우에만 수정 삭제버튼 표시 --> 
-					            <c:if test="${mvo.user_id == 'admin'}">
-					            	
-					                    <form action="noticeDelete.do" method="get" style="display:inline;">
-					                        <input type="hidden" name="b_idx" value="${item.b_idx}">					                        
-					                        <button type="submit" class="btn btn-danger">삭제</button>
-					                    </form>
-					                   
-					                 <br><br>
-					            </c:if>
-					            
-					            
-					            
-					    		</c:forEach>
-							
-								<c:if test="${mvo.user_id == 'admin'}">
-					            	<div>					                                         
+					
+					<div class="panel col-md-6 col-sm-12 col-xs-12" id="notice" style="height: 400px; overflow-y: auto;">
+					    <h3>공지사항
+					    
+					    <c:if test="${mvo.user_id == 'admin'}">					            						                                         
 					                    <button type="button" class="btn btn-danger" onclick="noticeInsert()">공지사항 등록</button>					                    					                    
-					                </div>
-					            </c:if>
-							
-							
-						</div>
-						
+					                
+					    </c:if>  </h3>
+					    
+					    <c:forEach var="item" items="${notice}" varStatus="status">
+			                <c:if test="${status.index < 9}">
+			                    <div class="row">
+			                        <div class="col-xs-7 text-left n_detail" onclick="showNoticeDetails('${item.b_idx}')">
+			                            <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" >${item.b_title}</p>
+			                        </div>
+			                        <div class="col-xs-5 text-right">
+			                            <p>${item.created_at}</p>
+			                        </div>
+			                    </div>
+			                </c:if>
+			            </c:forEach>
+					    
+					    
 					</div>
-
+					
+					
+					
+					
+		<div class="panel col-md-6 col-sm-12 col-xs-12 " >
+		
+			<img src="${contextPath}/resources/images/solar-expo.png"
+					style="width: 100%; height: 400px;">
+		</div>
+					
+					
+		</div>			
+						
+		</div>				
+			
+ 	
 				<div class="panel-body"
 					style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
 
@@ -392,6 +449,7 @@
 					</div>
 
 				</div>
+				
 
 				<!-- 온도 차트 -->
 				<div style="width: 100%; height: 150px;">
@@ -486,8 +544,46 @@
 
 					</table>
 
+				<div class="panel-body " >
+				
+					<section class="section dashboard">
+				      <div class="row">
+				        <div class="col-lg-12">
+				
+				          <!-- News & Updates Traffic -->
+				          <div class="card">
+				            <div class="filter">
+				              <a class="icon" href="https://search.daum.net/search?w=news&nil_search=btn&DA=STC&enc=utf8&cluster=y&cluster_page=1&q=%ED%83%9C%EC%96%91%EA%B4%91&p=1&sort=accuracy" 
+				              >[더보기]</a>
+				            </div>
+				
+				            <div class="card-body">
+				              <h4 class="card-title">News &amp; Updates <span>| Today</span></h4>
+				
+				              <div class="news">
+								<c:forEach var="article" items="${articles}">
+					                <div class="post-item clearfix">
+					                  <img src="${article.thumbnailUrl}" alt="${article.title}" style="height: 100px; width: 85px;">
+					                  <h4><a href="${article.link}">${article.title}</a></h4>
+					                  <p><a href="${article.link}"style="color: inherit;">${article.summary}</a></p>
+					                  <p style="color: black;">${article.w_date}</p>
+					                </div>
+								</c:forEach>
+					
+				              </div><!-- End sidebar recent posts-->
+				
+				            </div>
+				          </div><!-- End News & Updates -->
+				
+				        </div><!-- End Right side columns -->
+				
+				      </div>
+				    </section>
+				</div>
 
-					<div class="panel-footer" style="text-align:center;">2024 ~ Solar Namdo ~</div>
+					<div class="panel-footer" style="text-align:center;">2024 ~ Solar Namdo ~			
+				
+					</div>
 
 				</div>
 
@@ -497,7 +593,7 @@
 		</div>
 
 
-
+				
 
 
 
@@ -526,41 +622,86 @@
 		</div>
 		
 		
-		<!-- 등록 Modal -->
+	 
 		
-		<form action="noticeInsert.do" method="get">
+		<!-- 공지사항 등록  -->
+		<div id="noticeModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
 		
-		<div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-		    <div class="modal-dialog">
-		    
-		      <!-- Modal content-->
-		      
-		      <div class="modal-content">
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h4 class="modal-title">공지사항 등록하기</h4>
-		       		 </div>
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">공지사항 등록하기</h4>
+				     </div>
+			       		 <form action="noticeInsert.do" method="get">
+			        	<div class="modal-body">제목
+			        	  <input class="form-control" type="text" id="title" name="b_title" required="required" ><br>
+			          	<div class="form-label">
+			          	내용
+			          	<textarea class="form-control" required="required" name="b_content" style="resize: none; height:200px;">
+	
+	                  	</textarea>
+                 	 </div> 
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-default" >등록하기</button>
+		      </div>
+		    </div>
+				</form>
+		  </div>
+		</div>
+	</div>
+		
+	
+		<!-- Modal -->
+		<div id="noticeContent" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">공지사항</h4>
+		       		</div>
 		        	<div class="modal-body">제목
-		        	  <input class="form-control" type="text" id="title" name="b_title" required="required" ><br>
+		        	  <input class="form-control" type="text" id="titleDetail" name="b_title" readonly><br>
 		          	<div class="form-label">
 		          	내용
-		          	<textarea class="form-control" required="required" name="b_content" style="resize: none; height:200px;">
+		          	<textarea class="form-control" readonly id="contentDetail" name="b_content" style="resize: none; height:200px;">
 
                   	</textarea>
-                 	 </div> 
+                 	</div>
+		      <div class="modal-footer">
+		     	 <form action="noticeDelete.do" method="get">		     	
+		     	  <input class="hidden" type="text" name="b_idx" id="hiddenIdx"><br>		     	
+		      	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		     		<c:if test="${mvo.user_id == 'admin'}">		     	
+		          <button type="submit" class="btn btn-default" >삭제하기</button>
+		          </form>
 		          
-		          
-		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		          <button type="submit" class="btn btn-default" >등록하기</button>
-		        </div>
+		        </c:if>
+		     	
+		     
 		      </div>
-		      
 		    </div>
-		 </div>
-				  
-		</form>		
 		
+		  </div>
+		</div>
+	
+	</div>	
+	 
 		
+		   <!-- Vendor JS Files -->
+   <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+   <script
+      src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+   <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+   <script src="resources/assets/vendor/quill/quill.js"></script>
+   <script
+      src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+   <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+   <script src="resources/assets/vendor/php-email-form/validate.js"></script>
 </body>
 </html>

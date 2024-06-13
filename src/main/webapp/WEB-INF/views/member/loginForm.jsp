@@ -98,7 +98,7 @@
                     </div>
 
                       <div class="col-12">
-                        <button class="btn btn-primary w-100" type="submit">
+                        <button class="btn btn-pr w-100" type="submit">
                           로그인
                         </button>
                       </div>

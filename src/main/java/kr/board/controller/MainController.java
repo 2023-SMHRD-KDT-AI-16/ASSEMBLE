@@ -8,18 +8,21 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.board.entity.Board;
+import kr.board.entity.News;
 import kr.board.entity.SmpRec;
 import kr.board.mapper.BoardMapper;
 import kr.board.service.ApiService;
+import kr.board.service.NewsService;
 import kr.board.service.SmpService;
-
+import java.util.List;
 
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	private SmpService smpService;	
 	
@@ -29,6 +32,11 @@ public class MainController {
 	@Autowired
 	private BoardMapper boardMapper;
 	
+
+    @Autowired
+    private NewsService newsService;
+	
+
 	@RequestMapping("/index")                  //여기 수정함
 	public String index(HttpSession session,Model model) {
 		
@@ -61,13 +69,20 @@ public class MainController {
 		System.out.println("게시글의 갯수:  "+ list.size());
 		model.addAttribute("notice",list);		
 		
+        List<News> articles = newsService.getLatestNews();
+        model.addAttribute("articles", articles);
+		
 		return "index";
+		
+		
 	}
 	
+
 	@RequestMapping("/")
 	    public String intro() {
 	        return "intro"; // intro.jsp로 매핑
 	    }
+
 	
 	// return하는게 없으니까 얘가 비동기인지 동기인지 헷갈리므로 추천X
 //	method이름이 뷰네임이랑 똑같으면 아래와 같이 가능

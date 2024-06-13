@@ -25,12 +25,9 @@
    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
    rel="stylesheet">
 
-
 <!-- Vendor CSS Files -->
 <!-- <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
    rel="stylesheet"> 이부분이 다른 부트스트랩 css랑 충돌이 나는거 같음 일단 꺼놈.-->  
-   
-   
 <link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
    rel="stylesheet">
 <link href="resources/assets/vendor/boxicons/css/boxicons.min.css"
@@ -46,9 +43,6 @@
 
 <!-- Template Main CSS File -->
 <link href="resources/assets/css/style.css" rel="stylesheet">
-
-
-
 </head>
 
 <body style="background: #f6f9ff">
@@ -75,13 +69,9 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    
    
-   
-
-
 
    <div class="container">
       <jsp:include page="../common/header.jsp"></jsp:include>
-      
       
       
       <div class="panel panel-default">
@@ -146,11 +136,27 @@
       class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
+   <!-- Vendor JS Files -->
+   <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+   <script
+      src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+   <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+   <script src="resources/assets/vendor/quill/quill.js"></script>
+   <script
+      src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+   <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+   <script src="resources/assets/vendor/php-email-form/validate.js"></script>
 
    <!-- Template Main JS File -->
    <script src="resources/assets/js/main.js"></script>
    
-   
+   <link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    
 </body>
 

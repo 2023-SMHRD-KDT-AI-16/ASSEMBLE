@@ -40,6 +40,8 @@ public interface UserMapper {
 
 	public int plantUpdate(Plant p);
 
+	public void goProDel(String user_id);
+
 
 }
 
