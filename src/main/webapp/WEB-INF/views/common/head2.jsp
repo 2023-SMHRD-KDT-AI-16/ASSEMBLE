@@ -15,7 +15,7 @@
     </button>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="${contextPath}/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="${contextPath}/index">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="boardList.do">게시판</a></li>
         <li class="nav-item"><a class="nav-link" href="${contextPath}/powerMain.do">내 발전소</a></li>
       </ul>

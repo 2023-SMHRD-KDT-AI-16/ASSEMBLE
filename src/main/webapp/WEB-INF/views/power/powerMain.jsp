@@ -107,6 +107,9 @@ color: black;
 p {
 	text-align: center
 }
+
+
+
 </style>
 
 
@@ -339,7 +342,7 @@ p {
 											</p> 
 											<div class="container">
 												<div class="row justify-content-center">
-													<div class="col-md-10">
+													<div class="col-md-8">
 														<canvas id="accuracyChart" width="380" height="320"></canvas>
 														<div class="text-center mt-4">
 															<!-- <strong>발전량 정확도</strong> -->
