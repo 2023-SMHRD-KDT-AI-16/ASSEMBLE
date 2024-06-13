@@ -29,7 +29,7 @@ public class MainController {
 	@Autowired
 	private BoardMapper boardMapper;
 	
-	@RequestMapping("/")
+	@RequestMapping("/index")                  //여기 수정함
 	public String index(HttpSession session,Model model) {
 		
 		SmpRec smpData = (SmpRec) session.getAttribute("smpData");			
@@ -63,6 +63,11 @@ public class MainController {
 		
 		return "index";
 	}
+	
+	@RequestMapping("/")
+	    public String intro() {
+	        return "intro"; // intro.jsp로 매핑
+	    }
 	
 	// return하는게 없으니까 얘가 비동기인지 동기인지 헷갈리므로 추천X
 //	method이름이 뷰네임이랑 똑같으면 아래와 같이 가능
