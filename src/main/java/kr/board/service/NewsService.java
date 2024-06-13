@@ -24,23 +24,9 @@ public class NewsService {
                 Elements article = doc.select("ul > li:nth-child(" + i + ")");
                 String title = article.select("div.item-title > strong > a").text();
                 String link = article.select("div.item-contents > p > a").attr("href");
-                String summary = article.select("div.item-contents > p > a").text();
-                
-                
-                
-                
-                String thumbnailUrl = article.select("#news_img_" + (i - 1) + " > a > img").attr("src");
-                if (thumbnailUrl.isEmpty() || thumbnailUrl.contains("data:image/gif")) {
-                    thumbnailUrl = article.select("#news_img_" + (i - 1) + " > a > img").attr("data-src");
-                }
-                if (thumbnailUrl.isEmpty() || thumbnailUrl.contains("data:image/gif")) {
-                    thumbnailUrl = article.select("#news_img_" + (i - 1) + " > a > img").attr("data-original");
-                }
+                String summary = article.select("div.item-contents > p > a").text();            
+                String thumbnailUrl = article.select("#news_img_" + (i - 1) + " > a > img").attr("data-original-src");
 
-                // 상대 경로를 절대 경로로 변환
-                if (!thumbnailUrl.startsWith("http") && !thumbnailUrl.isEmpty()) {
-                    thumbnailUrl = "https://search4.kakaocdn.net/argon/200x200_85_c/" + thumbnailUrl;
-                }
                 articles.add(new News(title, link, summary, thumbnailUrl));
             }
         } catch (IOException e) {
