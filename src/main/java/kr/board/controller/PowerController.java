@@ -33,7 +33,8 @@ public class PowerController {
 	  @RequestMapping("/getPredictionData")
 	    @ResponseBody
 	    public List<PredictionInfo> getPredictionData() {
-	        return predictionInfoMapper.getPredictionInfo();
+	        List<PredictionInfo> data = predictionInfoMapper.getPredictionInfo();
+	        return data;
 	    }
 	  
 	  
@@ -49,8 +50,20 @@ public class PowerController {
 	            .mapToDouble(p -> p.getPredPower().doubleValue())
 	            .sum();
 
-	        return totalPower;
+	     // MWh를 W로 변환 (백만 단위로 나눔)
+	        return totalPower / 1000000;
 	    }
+	  
+	  @RequestMapping("/getWeeklyPredictionData")
+	  @ResponseBody
+	  public List<PredictionInfo> getWeeklyPredictionData() {
+	      LocalDate today = LocalDate.now();
+	      LocalDate startDate = today.minusDays(6); // 7일 전부터 오늘까지
+	      return predictionInfoMapper.getPredictionInfo().stream()
+	          .filter(p -> !p.getPredDate().toLocalDate().isBefore(startDate) && !p.getPredDate().toLocalDate().isAfter(today))
+	          .collect(Collectors.toList());
+	  }
+
 	  
 	  
 	  
