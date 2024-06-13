@@ -9,5 +9,19 @@
         WHERE pred_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
         ORDER BY pred_date, pred_time
     </select>
+    
+    
+     <select id="getPastFiveYearsData" resultType="kr.board.entity.PowerInfo">
+        SELECT 
+            DATE_FORMAT(date, '%Y') AS date, 
+            SUM(pwr_amount) AS pwrAmount
+        FROM power_info
+        WHERE DATE_FORMAT(date, '%m-%d') = #{monthDay}
+        AND date BETWEEN DATE_SUB(CURDATE(), INTERVAL 5 YEAR) AND CURDATE()
+        GROUP BY DATE_FORMAT(date, '%Y')
+        ORDER BY date ASC
+    </select>
+    
+    
 
 </mapper>
