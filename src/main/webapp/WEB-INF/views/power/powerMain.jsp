@@ -261,8 +261,11 @@ p {
 											class="card bg-white text-gray border border-default powerDiv"
 											style="height: 220px;">
 											<div class="card-body">
-												<h4 class="card-title font-weight-bold text-center">여기다가는
-													무엇을 넣을까</h4>
+												<h4 class="card-title font-weight-bold text-center"
+													style="margin: 0">예측한 발전량</h4>
+													<p class="card-text font-weight-bold text-center"
+													style="border-bottom: 1px solid #999999;">최근순</p>
+											<div class="card-body">
 												<p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
 												<p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
 												<p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
@@ -457,7 +460,7 @@ p {
 								<div class="col-lg-3 col-md-6 mb-4">
 									<div
 										class="card bg-white text-gray border border-default powerDiv"
-										style="height: 220px;">
+										>
 										<img class="card-img" alt="sample"
 											src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=fourHoursAgoFormattedDate%><%=fourHoursAgoFormattedTime %>.thn.png">
 										<div class="card-img-overlay">
@@ -469,7 +472,7 @@ p {
 								<div class="col-lg-3 col-md-6 mb-4">
 									<div
 										class="card bg-white text-gray border border-default powerDiv"
-										style="height: 220px;">
+										>
 										<img class="card-img" alt="sample"
 											src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=threeHoursAgoFormattedDate%><%=threeHoursAgoFormattedTime %>.thn.png">
 										<div class="card-img-overlay">
@@ -481,7 +484,7 @@ p {
 								<div class="col-lg-3 col-md-6 mb-4">
 									<div
 										class="card bg-white text-gray border border-default powerDiv"
-										style="height: 220px;">
+										>
 										<img class="card-img" alt="sample"
 											src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=twoHoursAgoFormattedDate%><%=twoHoursAgoFormattedTime %>.thn.png">
 										<div class="card-img-overlay">
@@ -494,7 +497,7 @@ p {
 								<div class="col-lg-3 col-md-6 mb-4">
 									<div
 										class="card bg-white text-gray border border-default powerDiv"
-										style="height: 220px;">
+										>
 										<img class="card-img" alt="sample"
 											src="https://www.kma.go.kr/repositary/image/sat/gk2a/KO/gk2a_ami_le1b_rgb-true_ko010lc_<%=oneHourAgoFormattedDate%><%=oneHourAgoFormattedTime %>.thn.png">
 										<div class="card-img-overlay">
