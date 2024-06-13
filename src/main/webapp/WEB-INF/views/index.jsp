@@ -558,15 +558,15 @@ input[readonly] {
 				            </div>
 				
 				            <div class="card-body">
-				              <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+				              <h4 class="card-title">News &amp; Updates <span>| Today</span></h4>
 				
 				              <div class="news">
 								<c:forEach var="article" items="${articles}">
 					                <div class="post-item clearfix">
 					                  <img src="${article.thumbnailUrl}" alt="${article.title}" style="height: 100px; width: 85px;">
 					                  <h4><a href="${article.link}">${article.title}</a></h4>
-					                  <p>${article.summary}</p>
-					                  <p>${article.w_date}</p>
+					                  <p><a href="${article.link}"style="color: inherit;">${article.summary}</a></p>
+					                  <p style="color: black;">${article.w_date}</p>
 					                </div>
 								</c:forEach>
 					
