@@ -26,8 +26,9 @@ public class NewsService {
                 String link = article.select("div.item-contents > p > a").attr("href");
                 String summary = article.select("div.item-contents > p > a").text();            
                 String thumbnailUrl = article.select("#news_img_" + (i - 1) + " > a > img").attr("data-original-src");
-
-                articles.add(new News(title, link, summary, thumbnailUrl));
+                String w_date = article.select("div.item-contents > span > span").text();   
+                
+                articles.add(new News(title, link, summary, thumbnailUrl, w_date));
             }
         } catch (IOException e) {
             e.printStackTrace();

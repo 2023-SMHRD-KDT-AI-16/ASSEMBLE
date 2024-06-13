@@ -15,5 +15,7 @@ public class News {
     private String link;
     private String summary;
     private String thumbnailUrl;
+    private String w_date;
+    
 }
 

@@ -554,7 +554,7 @@ input[readonly] {
 				          <div class="card">
 				            <div class="filter">
 				              <a class="icon" href="https://search.daum.net/search?w=news&nil_search=btn&DA=STC&enc=utf8&cluster=y&cluster_page=1&q=%ED%83%9C%EC%96%91%EA%B4%91&p=1&sort=accuracy" 
-				              >더보기</a>
+				              >[더보기]</a>
 				            </div>
 				
 				            <div class="card-body">
@@ -563,9 +563,10 @@ input[readonly] {
 				              <div class="news">
 								<c:forEach var="article" items="${articles}">
 					                <div class="post-item clearfix">
-					                  <img src="${article.thumbnailUrl}" alt="${article.title}">
+					                  <img src="${article.thumbnailUrl}" alt="${article.title}" style="height: 100px; width: 85px;">
 					                  <h4><a href="${article.link}">${article.title}</a></h4>
 					                  <p>${article.summary}</p>
+					                  <p>${article.w_date}</p>
 					                </div>
 								</c:forEach>
 					
@@ -591,18 +592,7 @@ input[readonly] {
 
 		</div>
 
-					
-<%-- 				    <h1>기사 목록</h1>
-			    	<c:forEach var="article" items="${articles}">
-				        <div class="article">
-				            <h2>${article.title}</h2>
-				            <a href="${article.link}">Link</a>
-				            <p>${article.summary}</p>
-				            <img src="${article.thumbnailUrl}" alt="${article.title}">
-				        </div>
-			        <hr>
-			  	    </c:forEach>
-				</div> --%>
+
 				
 
 
