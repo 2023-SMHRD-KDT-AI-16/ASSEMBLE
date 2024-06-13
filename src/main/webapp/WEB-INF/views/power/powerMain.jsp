@@ -112,7 +112,7 @@ p {
 
 </head>
 
-<body style="background: #f6f9ff; font-family: 'Ownglyph_eunbyul21-Rg', sans-serif;">
+<body style="background: #f6f9ff;">
 	<main>
 		<div class="container">
 
@@ -260,18 +260,21 @@ p {
 										<div
 											class="card bg-white text-gray border border-default powerDiv"
 											style="height: 220px;">
-											<div class="card-body">
-												<h4 class="card-title font-weight-bold text-center"
-													style="margin: 0">예측한 발전량</h4>
-													<p class="card-text font-weight-bold text-center"
-													style="border-bottom: 1px solid #999999;">최근순</p>
-											<div class="card-body">
-												<p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
-												<p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
-												<p class="card-text font-weight-bold">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
-												s
-											</div>
+
+
+										<div class="card-body">
+											<h4 class="card-title font-weight-bold text-center"">내일
+												예측된 발전량</h4>
+												<p class="card-text font-weight-bold text-center"
+													style="border-bottom: 1px solid #999999; padding-bottom: 16px ">
+													  </p>
+													  
+													  
+											<div id="tomorrowPredictionTotal" class="text-center"
+												style="font-size: 1.8rem; margin: 60px 0"></div>
 										</div>
+
+									</div>
 									</div>
 
 
@@ -331,10 +334,12 @@ p {
 										class="card bg-white text-gray border border-default shadow"
 										style="height: 350px;">
 										<div class="card-body">
+											<p style="font-size: 1.6rem">
 											발전량 정확도
+											</p> 
 											<div class="container">
 												<div class="row justify-content-center">
-													<div class="col-md-8">
+													<div class="col-md-10">
 														<canvas id="accuracyChart" width="380" height="320"></canvas>
 														<div class="text-center mt-4">
 															<!-- <strong>발전량 정확도</strong> -->
@@ -348,67 +353,38 @@ p {
 								</div>
 								<!-- **********모델 정확도 원차트*********** -->
 
-								<div class="col-lg-6 col-md-6 mb-4">
-									<div
-										class="card bg-white text-gray border border-default shadow"
-										style="height: 350px;">
-										<div class="card-body">내일 예측된 발전량</div>
+								<!-- **********일별 예측된 발전량********** -->
+							<div class="col-lg-6 col-md-6 mb-4">
+								<div
+									class="card bg-white text-gray border border-default shadow"
+									style="height: 350px;">
+									<div class="card-body">
+										<p style="font-size: 1.6rem">일별 예측된 발전량</p>
+										<div style="width: 100%; height: 300px;">
+											<canvas id="weeklyPredictionChart"></canvas>
+										</div>
 									</div>
 								</div>
+							</div>
+							<!-- **********일별 예측된 발전량********** -->
+								
 							</div>
 
 
 
 							<!-- 차트 카드 -->
-							<div class="col-12 mb-4">
-								<div
-									class="card bg-white text-gray border border-default shadow">
-									<div class="card-body">
-
-
-										<div class="chartjs-size-monitor">
-											<div class="chartjs-size-monitor-expand">
-												<div class=""></div>
-											</div>
-											<div class="chartjs-size-monitor-shrink">
-												<div class=""></div>
-											</div>
-										</div>
-
-										<div
-											class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-											<h1 class="h2">나의 발전소의 (예측한)발전량</h1>
-											<div class="btn-toolbar mb-2 mb-md-0">
-												<div class="btn-group me-2">
-													<button type="button"
-														class="btn btn-sm btn-outline-secondary">Share</button>
-													<button type="button"
-														class="btn btn-sm btn-outline-secondary">Export</button>
-												</div>
-												<button type="button"
-													class="btn btn-sm btn-outline-secondary dropdown-toggle">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24"
-														height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2"
-														stroke-linecap="round" stroke-linejoin="round"
-														class="feather feather-calendar" aria-hidden="true">
-											<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-											<line x1="16" y1="2" x2="16" y2="6"></line>
-											<line x1="8" y1="2" x2="8" y2="6"></line>
-											<line x1="3" y1="10" x2="21" y2="10"></line></svg>
-													This week
-												</button>
-											</div>
-										</div>
-
-										<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart"
-											width="1055" height="444"
-											style="display: block; height: 254px; width: 603px;"></canvas>
-
-									</div>
-								</div>
-							</div>
-							<!-- 차트 카드 끝 -->
+						 <div class="col-12 mb-4">
+                        <div class="card bg-white text-gray border border-default shadow">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                    <h1 class="h2">과거의 오늘 발전량</h1>
+                                    <div class="btn-toolbar mb-2 mb-md-0"></div>
+                                </div>
+                                <canvas class="my-4 w-100 chartjs-render-monitor" id="pastFiveYearsChart" width="1055" height="444" style="display: block; height: 254px; width: 603px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+						<!-- 차트 카드 끝 -->
 
 
 
@@ -571,7 +547,7 @@ p {
 					                display: true,
 					                scaleLabel: {
 					                    display: true,
-					                    labelString: '발전량(MWh)'
+					                    labelString: '발전량(MW)'
 					                },
 					                    ticks: {
 					                    min: 0  // x축 최소값을 0으로 설정
@@ -601,171 +577,328 @@ p {
 	</main>
 
 	<script>
-        $(document).ready(function() {
-             function fetchPredictionData() {
-                $.ajax({
-                    url: "${pageContext.request.contextPath}/getPredictionData",
-                    method: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                    	
-                        var labels = data.map(function(e) {
-                            var date = new Date(e.predDate).toISOString().split('T')[0];
-                            var hours = e.predTime.toString().padStart(2, '0');
-                            return date + " " + hours + ":00";
-                        });
-                        
-                        var dataPower = data.map(function(e) {
-                            return e.predPower;
-                        });
+	$(document).ready(function() {
+		function fetchWeeklyPredictionData() {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/getWeeklyPredictionData",
+				method: "GET",
+				dataType: "json",
+				success: function(data) {
+					var groupedData = {};
+					data.forEach(function(e) {
+						var date = new Date(e.predDate).toISOString().split('T')[0];
+						if (!groupedData[date]) {
+							groupedData[date] = 0;
+						}
+						groupedData[date] += e.predPower;
+					});
 
-                        var chartData = {
-                            labels: labels,
-                            datasets: [{
-                                label: '예측한 발전량',
-                                data: dataPower,
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                borderColor: 'rgba(92, 154, 221, 1)',
-                                borderWidth: 1, // 선의 두께
-                                pointBackgroundColor: 'rgba(255, 99, 132, 1)', // 포인트 색상
-                                pointBorderColor: 'rgba(255, 99, 132, 1)', // 포인트 테두리 색상
-                                pointRadius: 2, // 포인트 크기
-                                pointHoverRadius: 6, // 포인트 호버 크기
-                                pointHoverBackgroundColor: 'rgba(75, 192, 192, 1)', // 호버 시 포인트 색상
-                                pointHoverBorderColor: 'rgba(75, 192, 192, 1)', // 호버 시 포인트 테두리 색상
-                                fill: true // 채우기 있음
-                            }]
-                        };
+					var labels = Object.keys(groupedData);
+					var dataPower = Object.values(groupedData);
 
-                        var ctx = document.getElementById('myChart').getContext('2d');
+					var chartData = {
+						labels: labels,
+						datasets: [{
+							label: '예측된 발전량 (W)',
+							data: dataPower,
+							backgroundColor: 'rgba(54, 162, 235, 0.2)',
+							borderColor: 'rgba(92, 154, 221, 1)',
+							borderWidth: 1
+						}]
+					};
 
-                        new Chart(ctx, {
-                            type: 'line', // 꺾은선 그래프
-                            data: chartData,
-                            options: {
-                                scales: {
-                                    xAxes: [{
-                                        scaleLabel: {
-                                            display: true,
-                                            labelString: '시간'
-                                        },
-                                        ticks: {
-                                            autoSkip: true,
-                                            maxTicksLimit: 20
-                                        }
-                                    }],
-                                    yAxes: [{
-                                        scaleLabel: {
-                                            display: true,
-                                            labelString: '발전량'
-                                        },
-                                        ticks: {
-                                            beginAtZero: true
-                                        }
-                                    }]
-                                },
-                                tooltips: {
-                                    callbacks: {
-                                        label: function(tooltipItem, data) {
-                                            return 'Power: ' + tooltipItem.yLabel.toLocaleString();
-                                        }
-                                    }
-                                }
-                            }
-                        });
-                    }
-                });
-            }
+					var ctx = document.getElementById('weeklyPredictionChart').getContext('2d');
+					new Chart(ctx, {
+						type: 'bar',
+						data: chartData,
+						options: {
+							scales: {
+								xAxes: [{
+									scaleLabel: {
+										display: true,
+										labelString: '날짜'
+									}
+								}],
+								yAxes: [{
+									scaleLabel: {
+										display: true,
+										labelString: '발전량 (W)'
+									},
+									ticks: {
+										beginAtZero: true
+									}
+								}]
+							},
+							tooltips: {
+								callbacks: {
+									label: function(tooltipItem, data) {
+										return 'Power: ' + tooltipItem.yLabel.toLocaleString() + ' W';
+									}
+								}
+							}
+						}
+					});
+				},
+				error: function(xhr, status, error) {
+					console.error("주간 예측 발전량 가져오기 실패:", error);
+				}
+			});
+		}
+
+		
+		
+		
+		
+		
+		function fetchPredictionData() {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/getPredictionData",
+				method: "GET",
+				dataType: "json",
+				success: function(data) {
+					console.log("Fetched Prediction Data:", data);  // 데이터 확인용 로그
+
+					var labels = data.map(function(e) {
+						var date = new Date(e.predDate);
+						var dateString = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+						var hours = e.predTime.toString().padStart(2, '0');
+						var label = dateString + " " + hours + ":00";
+						console.log("Label:", label);  // 각 레이블 로그 출력
+						return label;
+					});
+
+					var dataPower = data.map(function(e) {
+						return e.predPower;
+					});
+
+					console.log("Labels:", labels);  // 데이터 검증용 로그
+					console.log("Data Power:", dataPower);  // 데이터 검증용 로그
+
+					var chartData = {
+						labels: labels,
+						datasets: [{
+							label: '예측한 발전량',
+							data: dataPower,
+							backgroundColor: 'rgba(54, 162, 235, 0.2)',
+							borderColor: 'rgba(92, 154, 221, 1)',
+							borderWidth: 1,
+							pointBackgroundColor: 'rgba(255, 99, 132, 1)', // 포인트 색상
+							pointBorderColor: 'rgba(255, 99, 132, 1)', // 포인트 테두리 색상
+							pointRadius: 2, // 포인트 크기
+							pointHoverRadius: 6, // 포인트 호버 크기
+							pointHoverBackgroundColor: 'rgba(75, 192, 192, 1)', // 호버 시 포인트 색상
+							pointHoverBorderColor: 'rgba(75, 192, 192, 1)', // 호버 시 포인트 테두리 색상
+							fill: true // 채우기 있음
+						}]
+					};
+
+					var ctx = document.getElementById('myChart').getContext('2d');
+
+					new Chart(ctx, {
+						type: 'line',
+						data: chartData,
+						options: {
+							scales: {
+								xAxes: [{
+									scaleLabel: {
+										display: true,
+										labelString: '시간'
+									},
+									ticks: {
+										autoSkip: true,
+										maxTicksLimit: 20
+									}
+								}],
+								yAxes: [{
+									scaleLabel: {
+										display: true,
+										labelString: '발전량'
+									},
+									ticks: {
+										beginAtZero: true
+									}
+								}]
+							},
+							tooltips: {
+								callbacks: {
+									label: function(tooltipItem, data) {
+										return 'Power: ' + tooltipItem.yLabel.toLocaleString();
+									}
+								}
+							}
+						}
+					});
+				},
+				error: function(xhr, status, error) {
+					console.error("데이터 가져오기 실패:", error);
+				}
+			});
+		}
+
+		function drawAccuracyChart() {
+			var ctx = document.getElementById('accuracyChart').getContext('2d');
+			var data = {
+				datasets: [{
+					data: [55, 45],
+					backgroundColor: ['#4caf50', '#dcdcdc'],
+					hoverBackgroundColor: ['#388e3c', '#c0c0c0'],
+					borderWidth: 0
+				}]
+			};
+
+			var options = {
+				rotation: 1 * Math.PI,
+				circumference: 1 * Math.PI,
+				cutoutPercentage: 80,
+				tooltips: {
+					enabled: true,
+					callbacks: {
+						label: function(tooltipItem, data) {
+							var dataset = data.datasets[tooltipItem.datasetIndex];
+							var currentValue = dataset.data[tooltipItem.index];
+							return currentValue + '%';
+						}
+					}
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				plugins: {
+					datalabels: {
+						display: true,
+						formatter: function(value, context) {
+							if (context.dataIndex === 0) {
+								return value + '%';
+							} else {
+								return '';
+							}
+						},
+						color: '#333',
+						font: {
+							weight: 'bold',
+							size: '16'
+						}
+					}
+				}
+			};
+
+			var myDoughnutChart = new Chart(ctx, {
+				type: 'doughnut',
+				data: data,
+				options: options
+			});
+
+			Chart.pluginService.register({
+				beforeDraw: function(chart) {
+					if (chart.config.type === 'doughnut') {
+						var width = chart.chart.width,
+							height = chart.chart.height,
+							ctx = chart.chart.ctx;
+
+						ctx.restore();
+						var fontSize = (height / 114).toFixed(2);
+						ctx.font = fontSize + "em sans-serif";
+						ctx.textBaseline = "middle";
+
+						var text = "55%",
+							textX = Math.round((width - ctx.measureText(text).width) / 2),
+							textY = height / 1.3;
+
+						ctx.fillText(text, textX, textY);
+						ctx.save();
+					}
+				}
+			});
+
+			myDoughnutChart.update();
+		}
+
+		function fetchTomorrowPredictionTotal() {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/getTomorrowPredictionTotal",
+				method: "GET",
+				success: function(total) {
+					console.log("Tomorrow's Total Power:", total);  // 내일 총 발전량 확인용 로그
+					$("#tomorrowPredictionTotal").text(total.toFixed(2) + " MW");
+				},
+				error: function(xhr, status, error) {
+					console.error("내일 예측 발전량 가져오기 실패:", error);
+				}
+			});
+		}
+
+		function fetchPastFiveYearsData() {
+	        $.ajax({
+	            url: "${pageContext.request.contextPath}/getPastFiveYearsData",
+	            method: "GET",
+	            dataType: "json",
+	            success: function(data) {
+	                var labels = [];
+	                var values = [];
+	                data.forEach(function(item) {
+	                    labels.push(item.date);
+	                    values.push(item.pwrAmount);
+	                });
+
+	                var ctx = document.getElementById('pastFiveYearsChart').getContext('2d');
+	                new Chart(ctx, {
+	                    type: 'bar',
+	                    data: {
+	                        labels: labels,
+	                        datasets: [{
+	                            label: '발전량 (W)',
+	                            data: values,
+	                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+	                            borderColor: 'rgba(75, 192, 192, 1)',
+	                            borderWidth: 1
+	                        }]
+	                    },
+	                    options: {
+	                        scales: {
+	                            xAxes: [{
+	                                scaleLabel: {
+	                                    display: true,
+	                                    labelString: '날짜'
+	                                }
+	                            }],
+	                            yAxes: [{
+	                                scaleLabel: {
+	                                    display: true,
+	                                    labelString: '발전량 (W)'
+	                                },
+	                                ticks: {
+	                                    beginAtZero: true
+	                                }
+	                            }]
+	                        },
+	                        tooltips: {
+	                            callbacks: {
+	                                label: function(tooltipItem, data) {
+	                                    return 'Power: ' + tooltipItem.yLabel.toLocaleString() + ' W';
+	                                }
+	                            }
+	                        }
+	                    }
+	                });
+	            },
+	            error: function(xhr, status, error) {
+	                console.error("과거 5년 데이터 가져오기 실패:", error);
+	            }
+	        });
+	    }
+
+		fetchPredictionData();
+		drawAccuracyChart();
+		fetchTomorrowPredictionTotal();
+		fetchWeeklyPredictionData();
+	    fetchPastFiveYearsData();
+	});
+</script>
+
+						
 
 
-             
-             
-             
-             
-            function drawAccuracyChart() {
-                var ctx = document.getElementById('accuracyChart').getContext('2d');
-                var data = {
-                    datasets: [{
-                        data: [55, 45],
-                        backgroundColor: ['#4caf50', '#dcdcdc'],
-                        hoverBackgroundColor: ['#388e3c', '#c0c0c0'],
-                        borderWidth: 0
-                    }]
-                };
-
-                var options = {
-                	    rotation: 1 * Math.PI,
-                	    circumference: 1 * Math.PI,
-                	    cutoutPercentage: 80,
-                	    tooltips: {
-                	        enabled: true, // 툴팁 활성화
-                	        callbacks: {
-                	            label: function(tooltipItem, data) {
-                	                var dataset = data.datasets[tooltipItem.datasetIndex];
-                	                var currentValue = dataset.data[tooltipItem.index];
-                	                return currentValue + '%';
-                	            }
-                	        }
-                	    },
-                	    hover: {
-                	        mode: 'nearest',
-                	        intersect: true
-                	    },
-                	    plugins: {
-                	        datalabels: {
-                	            display: true,
-                	            formatter: function(value, context) {
-                	                if (context.dataIndex === 0) {
-                	                    return value + '%';
-                	                } else {
-                	                    return '';
-                	                }
-                	            },
-                	            color: '#333',
-                	            font: {
-                	                weight: 'bold',
-                	                size: '16'
-                	            }
-                	        }
-                	    }
-                	};
-
-                var myDoughnutChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: data,
-                    options: options
-                });
-
-                // 중앙에 텍스트 추가
-                Chart.pluginService.register({
-                    beforeDraw: function(chart) {
-                        if (chart.config.type === 'doughnut') {
-                            var width = chart.chart.width,
-                                height = chart.chart.height,
-                                ctx = chart.chart.ctx;
-
-                            ctx.restore();
-                            var fontSize = (height / 114).toFixed(2);
-                            ctx.font = fontSize + "em sans-serif";
-                            ctx.textBaseline = "middle";
-
-                            var text = "55%",
-                                textX = Math.round((width - ctx.measureText(text).width) / 2),
-                                textY = height / 1.3;
-
-                            ctx.fillText(text, textX, textY);
-                            ctx.save();
-                        }
-                    }
-                });
-
-                myDoughnutChart.update();
-            }
-
-            fetchPredictionData();
-            drawAccuracyChart(); // 모델 정확도 그래프 그리기 함수 호출
-        });
-    </script>
 
 
 
