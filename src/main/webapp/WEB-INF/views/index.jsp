@@ -12,7 +12,30 @@
 <title>SolarNamDo</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link
+   href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+   rel="stylesheet">
 
+<!-- Vendor CSS Files -->
+<!-- <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+   rel="stylesheet"> 이부분이 다른 부트스트랩 css랑 충돌이 나는거 같음 일단 꺼놈.-->  
+<link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/boxicons/css/boxicons.min.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/quill/quill.snow.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/quill/quill.bubble.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/remixicon/remixicon.css"
+   rel="stylesheet">
+<link href="resources/assets/vendor/simple-datatables/style.css"
+   rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="resources/assets/css/style.css" rel="stylesheet">
 
 
 <link rel="stylesheet"
@@ -392,6 +415,7 @@
 					</div>
 
 				</div>
+				
 
 				<!-- 온도 차트 -->
 				<div style="width: 100%; height: 150px;">
@@ -486,6 +510,41 @@
 
 					</table>
 
+				<div class="panel-body " >
+				
+					<section class="section dashboard">
+				      <div class="row">
+				        <div class="col-lg-12">
+				
+				          <!-- News & Updates Traffic -->
+				          <div class="card">
+				            <div class="filter">
+				              <a class="icon" href="https://search.daum.net/search?w=news&nil_search=btn&DA=STC&enc=utf8&cluster=y&cluster_page=1&q=%ED%83%9C%EC%96%91%EA%B4%91&p=1&sort=accuracy" 
+				              >더보기</a>
+				            </div>
+				
+				            <div class="card-body">
+				              <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+				
+				              <div class="news">
+								<c:forEach var="article" items="${articles}">
+					                <div class="post-item clearfix">
+					                  <img src="${article.thumbnailUrl}" alt="${article.title}">
+					                  <h4><a href="${article.link}">${article.title}</a></h4>
+					                  <p>${article.summary}</p>
+					                </div>
+								</c:forEach>
+					
+				              </div><!-- End sidebar recent posts-->
+				
+				            </div>
+				          </div><!-- End News & Updates -->
+				
+				        </div><!-- End Right side columns -->
+				
+				      </div>
+				    </section>
+				</div>
 
 					<div class="panel-footer" style="text-align:center;">2024 ~ Solar Namdo ~</div>
 
@@ -496,8 +555,19 @@
 
 		</div>
 
-
-
+					
+<%-- 				    <h1>기사 목록</h1>
+			    	<c:forEach var="article" items="${articles}">
+				        <div class="article">
+				            <h2>${article.title}</h2>
+				            <a href="${article.link}">Link</a>
+				            <p>${article.summary}</p>
+				            <img src="${article.thumbnailUrl}" alt="${article.title}">
+				        </div>
+			        <hr>
+			  	    </c:forEach>
+				</div> --%>
+				
 
 
 
@@ -561,7 +631,17 @@
 				  
 		</form>		
 		
-		
+		   <!-- Vendor JS Files -->
+   <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+   <script
+      src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+   <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+   <script src="resources/assets/vendor/quill/quill.js"></script>
+   <script
+      src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+   <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+   <script src="resources/assets/vendor/php-email-form/validate.js"></script>
 </body>
 </html>
 

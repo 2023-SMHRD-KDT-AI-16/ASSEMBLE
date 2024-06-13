@@ -240,8 +240,7 @@
                     </div>
 	 				<h3>[ ${mvo.user_id } ]</h3>
 				</div>
-            
-             
+          
              </div>
            </div>
         </div>
@@ -269,46 +268,7 @@
               </ul>
               
               
-              <div class="tab-content pt-2">
-              
-	              	<div id="profile-edit" class="tab-pane fade in active ">
-	
-						<form action="profileUpdate.do" method="post"
-							enctype="multipart/form-data" onsubmit="return validateForm()">
-	
-							<h3 align="center">프로필사진 등록 및 변경</h3>
-	
-							<div class="panel-body" id="view" align="center">
-	
-								<c:choose>
-									<c:when test="${not empty mvo.user_profile }">
-										<img class="img-circle " id="imageTemp"
-											src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }"
-											style="width: 300px; height: 300px; border-radius: 50%;">
-									</c:when>
-									<c:otherwise>
-										<img class="img-circle " id="imagePreview"
-											src="${contextPath}/resources/images/person.png"
-											style="width: 300px; height: 300px;">
-									</c:otherwise>
-								</c:choose>
-	
-							</div>
-	
-							<input type="file" class="form-control" id="user_profile"
-								name="user_profile" onchange="chooseImage(this)" required>
-							<br>
-	
-							<div class="text-center">
-								<button class="btn btn-pr" type="submit">등록</button>
-								<button class="btn btn-warning" type="button" onclick="goProDel(${mvo.user_id})">삭제</button>
-							</div>
-						</form>
-					</div>
-					
-					
-					
-              
+                       
                 <div class="tab-pane fade show active profile-overview" id="plant_info">
 					<main id="main" class="main">
 						<c:choose>
