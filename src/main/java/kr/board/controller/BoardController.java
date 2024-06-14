@@ -85,7 +85,7 @@ public class BoardController {
 	public String noticeInsert(Board vo) {
 		boardMapper.noticeInsert(vo);
 		
-		return "redirect:/";
+		return "redirect:/index";
 		
 	}
 	
@@ -93,9 +93,7 @@ public class BoardController {
 	@GetMapping("noticeDelete.do")
 	public String noticeDelete(@RequestParam("b_idx") int b_idx) {
 		boardMapper.boardDelete(b_idx);
-		System.out.println(b_idx);
-		System.out.println("연결은 된건가?-----------");
-		return "redirect:/";
+		return "redirect:/index";
 	}
 		
 	

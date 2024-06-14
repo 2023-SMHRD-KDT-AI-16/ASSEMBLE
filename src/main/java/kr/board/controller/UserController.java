@@ -217,7 +217,7 @@ public class UserController {
 				session.setAttribute("plant", p);
 			}			
 			
-			return "redirect:/";
+			return "redirect:/index";
 		}
 
 	}
@@ -303,7 +303,7 @@ public class UserController {
 			rttr.addFlashAttribute("msg", "회원가입에 성공했습니다.");
 			// 회원가입 성공하면 로그인이 된 채로 main 페이지로 갈 거임
 			session.setAttribute("mvo", m);
-			return "redirect:/";
+			return "redirect:/index";
 		} else {
 			// 회원가입 실패
 			rttr.addFlashAttribute("msgType", "실패 메세지");
