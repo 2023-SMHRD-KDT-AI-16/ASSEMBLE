@@ -585,10 +585,10 @@ input:readonly {
                         <c:forEach var="article" items="${articles}">
                                <div class="post-item clearfix">
                                <c:if test="${empty article.thumbnailUrl}">
-                                 <img src="${contextPath}/resources/images/logo.png" alt="${article.title}">
+                                 <img src="${contextPath}/resources/images/news_null.jpg" alt="${article.title}" style="height: 100px; width: 85px;">
                                </c:if>
                                <c:if test="${not empty article.thumbnailUrl}">
-                                 <img src="${article.thumbnailUrl}" alt="${article.title}">
+                                 <img src="${article.thumbnailUrl}" alt="${article.title}" style="height: 100px; width: 85px;">
                                </c:if>
                                  <h4><a href="${article.link}">${article.title}</a></h4>
                                   <p><a href="${article.link}"style="color: inherit;">${article.summary}</a></p>
