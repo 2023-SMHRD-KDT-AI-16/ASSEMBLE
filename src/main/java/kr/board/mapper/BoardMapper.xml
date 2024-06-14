@@ -38,6 +38,18 @@
 		values('admin',#{b_title},#{b_content},1)
 	</insert>
 	
+	<select id="commentContent" resultType="kr.board.entity.Comment">
+		SELECT * FROM comment_info WHERE b_idx=#{b_idx} ORDER BY created_at DESC
+	</select>
+	
+	<insert id="commentInsert" parameterType="kr.board.entity.Comment">
+		insert into comment_info(user_id,b_idx,cmt_content)
+		values(#{user_id},#{b_idx},#{cmt_content})
+	</insert>
+	
+	<delete id="commentDelete">
+		delete from comment_info where cmt_idx = #{cmt_idx}
+	</delete>
 	
 </mapper>
 

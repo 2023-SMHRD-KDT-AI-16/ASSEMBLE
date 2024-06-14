@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.board.entity.Board;
+import kr.board.entity.Comment;
 import kr.board.mapper.BoardMapper;
 
 // Handler Mapping이 Controller(POJO)를 찾기위해
@@ -48,9 +49,31 @@ public class BoardController {
 		Board vo = boardMapper.boardContent(b_idx);
 		model.addAttribute("vo",vo);
 		//System.out.println(vo.toString()); //=> 값이 잘 있난 확인
+		List<Comment> co = boardMapper.commentContent(b_idx);
+		model.addAttribute("co",co);
 		return "board/boardContent";
 		
 	} 
+	
+	// 댓글 등록
+	@GetMapping("commentInsert.do")
+	public String commentInsert(Comment co,RedirectAttributes redirectAttributes)	{
+		System.out.println(co.toString());
+		boardMapper.commentInsert(co);
+		
+		redirectAttributes.addAttribute("b_idx", co.getB_idx());
+		return "redirect:/boardContent.do";
+	}
+	
+	// 댓글 삭제
+	@GetMapping("commentDelete.do")
+	public String commentDelete(@RequestParam("b_idx") int b_idx,@RequestParam("cmt_idx") int cmt_idx,RedirectAttributes redirectAttributes) {
+		boardMapper.commentDelete(cmt_idx);
+		
+		redirectAttributes.addAttribute("b_idx", b_idx);
+		return "redirect:/boardContent.do";
+	}
+	
 	
 	@GetMapping("boardForm.do")
 	public String boardForm() {
