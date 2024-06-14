@@ -299,9 +299,9 @@ font-size:18px;
 z-index:9999;
 }
 
-input:readonly {
-        background-color: #fff; /* 흰색 배경색 지정 */
-    }
+.n_detail:hover p{
+  text-decoration: underline;
+}
     
 </style>
 
