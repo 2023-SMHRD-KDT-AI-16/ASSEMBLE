@@ -582,20 +582,17 @@ input:readonly {
                           <h5 class="card-title">News &amp; Updates</h5>
             
                           <div class="news">
-                                                   <c:if test="${empty mvo}">
-                        	<a class="btn btn-warning btn-sm" style="align-content : center; display: none;" href="boardForm.do">글쓰기</a>
-					     </c:if>
-					     <c:if test="${not empty mvo}">
-							<a class="btn btn-warning btn-sm" style="align-content : center;" href="boardForm.do">글쓰기</a>
-						 </c:if>
-                          
                         <c:forEach var="article" items="${articles}">
                                <div class="post-item clearfix">
                                <c:if test="${empty article.thumbnailUrl}">
-                                 <img src="${article.thumbnailUrl}" alt="${article.title}" style="display:none;">
+                                 <img src="${contextPath}/resources/images/logo.png" alt="${article.title}">
+                               </c:if>
+                               <c:if test="${not empty article.thumbnailUrl}">
+                                 <img src="${article.thumbnailUrl}" alt="${article.title}">
                                </c:if>
                                  <h4><a href="${article.link}">${article.title}</a></h4>
-                                 <p>${article.summary}</p>
+                                  <p><a href="${article.link}"style="color: inherit;">${article.summary}</a></p>
+								  <p style="color: black;">${article.w_date}</p>
                                </div>
                         </c:forEach>
                
