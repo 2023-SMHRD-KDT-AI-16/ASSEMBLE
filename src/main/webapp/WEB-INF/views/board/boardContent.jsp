@@ -112,7 +112,7 @@ function goDelete(b_idx){
 					                            </div>
 					                            	<h5>${comment.cmt_content}</h5>
 					                            	  <!-- 삭제 버튼 -->
-								                    <c:if test="${mvo != null && comment != null && mvo.user_id eq comment.user_id}">
+								                    <c:if test="${mvo != null && comment != null && mvo.user_id eq comment.user_id || mvo.user_id eq 'admin'}">
 								                    	<form action="commentDelete.do" method="get">
 								                        	<input type="hidden" name="cmt_idx" value="${comment.cmt_idx}">
 								                            <input type="hidden" name="b_idx" value="${vo.b_idx}">
