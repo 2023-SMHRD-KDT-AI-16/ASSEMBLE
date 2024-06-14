@@ -1,5 +1,3 @@
-단축키 업데이트 … 2024년 8월 1일 목요일부터 첫 글자를 탐색할 수 있도록 Drive 단축키가 업데이트됩니다.자세히 알아보기
-메인페이지------.txt
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 
@@ -269,7 +267,7 @@
                  dataType:'json',
                  success: function(data) {
                     document.getElementById("titleDetail").value = data.b_title;
-                    document.getElementById("contentDetail").innerText = data.b_content;
+                    document.getElementById("contentDetail").value = data.b_content;
                       document.getElementById("hiddenIdx").value = data.b_idx;
                 $('#noticeContent').modal('show');
                  },
@@ -586,9 +584,15 @@ input:readonly {
                           <div class="news">
                         <c:forEach var="article" items="${articles}">
                                <div class="post-item clearfix">
-                                 <img src="${article.thumbnailUrl}" alt="${article.title}">
+                               <c:if test="${empty article.thumbnailUrl}">
+                                 <img src="${contextPath}/resources/images/news_null.jpg" alt="${article.title}" style="height: 100px; width: 85px;">
+                               </c:if>
+                               <c:if test="${not empty article.thumbnailUrl}">
+                                 <img src="${article.thumbnailUrl}" alt="${article.title}" style="height: 100px; width: 85px;">
+                               </c:if>
                                  <h4><a href="${article.link}">${article.title}</a></h4>
-                                 <p>${article.summary}</p>
+                                  <p><a href="${article.link}"style="color: inherit;">${article.summary}</a></p>
+								  <p style="color: black;">${article.w_date}</p>
                                </div>
                         </c:forEach>
                
