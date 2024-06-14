@@ -1,5 +1,3 @@
-단축키 업데이트 … 2024년 8월 1일 목요일부터 첫 글자를 탐색할 수 있도록 Drive 단축키가 업데이트됩니다.자세히 알아보기
-메인페이지------.txt
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 
@@ -584,9 +582,18 @@ input:readonly {
                           <h5 class="card-title">News &amp; Updates</h5>
             
                           <div class="news">
+                                                   <c:if test="${empty mvo}">
+                        	<a class="btn btn-warning btn-sm" style="align-content : center; display: none;" href="boardForm.do">글쓰기</a>
+					     </c:if>
+					     <c:if test="${not empty mvo}">
+							<a class="btn btn-warning btn-sm" style="align-content : center;" href="boardForm.do">글쓰기</a>
+						 </c:if>
+                          
                         <c:forEach var="article" items="${articles}">
                                <div class="post-item clearfix">
-                                 <img src="${article.thumbnailUrl}" alt="${article.title}">
+                               <c:if test="${empty article.thumbnailUrl}">
+                                 <img src="${article.thumbnailUrl}" alt="${article.title}" style="display:none;">
+                               </c:if>
                                  <h4><a href="${article.link}">${article.title}</a></h4>
                                  <p>${article.summary}</p>
                                </div>
