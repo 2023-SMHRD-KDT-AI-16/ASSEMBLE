@@ -75,9 +75,9 @@
         padding: 10px 20px; /* 패딩 */
         text-decoration: none; /* 밑줄 제거 */
         border-radius: 5px; /* 모서리 둥글게 */
+    }
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
         transition: background-color 0.3s, box-shadow 0.3s; /* 효과 전환 */
-    }
     .explore-link:hover {
         background-color: #FF6347; /* 호버 시 배경 색상 */
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 */
