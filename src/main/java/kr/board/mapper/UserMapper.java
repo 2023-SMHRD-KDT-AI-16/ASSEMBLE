@@ -28,7 +28,8 @@ public interface UserMapper {
 
 	public User nickCheck(String user_nick);
 
-	public User checkEmail(String email);
+	public User checkEmail(String user_email);
+	public User checkPhone(String user_phone);
 
 	public int pwChange(User vo);
 
@@ -41,6 +42,11 @@ public interface UserMapper {
 	public int plantUpdate(Plant p);
 
 	public void goProDel(String user_id);
+
+	public void setDefaultImage(User vo);
+
+
+
 
 
 }

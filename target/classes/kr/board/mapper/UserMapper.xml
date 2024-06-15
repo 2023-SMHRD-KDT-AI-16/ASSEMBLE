@@ -18,20 +18,10 @@
 		select * from user_info where user_id=#{user_id} and user_pw=#{user_pw}
 	</select>
 	
-	<update id="update" parameterType="kr.board.entity.User">
-		update member set memPassword = #{memPassword}, memName = #{memName},
-		memAge = #{memAge}, memGender = #{memGender}, memEmail = #{memEmail}
-		where memID = #{memID}
-	</update>
-	
 	<select id="getMember" resultType="kr.board.entity.User">
 		select * from user_info where user_id = #{user_id}
 	</select>
 	
-	<update id="profileUpdate" parameterType="kr.board.entity.User">
-		update user_info set user_profile = #{user_profile}
-		where user_id = #{user_id}
-	</update>
 		
 	<select id="idCheck" parameterType="String" resultType="kr.board.entity.User">
 		select * from user_info where user_id=#{user_id}
@@ -44,11 +34,26 @@
 	<select id="checkEmail" parameterType="String" resultType="kr.board.entity.User">
 		select * from user_info where user_email=#{user_email}
 	</select>
+	<select id="checkPhone" parameterType="String" resultType="kr.board.entity.User">
+		select * from user_info where user_phone=#{user_phone}
+	</select>
 	
 	<update id="pwChange" parameterType="kr.board.entity.User">
 		update user_info set user_pw = #{user_pw}
 		where user_id = #{user_id}
-	</update>		
+	</update>
+			
+	<update id="profileUpdate" parameterType="kr.board.entity.User">
+		update user_info set user_profile = #{user_profile}
+		where user_id = #{user_id}
+	</update>
+	<update id="setDefaultImage" parameterType="String">
+		update user_info set user_profile=NULL where user_id=#{user_id}
+	</update>
+	<update id="update" parameterType="kr.board.entity.User">
+		update user_info set user_email = #{user_email}, user_phone = #{user_phone}
+		where user_id = #{user_id}
+	</update>
 
 	<insert id="plantInsert" parameterType="kr.board.entity.Plant" useGeneratedKeys="true" keyProperty="plant_idx" keyColumn="plant_idx">
 		insert into power_plant_info(plant_name,plant_addr,plant_tel,plant_are, 
@@ -73,9 +78,6 @@
 		where plant_idx = #{plant_idx}
 	</update>
 
-	<update id="goProDel" parameterType="String">
-		update user_info set user_profile=#{NULL} where user_id=#{user_id}
-	</update>
 </mapper>
 
 
