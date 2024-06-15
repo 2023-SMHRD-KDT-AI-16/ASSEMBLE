@@ -69,19 +69,37 @@
         .content .btn {
             margin-top: 20px;
         }
+        .explore-link {
+        color: white; /* 텍스트 색상 */
+        background-color: white; /* 배경 색상 */
+        padding: 10px 20px; /* 패딩 */
+        text-decoration: none; /* 밑줄 제거 */
+        border-radius: 5px; /* 모서리 둥글게 */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+        transition: background-color 0.3s, box-shadow 0.3s; /* 효과 전환 */
+    }
+    .explore-link:hover {
+        background-color: #FF6347; /* 호버 시 배경 색상 */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 */
+    }
     </style>
     
 </head>
 <body>
-    <div class="bg-video-wrap">
-        <video src="your-video.mp4" autoplay loop muted></video>
+    <div class="bg-video-wrap" >
+        <video src="${pageContext.request.contextPath}/resources/video/intro_down.mp4" autoplay loop muted></video>
         <div class="overlay"></div>
         <div class="content">
             <h1>SOLLANAMDO</h1>
-            <h2>POWER GENERATION PREDICTION SOLUTION</h3>
-            <p>ONLY ONE DAY! PERFORMANCE QUEEN HYOLYN PREPARED THE ONE&ONLY SHOW<br>오직 단 하루! 퍼포먼스 퀸 효린이 준비한 ONE&ONLY 【 2024 효린쇼 】 월드투어 콘서트</p>
-            <a href="${contextPath}/index" class="btn btn-primary">EXPLORE</a>
-        </div>
+            <h2 style="margin-bottom: 1px">POWER GENERATION PREDICTION SOLUTION</h3>
+            <p style="font-size: 1rem; margin: 0px" >INNOVATIVE GREEN SOLUTIONS FOR A BETTER TOMORROW</p>
+            <span>
+            <br>오직 단 하루! 퍼포먼스 퀸 효린이 준비한 ONE&ONLY 【 2024 효린쇼 】 월드투어 콘서트
+            </span>
+				<div>
+					<a href="${contextPath}/index" class="btn btn-primary explore-link">EXPLORE</a>
+				</div>
+		</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>

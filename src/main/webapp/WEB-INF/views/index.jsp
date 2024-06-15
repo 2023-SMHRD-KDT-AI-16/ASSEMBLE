@@ -267,7 +267,7 @@
                  dataType:'json',
                  success: function(data) {
                     document.getElementById("titleDetail").value = data.b_title;
-                    document.getElementById("contentDetail").innerText = data.b_content;
+                    document.getElementById("contentDetail").value = data.b_content;
                       document.getElementById("hiddenIdx").value = data.b_idx;
                 $('#noticeContent').modal('show');
                  },
@@ -299,9 +299,9 @@ font-size:18px;
 z-index:9999;
 }
 
-input:readonly {
-        background-color: #fff; /* 흰색 배경색 지정 */
-    }
+.n_detail:hover p{
+  text-decoration: underline;
+}
     
 </style>
 
