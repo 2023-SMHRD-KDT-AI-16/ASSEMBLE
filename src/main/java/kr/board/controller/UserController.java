@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -208,15 +209,15 @@ public class UserController {
 			rttr.addFlashAttribute("msgType", "성공 메세지");
 			rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
 			session.setAttribute("mvo", mvo);
-			
+
 			Plant p = null;
-			
+
 			// 발전소를 가지고 있는지 확인
-			if(Integer.valueOf(mvo.getPlant_idx())!=null) {
+			if (Integer.valueOf(mvo.getPlant_idx()) != null) {
 				p = userMapper.getPlant(mvo.getPlant_idx());
 				session.setAttribute("plant", p);
-			}			
-			
+			}
+
 			return "redirect:/index";
 		}
 
@@ -280,10 +281,10 @@ public class UserController {
 		return num;
 	}
 
-	@GetMapping("/checkEmail.do")
-	public @ResponseBody int checkEmail(@RequestParam("email") String email) {
+	@PostMapping("/emailCheck.do")
+	public @ResponseBody int checkEmail(@RequestParam("user_email") String user_email) {
 
-		User mvo = userMapper.checkEmail(email);
+		User mvo = userMapper.checkEmail(user_email);
 
 		int num = 0;
 		if (mvo == null) {
@@ -291,6 +292,49 @@ public class UserController {
 		}
 		return num;
 	}
+
+	@PostMapping("/phoneCheck.do")
+	public @ResponseBody int checkPhone(@RequestParam("user_phone") String user_phone) {
+
+		User mvo = userMapper.checkPhone(user_phone);
+
+		int num = 0;
+		if (mvo == null) {
+			num = 1;
+		}
+		return num;
+	}
+
+	
+	  @PostMapping("/updateUser_info.do")
+	  public String update(User user, RedirectAttributes rttr, HttpSession session) {
+		  
+		  
+		    User sessionUser = (User) session.getAttribute("mvo");
+
+		    if (sessionUser != null) {
+		        if (user.getUser_email() != null) sessionUser.setUser_email(user.getUser_email());
+		        if (user.getUser_phone() != null) sessionUser.setUser_phone(user.getUser_phone());
+		        if (user.getUser_id() != null) sessionUser.setUser_id(user.getUser_id());
+		        // 필요한 다른 필드도 동일하게 설정
+		    }
+
+		    System.out.println("업데이트할 사용자 정보: " + sessionUser);
+
+		    int cnt = userMapper.update(sessionUser);
+
+		    if (cnt == 1) {
+		        rttr.addFlashAttribute("msgType", "성공 메세지");
+		        rttr.addFlashAttribute("msg", "정보가 변경되었습니다.");
+		        session.setAttribute("mvo", sessionUser);
+		    } else {
+		        rttr.addFlashAttribute("msgType", "실패 메세지");
+		        rttr.addFlashAttribute("msg", "정보변경에 실패했습니다.");
+		        session.setAttribute("mvo", sessionUser);
+		    }
+
+		    return "redirect:/updateMain.do";
+	  }
 
 	// 회원가입
 	@PostMapping("/join.do")
@@ -319,140 +363,141 @@ public class UserController {
 		return "member/updateMain";
 	}
 
-	
 	// 이미지파일 받기 백업
-		@PostMapping("/profileUpdate.do")
-		public String profileUpdate(@RequestParam("user_profile") MultipartFile file, RedirectAttributes rttr,HttpSession session,HttpServletRequest req) {
-			
-			String fileRealName = file.getOriginalFilename(); // 파일명을 얻어냄
-			long size = file.getSize(); // 파일 사이즈
-			
-			// 확장자
-			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-			
-			String uploadDir = "/resources/images"; // 가상의 업로드 경로
-			String uploadFolder = session.getServletContext().getRealPath(uploadDir);			
-			
-			boolean extResult = fileExtension.equals(".JPG") || fileExtension.equals(".PNG") || fileExtension.equals(".GIF")||fileExtension.equals(".jpg") || fileExtension.equals(".png") || fileExtension.equals(".gif")|| fileExtension.equals(".jpeg")|| fileExtension.equals(".JPEG");
-			
-			if (!extResult) {
-	                rttr.addFlashAttribute("msgType", "실패 메세지");
-	                rttr.addFlashAttribute("msg", "이미지 파일만 가능합니다 (PNG, JPG, GIF)");
-	                return "redirect:/updateMain.do";
-	        }
+	@PostMapping("/profileUpdate.do")
+	public String profileUpdate(@RequestParam("user_profile") MultipartFile file, RedirectAttributes rttr,
+			HttpSession session, HttpServletRequest req) {
 
-			
-			// 기존 파일 지우기
-			User vo = (User)session.getAttribute("mvo");
-			String oldImg= userMapper.getMember(vo.getUser_id()).getUser_profile();
-			
-			 // 기존 파일			
-			if(oldImg!=null) {
-				File oldFile = new File(uploadFolder+"/"+oldImg);
-				oldFile.delete();
-			}
+		String fileRealName = file.getOriginalFilename(); // 파일명을 얻어냄
+		long size = file.getSize(); // 파일 사이즈
 
-			
-			UUID uuid = UUID.randomUUID();
-			String[] uuids = uuid.toString().split("-");
-			String uniqueName = uuids[0];
-			
-			File saveFile = new File(uploadFolder+"\\"+uniqueName + fileRealName);
-			
-			try {
-				file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			// uuid 설정된 파일
-			String newFileName =  uniqueName + fileRealName;
-			vo.setUser_profile(newFileName);
-			
-			// db 에 업로드
-			userMapper.profileUpdate(vo);
-			
-			// 세션에 셋팅
-			session.setAttribute("mvo",vo);
-			
-			
-			return "redirect:/updateMain.do";
-					
-			
-		}
+		// 확장자
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
 
-		
-		@PostMapping("/pwChange.do")
-		public String pwChange(@RequestParam("user_pw") String user_pw,User m, HttpSession session,RedirectAttributes rttr) {
-			
-			String user_id = ((User) session.getAttribute("mvo")).getUser_id();
-			
-			User vo = new User();
-			vo.setUser_id(user_id);
-			vo.setUser_pw(user_pw);		
-			
-			userMapper.pwChange(vo);
-				
-			User temp = userMapper.getMember(user_id);
-			
-			System.out.println(temp.toString());
+		String uploadDir = "/resources/images"; // 가상의 업로드 경로
+		String uploadFolder = session.getServletContext().getRealPath(uploadDir);
 
-			session.setAttribute("mvo", temp);
-			
+		boolean extResult = fileExtension.equals(".JPG") || fileExtension.equals(".PNG") || fileExtension.equals(".GIF")
+				|| fileExtension.equals(".jpg") || fileExtension.equals(".png") || fileExtension.equals(".gif")
+				|| fileExtension.equals(".jpeg") || fileExtension.equals(".JPEG");
+
+		if (!extResult) {
+			rttr.addFlashAttribute("msgType", "실패 메세지");
+			rttr.addFlashAttribute("msg", "이미지 파일만 가능합니다 (PNG, JPG, GIF)");
 			return "redirect:/updateMain.do";
 		}
-		
-		@GetMapping("plantInsert.do")
-		public String plantInsert(Plant p,HttpSession session,RedirectAttributes rttr) {
-			
-			int num = 0;
-			num = userMapper.plantInsert(p);
-			
-			System.out.println(p.getPlant_idx());
-			
-			if (num == 1) {
-				rttr.addFlashAttribute("msgType", "성공 메세지");
-				rttr.addFlashAttribute("msg", "발전소 정보를 입력했습니다.");
-				
-				// 플랜트정보를 mvo에 plant_idx로 인서트해서 다시 세션화 
-				User m = ((User) session.getAttribute("mvo"));
-				m.setPlant_idx(p.getPlant_idx());
-				userMapper.plantUpdateUser(m);
-				session.setAttribute("mvo", m);
-				session.setAttribute("plant", p);
-				
-			} else {
-				// 회원가입 실패
-				rttr.addFlashAttribute("msgType", "실패 메세지");
-				rttr.addFlashAttribute("msg", "입력에 실패했습니다.");
-			}
-			
-			return "redirect:/updateMain.do";
 
+		// 기존 파일 지우기
+		User vo = (User) session.getAttribute("mvo");
+		String oldImg = userMapper.getMember(vo.getUser_id()).getUser_profile();
+
+		// 기존 파일
+		if (oldImg != null) {
+			File oldFile = new File(uploadFolder + "/" + oldImg);
+			oldFile.delete();
 		}
-		
-		
-		@GetMapping("plantUpdate.do")
-		public String plantUpdate(Plant p,HttpSession session,RedirectAttributes rttr) {
-		 
-			int num = userMapper.plantUpdate(p);
-			
-			session.setAttribute("plant", p);
-			
+
+		UUID uuid = UUID.randomUUID();
+		String[] uuids = uuid.toString().split("-");
+		String uniqueName = uuids[0];
+
+		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileRealName);
+
+		try {
+			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// uuid 설정된 파일
+		String newFileName = uniqueName + fileRealName;
+		vo.setUser_profile(newFileName);
+
+		// db 에 업로드
+		userMapper.profileUpdate(vo);
+
+		// 세션에 셋팅
+		session.setAttribute("mvo", vo);
+
+		return "redirect:/updateMain.do";
+
+	}
+
+	@PostMapping("/pwChange.do")
+	public String pwChange(@RequestParam("user_pw") String user_pw, User m, HttpSession session,
+			RedirectAttributes rttr) {
+
+		String user_id = ((User) session.getAttribute("mvo")).getUser_id();
+
+		User vo = new User();
+		vo.setUser_id(user_id);
+		vo.setUser_pw(user_pw);
+
+		userMapper.pwChange(vo);
+
+		User temp = userMapper.getMember(user_id);
+
+		System.out.println(temp.toString());
+
+		session.setAttribute("mvo", temp);
+
+		return "redirect:/updateMain.do";
+	}
+
+	@GetMapping("plantInsert.do")
+	public String plantInsert(Plant p, HttpSession session, RedirectAttributes rttr) {
+
+		int num = 0;
+		num = userMapper.plantInsert(p);
+
+		System.out.println(p.getPlant_idx());
+
+		if (num == 1) {
 			rttr.addFlashAttribute("msgType", "성공 메세지");
 			rttr.addFlashAttribute("msg", "발전소 정보를 입력했습니다.");
-			
-			return "redirect:/updateMain.do";
+
+			// 플랜트정보를 mvo에 plant_idx로 인서트해서 다시 세션화
+			User m = ((User) session.getAttribute("mvo"));
+			m.setPlant_idx(p.getPlant_idx());
+			userMapper.plantUpdateUser(m);
+			session.setAttribute("mvo", m);
+			session.setAttribute("plant", p);
+
+		} else {
+			// 회원가입 실패
+			rttr.addFlashAttribute("msgType", "실패 메세지");
+			rttr.addFlashAttribute("msg", "입력에 실패했습니다.");
 		}
-		
-		@PostMapping("goProDel.do")
-		public String goProDel(@RequestParam("user_id") String user_id, HttpSession session,RedirectAttributes rttr) {
-			user_id = ((User) session.getAttribute("mvo")).getUser_id();
-			System.out.println("여기는 프로필삭제"+user_id);
-			userMapper.goProDel(user_id);
-			return "redirect:/updateMain.do";
-		}
-		
+
+		return "redirect:/updateMain.do";
+
+	}
+
+	@GetMapping("plantUpdate.do")
+	public String plantUpdate(Plant p, HttpSession session, RedirectAttributes rttr) {
+
+		int num = userMapper.plantUpdate(p);
+
+		session.setAttribute("plant", p);
+
+		rttr.addFlashAttribute("msgType", "성공 메세지");
+		rttr.addFlashAttribute("msg", "발전소 정보를 입력했습니다.");
+
+		return "redirect:/updateMain.do";
+	}
+
+	@PostMapping("setDefaultImage.do")
+	public String setDefaultImage(@RequestParam("user_id") String user_id, @RequestParam("user_profile") String user_profile,
+			HttpSession session, RedirectAttributes rttr) {
+		User vo = new User();
+		vo.setUser_id(user_id);
+		vo.setUser_pw(user_profile);
+		userMapper.setDefaultImage(vo);
+		session.setAttribute("mvo", vo);
+
+		return "redirect:/updateMain.do";
+	}
+
 }

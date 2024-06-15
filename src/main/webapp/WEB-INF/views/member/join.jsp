@@ -137,7 +137,7 @@
 
 
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block" type="submit" >가입 완료</button>
+          <button class="btn btn-pr btn-lg btn-block" type="submit" >가입 완료</button>
           <button class="btn btn-secondary btn-lg btn-block" type="reset">취소</button>
         </form>
       </div>
