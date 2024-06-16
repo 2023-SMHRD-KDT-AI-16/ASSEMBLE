@@ -176,8 +176,10 @@
     				"user_id" : user_id,
     				"user_profile" : user_profile
     			},
-    			success : function() {
+    			success : function(data) {
+    				console.log(data);
     				 window.location.href = "updateMain.do";
+    				 $("#myMessage").modal("show");
     			},
     			error : function() {
     				alert("error");
@@ -305,13 +307,13 @@
 						</div>
 						<input type="file" class="form-control" id="user_profile" name="user_profile" 
 						style="display: none;" onchange="chooseImage(this)" required>
-			              <div class="btn-group" role="group" aria-label="Basic outlined example">
-			                <button type="button" class="btn btn-outline-primary"  onclick="uploadImage()">변경</button>
-			                <button type="button" class="btn btn-outline-primary" onclick="setDefaultImage()">삭제</button>
+			              <div class="btn-group pt-2" role="group" aria-label="Basic outlined example" style="padding-left: 20px;">
+			                <a class="btn btn-outline-primary btn-sm" title="Upload new profile image" onclick="uploadImage()"><i class="bi bi-upload"></i></a>
+			                <a class="btn btn-outline-danger btn-sm" title="Remove my profile image" onclick="setDefaultImage()"><i class="bi bi-trash"></i></a>
 			              </div>
 						<br>
 
-						<div class="text-center">
+						<div class="text-center" style="padding-top: 5px;">
 							<button class="btn btn-pr" type="submit">등록</button>
 						</div>
 
@@ -344,8 +346,16 @@
 		      <!-- 회원정보수정 -->
               <div class="tab-content pt-2">
                 <div class="tab-pane fade show active profile-overview" id="profile-edit">
-                  <!-- Profile Edit Form -->
+                  <div class="row mb-3">
+                    <div class="col-lg-3 col-md-4 label ">아이디</div>
+                    <div class="col-lg-9 col-md-8">${mvo.user_id }</div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-lg-3 col-md-4 label ">닉네임</div>
+                    <div class="col-lg-9 col-md-8">${mvo.user_nick}</div>
+                  </div>
 
+                  <!-- Profile Edit Form -->
 	                <form action="updateUser_info.do" method="post">
 	                  <input type="hidden" name="user_id" value="${mvo.user_id}">
 	                    <div class="row mb-3">
@@ -514,19 +524,24 @@
 					                      </div>
 					                    </div>
 					                    <div class="row mb-3">
-					                      <label for="inputNumber" class="col-sm-2 control-label">면적</label>
+					                      <label for="inputNumber" class="col-md-4 col-lg-3 col-form-label">면적</label>
 					                      <div class="col-md-8 col-lg-9">
-												<input type="number" class="form-control" style="width: 70%;" name="plant_are" value="${plant.plant_are }" required> 
-												<span class="input-group-addon" style="font-size: large;">㎡</span>
+						                    <div class="input-group mb-3">
+						                      <input type="number" class="form-control" value="${plant.plant_are}">
+						                      <span class="input-group-text" style="font-weight: bold;">㎡</span>
+						                    </div>
 					                      </div>
 					                    </div>
 					                    <div class="row mb-3">
-					                      <label for="inputNumber" class="col-sm-2 control-label">용량</label>
+					                      <label for="inputNumber" class="col-md-4 col-lg-3 col-form-label">용량</label>
 					                      <div class="col-md-8 col-lg-9">
-												<input type="number" class="form-control" style="width: 70%;" name="plant_volume" value="${plant.plant_volume }" required> 
-												<span class="input-group-addon" style="font-size: large;">kW</span>
-					                 	  </div>
+						                    <div class="input-group mb-3">
+						                      <input type="number" class="form-control" value="${plant.plant_volume}">
+						                      <span class="input-group-text" style="font-weight: bold;">kW</span>
+						                    </div>
+					                      </div>
 					                    </div>
+
 					                    <div class="text-center">
 					                    	<button type="submit" class="btn btn-pr">수정</button>
 											<button class="btn btn-secondary" type="reset">취소</button>

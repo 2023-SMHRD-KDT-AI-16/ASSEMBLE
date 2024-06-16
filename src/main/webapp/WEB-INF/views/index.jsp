@@ -567,7 +567,6 @@ z-index:9999;
                </table>
 
             <div class="panel-body " >
-            
                <section class="section dashboard">
                   <div class="row">
                     <div class="col-lg-12">

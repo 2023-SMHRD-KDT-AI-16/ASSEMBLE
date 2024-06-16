@@ -488,12 +488,17 @@ public class UserController {
 	@PostMapping("setDefaultImage.do")
 	public String setDefaultImage(@RequestParam("user_id") String user_id, @RequestParam("user_profile") String user_profile,
 			HttpSession session, RedirectAttributes rttr) {
-		User vo = new User();
-		vo.setUser_id(user_id);
-		vo.setUser_pw(user_profile);
+
 		userMapper.setDefaultImage(user_id);
 		User mvo = userMapper.getMember(user_id);
-		session.setAttribute("mvo", mvo);
+		if(mvo != null) {
+			rttr.addFlashAttribute("msgType", "성공 메세지");
+			rttr.addFlashAttribute("msg", "정보가 변경되었습니다.");
+			session.setAttribute("mvo", mvo);
+		}else {
+			rttr.addFlashAttribute("msgType", "실패 메세지");
+			rttr.addFlashAttribute("msg", "정보 변경에 실패했습니다.");
+		}
 
 		return "redirect:/updateMain.do";
 	}
