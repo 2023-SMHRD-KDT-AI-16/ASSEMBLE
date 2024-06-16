@@ -2,7 +2,7 @@
    pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
@@ -266,8 +266,9 @@
                  data: { b_idx : index },
                  dataType:'json',
                  success: function(data) {
-                    document.getElementById("titleDetail").value = data.b_title;
-                    document.getElementById("contentDetail").value = data.b_content;
+                	 document.getElementById("titleDetail").innerText = data.b_title;
+                	 document.getElementById("contentDetail").innerText = data.b_content;
+                	 document.getElementById("created_atDetail").innerText = data.created_at;                	 
                       document.getElementById("hiddenIdx").value = data.b_idx;
                 $('#noticeContent').modal('show');
                  },
@@ -336,11 +337,11 @@ z-index:9999;
                    <c:forEach var="item" items="${notice}" varStatus="status">
                          <c:if test="${status.index < 8}">
                              <div class="row">
-                                 <div class="col-xs-7 text-left n_detail" onclick="showNoticeDetails('${item.b_idx}')">
+                                 <div class="col-xs-8 text-left n_detail" onclick="showNoticeDetails('${item.b_idx}')">
                                      <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" >${item.b_title}</p>
                                  </div>
-                                 <div class="col-xs-5 text-right">
-                                     <p>${item.created_at}</p>
+                                 <div class="col-xs-4 text-right">
+                                     <p>${fn:split(item.created_at, " ")[0]}</p>
                                  </div>
                              </div>
                          </c:if>
@@ -352,7 +353,7 @@ z-index:9999;
                
                
                
-      <div class="card col-md-6 col-sm-12 col-xs-12 " style="height: 400px; overflow:hidden;">
+      <div class=" col-md-6 col-sm-12 col-xs-12 " style="height: 400px; overflow:hidden;">
       
       <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%; height: 100%;">
   <!-- Indicators -->
@@ -673,11 +674,9 @@ z-index:9999;
    </div>
       
    
-      <!-- Modal -->
+      <!-- Modal 
       <div id="noticeContent" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-      
-          <!-- Modal content-->
+        <div class="modal-dialog">      
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -708,8 +707,39 @@ z-index:9999;
         </div>
       </div>
    
-   </div>   
+   </div>   -->
     
+   <!-- Modal -->
+<div id="noticeContent" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+                <h4 id="titleDetail" class="form-control-static"></h4>
+                <p id="created_atDetail" ></p>
+            </div>
+            <div class="modal-body">                
+                
+                
+                <div class="form-label">
+                    
+                    <div id="contentDetail" class="form-control-static" style="height: 200px; overflow-y: auto; font-size:16px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form action="noticeDelete.do" method="get">
+                    <input class="hidden" type="text" name="b_idx" id="hiddenIdx">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <c:if test="${mvo.user_id == 'admin'}">
+                        <button type="submit" class="btn btn-danger">삭제하기</button>
+                    </c:if>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
       
        
 </body>
