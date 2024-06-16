@@ -166,42 +166,25 @@
         document.getElementById('user_profile').click();
     }
     
-  	var user_id = "${mvo.user_id}";
-  	function goProDel(user_id){
-  		console.log("goProDel function called");
-  	  $.ajax({
-  			url : "goProDel.do",
-  			method: 'POST',
-  			data : {"user_profile" : user_id},
-  			type : "delete",
-  			success : function() {
-  	            window.location.href = "updateMain.do";
-  	        },
-  			error : function(){ alert("error"); }
-  	  });
-  }
-    
     var user_id="${mvo.user_id}"
-    var user_profile="${mvo.user_profile}"
-    function setDefaultImage(){
-    	$.ajax({
-			url : "setDefaultImage.do",
-			type : "post",
-			data : {
-				"user_id" : user_id,
-				"user_profile" : user_profile
-			},
-			success : function() {
-				 window.location.href = "updateMain.do";
-			},
-			error : function() {
-				alert("error");
-			}
-		})
-		
-	}
-  	
-
+        var user_profile="${mvo.user_profile}"
+        function setDefaultImage(){
+        	$.ajax({
+    			url : "setDefaultImage.do",
+    			type : "post",
+    			data : {
+    				"user_id" : user_id,
+    				"user_profile" : user_profile
+    			},
+    			success : function() {
+    				 window.location.href = "updateMain.do";
+    			},
+    			error : function() {
+    				alert("error");
+    			}
+    		})
+    		
+    	}
   	
     var tempPw = "${mvo.user_pw}";
   	

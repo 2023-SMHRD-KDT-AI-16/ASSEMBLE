@@ -309,7 +309,6 @@ public class UserController {
 	  @PostMapping("/updateUser_info.do")
 	  public String update(User user, RedirectAttributes rttr, HttpSession session) {
 		  
-		  
 		    User sessionUser = (User) session.getAttribute("mvo");
 
 		    if (sessionUser != null) {
@@ -318,8 +317,6 @@ public class UserController {
 		        if (user.getUser_id() != null) sessionUser.setUser_id(user.getUser_id());
 		        // 필요한 다른 필드도 동일하게 설정
 		    }
-
-		    System.out.println("업데이트할 사용자 정보: " + sessionUser);
 
 		    int cnt = userMapper.update(sessionUser);
 
@@ -487,17 +484,18 @@ public class UserController {
 
 		return "redirect:/updateMain.do";
 	}
-
+	
 	@PostMapping("setDefaultImage.do")
 	public String setDefaultImage(@RequestParam("user_id") String user_id, @RequestParam("user_profile") String user_profile,
 			HttpSession session, RedirectAttributes rttr) {
 		User vo = new User();
 		vo.setUser_id(user_id);
 		vo.setUser_pw(user_profile);
-		userMapper.setDefaultImage(vo);
-		session.setAttribute("mvo", vo);
+		userMapper.setDefaultImage(user_id);
+		User mvo = userMapper.getMember(user_id);
+		session.setAttribute("mvo", mvo);
 
 		return "redirect:/updateMain.do";
 	}
-
+		
 }
