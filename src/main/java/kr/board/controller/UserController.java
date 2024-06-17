@@ -498,6 +498,7 @@ public class UserController {
 		}else {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "정보 변경에 실패했습니다.");
+			session.setAttribute("mvo", mvo);
 		}
 
 		return "redirect:/updateMain.do";

@@ -42,7 +42,7 @@
    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
    crossorigin="anonymous"></script> -->
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
@@ -156,7 +156,7 @@
             } else {
                 // 비가 아닐 경우 하늘 상태 체크
                 if (selectedSkyFcstValues[i] <= 5) {
-                    state = "맑음";
+                    state = '<i class="bi bi-brightness-high-fill" style="color: coral;"></i>';
                 } else if (selectedSkyFcstValues[i] <= 8) {
                     state = "구름많음";
                 } else {
@@ -325,9 +325,8 @@ z-index:9999;
          
          <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">      
                   
-               
                <div class="card col-md-6 col-sm-12 col-xs-12" id="notice" style="height: 400px; overflow-y: auto;">
-                   <h3>공지사항
+                   <h3 class="ps-3">공지사항
                    
                    <c:if test="${mvo.user_id == 'admin'}">                                                                                      
                                    <button type="button" class="btn btn-danger" onclick="noticeInsert()">공지사항 등록</button>                                                                      
@@ -471,7 +470,6 @@ z-index:9999;
 
             </div>
             
-
             <!-- 온도 차트 -->
          <div class="col-md-12 col-sm-12 col-xs-12 panel ">
             <div style="width: 100%; height: 150px;">
