@@ -113,29 +113,6 @@
   		}
   	});
 
-  
-  	$(document).ready(function(){
-  		if(${not empty msgType}){
-  			
-  			$("#myMessage").modal("show");
-  		}
-  			
-  		
-  		// 2번탭 클릭시 데이터가 있으면 수정하기 
-  		
-  		 $('#plantForm').on('click', function() {
-  	         
-  			 var plant = "${plant}";
-  			 
-  		    if (plant === "" || plant === null) {
-  		        alert("플랜트정보가 없습니다.");
-  		    } else {
-  		        alert("플랜트정보가 있습니다."); 
-  		    } 	  			 
-  			 			 
-  	     });
-		 
-  	});
   	
   	function chooseImage(obj){
   	  console.log("chooseImage function called");
@@ -464,22 +441,22 @@
 					                        <input type="text" class="form-control" id="plant_tel" name="plant_tel" required>
 					                      </div>
 					                    </div>
-					                    <div class="row mb-3">
-					                      <label for="inputNumber" class="col-sm-2 control-label">면적</label>
-					                      <div class="col-lg-12">
-					                      	<div class="input-group" style="width: 70%;">
-												<input type="number" class="form-control" name="plant_are" required> 
-												<span class="input-group-addon" style="font-size: large;">㎡</span>
-					                 		</div>
+						                    <div class="row mb-3">
+					                      <label for="inputNumber" class="col-md-4 col-lg-3 col-form-label">면적</label>
+					                      <div class="col-md-8 col-lg-9">
+						                    <div class="input-group mb-3">
+						                      <input type="number" class="form-control" name="plant_are">
+						                      <span class="input-group-text" style="font-weight: bold;">㎡</span>
+						                    </div>
 					                      </div>
 					                    </div>
 					                    <div class="row mb-3">
-					                      <label for="inputNumber" class="col-sm-2 control-label">용량</label>
-					                      <div class="col-lg-12">
-					                      	<div class="input-group" style="width: 70%;">
-												<input type="number" class="form-control" name="plant_volume" required> 
-												<span class="input-group-addon" style="font-size: large;">kW</span>
-					                 		</div>
+					                      <label for="inputNumber" class="col-md-4 col-lg-3 col-form-label">용량</label>
+					                      <div class="col-md-8 col-lg-9">
+						                    <div class="input-group mb-3">
+						                      <input type="number" class="form-control" name="plant_volume">
+						                      <span class="input-group-text" style="font-weight: bold;">kW</span>
+						                    </div>
 					                      </div>
 					                    </div>
 					                    <div class="text-center">
@@ -527,7 +504,7 @@
 					                      <label for="inputNumber" class="col-md-4 col-lg-3 col-form-label">면적</label>
 					                      <div class="col-md-8 col-lg-9">
 						                    <div class="input-group mb-3">
-						                      <input type="number" class="form-control" value="${plant.plant_are}">
+						                      <input type="number" class="form-control" value="${plant.plant_are}" name="plant_are">
 						                      <span class="input-group-text" style="font-weight: bold;">㎡</span>
 						                    </div>
 					                      </div>
@@ -536,7 +513,7 @@
 					                      <label for="inputNumber" class="col-md-4 col-lg-3 col-form-label">용량</label>
 					                      <div class="col-md-8 col-lg-9">
 						                    <div class="input-group mb-3">
-						                      <input type="number" class="form-control" value="${plant.plant_volume}">
+						                      <input type="number" class="form-control" value="${plant.plant_volume}" name="plant_volume">
 						                      <span class="input-group-text" style="font-weight: bold;">kW</span>
 						                    </div>
 					                      </div>
@@ -569,7 +546,7 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
       <div class="copyright">
-        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+
       </div>
     </footer><!-- End Footer -->
 
