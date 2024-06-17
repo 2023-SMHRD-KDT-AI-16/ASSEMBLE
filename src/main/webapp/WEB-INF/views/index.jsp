@@ -607,10 +607,6 @@ z-index:9999;
                 </section>
             </div>
 
-               <div class="panel-footer" style="text-align:center;">2024 ~ Solar Namdo ~         
-            
-               </div>
-
             </div>
 
 
