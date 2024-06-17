@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: J
+=======
+Built-By: kca
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE.git
 Build-Jdk: 11.0.5
 Created-By: Maven Integration for Eclipse
 

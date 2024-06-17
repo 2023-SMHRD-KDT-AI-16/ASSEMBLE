@@ -273,7 +273,7 @@
 						<div class="panel-body" id="view" align="center">
 			            	<c:choose>
 			            		<c:when test="${not empty mvo.user_profile}">
-					              <img src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile}" alt="Profile" class="rounded-circle" id="imageTemp" 
+					              <img src="data:image;base64,${mvo.user_profile}" alt="Profile" class="rounded-circle" id="imageTemp" 
 					              style="width: 100px; height: 100px; border-radius: 50%;">
 			            		</c:when>
 			            		<c:otherwise>

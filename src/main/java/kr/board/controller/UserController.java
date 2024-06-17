@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.Base64;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -358,66 +359,46 @@ public class UserController {
 		return "member/updateMain";
 	}
 
-	// 이미지파일 받기 백업
+	// 이미지 파일 db에 저장
 	@PostMapping("/profileUpdate.do")
 	public String profileUpdate(@RequestParam("user_profile") MultipartFile file, RedirectAttributes rttr,
-			HttpSession session, HttpServletRequest req) {
+	        HttpSession session, HttpServletRequest req) {
 
-		String fileRealName = file.getOriginalFilename(); // 파일명을 얻어냄
-		long size = file.getSize(); // 파일 사이즈
+	    String fileRealName = file.getOriginalFilename(); // 파일명을 얻어냄
 
-		// 확장자
-		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+	    // 확장자
+	    String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
 
-		String uploadDir = "/resources/images"; // 가상의 업로드 경로
-		String uploadFolder = session.getServletContext().getRealPath(uploadDir);
+	    boolean extResult = fileExtension.equalsIgnoreCase(".JPG") || fileExtension.equalsIgnoreCase(".PNG") || fileExtension.equalsIgnoreCase(".GIF")
+	            || fileExtension.equalsIgnoreCase(".JPEG");
 
-		boolean extResult = fileExtension.equals(".JPG") || fileExtension.equals(".PNG") || fileExtension.equals(".GIF")
-				|| fileExtension.equals(".jpg") || fileExtension.equals(".png") || fileExtension.equals(".gif")
-				|| fileExtension.equals(".jpeg") || fileExtension.equals(".JPEG");
+	    if (!extResult) {
+	        rttr.addFlashAttribute("msgType", "실패 메세지");
+	        rttr.addFlashAttribute("msg", "이미지 파일만 가능합니다 (PNG, JPG, GIF)");
+	        return "redirect:/updateMain.do";
+	    }
 
-		if (!extResult) {
-			rttr.addFlashAttribute("msgType", "실패 메세지");
-			rttr.addFlashAttribute("msg", "이미지 파일만 가능합니다 (PNG, JPG, GIF)");
-			return "redirect:/updateMain.do";
-		}
+	    User vo = (User) session.getAttribute("mvo");
 
-		// 기존 파일 지우기
-		User vo = (User) session.getAttribute("mvo");
-		String oldImg = userMapper.getMember(vo.getUser_id()).getUser_profile();
+	    try {
+	        // 이미지 파일을 Base64 문자열로 인코딩
+	        String base64Image = Base64.getEncoder().encodeToString(file.getBytes());
+	        vo.setUser_profile(base64Image);
 
-		// 기존 파일
-		if (oldImg != null) {
-			File oldFile = new File(uploadFolder + "/" + oldImg);
-			oldFile.delete();
-		}
+	        // db 에 업로드
+	        userMapper.profileUpdate(vo);
 
-		UUID uuid = UUID.randomUUID();
-		String[] uuids = uuid.toString().split("-");
-		String uniqueName = uuids[0];
+	        // 세션에 셋팅
+	        session.setAttribute("mvo", vo);
 
-		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileRealName);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        rttr.addFlashAttribute("msgType", "실패 메세지");
+	        rttr.addFlashAttribute("msg", "이미지 업로드 중 오류가 발생했습니다.");
+	        return "redirect:/updateMain.do";
+	    }
 
-		try {
-			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// uuid 설정된 파일
-		String newFileName = uniqueName + fileRealName;
-		vo.setUser_profile(newFileName);
-
-		// db 에 업로드
-		userMapper.profileUpdate(vo);
-
-		// 세션에 셋팅
-		session.setAttribute("mvo", vo);
-
-		return "redirect:/updateMain.do";
-
+	    return "redirect:/updateMain.do";
 	}
 
 	@PostMapping("/pwChange.do")
