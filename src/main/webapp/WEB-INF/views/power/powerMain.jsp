@@ -19,7 +19,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>내 발전소</title>
+<title>SolarNamdo</title>
 
 
 <!-- Bootstrap core CSS -->

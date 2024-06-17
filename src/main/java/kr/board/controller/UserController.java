@@ -279,11 +279,11 @@ public class UserController {
 		return num;
 	}
 
-	@PostMapping("/emailCheck.do")
-	public @ResponseBody int checkEmail(@RequestParam("user_email") String user_email) {
+	@GetMapping("/emailCheck.do")
+	public @ResponseBody int checkEmail(@RequestParam("email") String user_email) {
 
 		User mvo = userMapper.checkEmail(user_email);
-
+		
 		int num = 0;
 		if (mvo == null) {
 			num = 1;
@@ -496,6 +496,7 @@ public class UserController {
 		}else {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "정보 변경에 실패했습니다.");
+			session.setAttribute("mvo", mvo);
 		}
 
 		return "redirect:/updateMain.do";

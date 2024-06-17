@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원가입 화면 샘플 - Bootstrap</title>
+  <title>SolarNamdo</title>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -227,7 +227,7 @@
 		var email = $("#email1").val()+"@"+ $("#email2").val();
     	
 				$.ajax({
-					url : "checkEmail.do",
+					url : "emailCheck.do",
 					type : "get",
 					data : {
 						"email" : email
