@@ -365,15 +365,15 @@ z-index:9999;
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active" >
-      <img  src="${contextPath}/resources/images/solar-expo.png"  >
+      <img  src="${contextPath}/resources/images/card1.jpg"  >
     </div>
 
     <div class="item" >
-       <img  src="${contextPath}/resources/images/batteryexpo.png" >
+       <img  src="${contextPath}/resources/images/card2.jpg" >
     </div>
 
     <div class="item">
-      <img  src="${contextPath}/resources/images/energyexpo.png" >
+      <img  src="${contextPath}/resources/images/card3.jpg" >
     </div>
   </div>
 
