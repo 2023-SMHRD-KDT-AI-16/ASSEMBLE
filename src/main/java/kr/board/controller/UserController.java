@@ -188,7 +188,6 @@ public class UserController {
 	// 로그인 기능 /login.do
 	@PostMapping("/login.do")
 	public String login(User m, RedirectAttributes rttr, HttpSession session) {
-		System.out.println("여기 입력값" + m);
 		// 문제
 		// 로그인 기능 구현
 		// 입력한 아이디와 비밀번호 일치하는 회원을 검색하여
@@ -198,7 +197,6 @@ public class UserController {
 		// - loginForm.jsp로 이동 후 "아이디와 비밀번호를 다시 입력해주세요." 모달창
 
 		User mvo = userMapper.login(m);
-		System.out.println("여기 db에서 나온거" + mvo);
 		if (mvo == null) {
 			// 로그인 실패
 			rttr.addFlashAttribute("msgType", "실패 메세지");
