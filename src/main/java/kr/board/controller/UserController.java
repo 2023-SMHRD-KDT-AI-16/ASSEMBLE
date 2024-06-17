@@ -279,11 +279,11 @@ public class UserController {
 		return num;
 	}
 
-	@PostMapping("/emailCheck.do")
-	public @ResponseBody int checkEmail(@RequestParam("user_email") String user_email) {
+	@GetMapping("/emailCheck.do")
+	public @ResponseBody int checkEmail(@RequestParam("email") String user_email) {
 
 		User mvo = userMapper.checkEmail(user_email);
-
+		
 		int num = 0;
 		if (mvo == null) {
 			num = 1;

@@ -227,7 +227,7 @@
 		var email = $("#email1").val()+"@"+ $("#email2").val();
     	
 				$.ajax({
-					url : "checkEmail.do",
+					url : "emailCheck.do",
 					type : "get",
 					data : {
 						"email" : email
