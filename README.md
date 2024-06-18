@@ -113,16 +113,28 @@
 
 ## 🖥 화면 구성
 
-### 로그인/회원가입/회원괸리/회원수정/회원탈퇴
-![image](https://user-images.githubusercontent.com/25995055/178401098-95f15a0e-a2de-415e-83d5-883bb4cb0656.png)
+### 인트로 화면
+![로그인화면](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/52b85b53-5462-4a73-a23d-115fd7477d32)
+
 <br>
 
-### 옷 정보/코디 추천(날씨, 팁, 오늘의 코디, 참고할 수 있는 코디)
-![image](https://user-images.githubusercontent.com/25995055/178401127-287e6de2-4396-49fc-a107-59c4d5cd55c7.png)
+### 메인화면/공지사항/슬라이드/SMP/REC/관련 뉴스
+![메인화면](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/d8c73d99-47e1-441d-8106-9a6851ac271f)
+
 <br>
 
-### 일정/고객센터
-![image](https://user-images.githubusercontent.com/25995055/178401150-861f0e93-0f40-4fae-98c1-2099bf513c8d.png)
+### 게시판/CRUD/페이징/이미지첨부/댓글
+![게시판](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/ea49fe26-dcfb-4364-b5cc-a9f0173fddea)
+
+<br>
+
+### 내 발전소/예측한 발전량(하루,시간)/실제의 발전량/모델 정확도/과거의 오늘날 발전량/인공위성 사진
+![smp,rec, 총발전량](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/5ec5bdf2-5752-4f69-a475-d7b364c3866f)
+
+![예측한 발전량, 정확도, 일별 예측](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/c014aa99-f963-4c32-9430-8316786bcb5f)
+![과거의 오늘 발전령, 인공위성](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/25b97fee-11f1-4557-b098-0db99aaa4a54)
+
+
 <br>
 
 ## 👨‍👩‍👦‍👦 팀원 역할
