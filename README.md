@@ -141,7 +141,7 @@
 <table>
   <tr>
     <td align="center"><img src="https://item.kakaocdn.net/do/fd49574de6581aa2a91d82ff6adb6c0115b3f4e3c2033bfd702a321ec6eda72c" width="100" height="100"/></td>
-    <td align="center"><img src="https://mb.ntdtv.kr/assets/uploads/2019/01/Screen-Shot-2019-01-08-at-4.31.55-PM-e1546932545978.png" width="100" height="100"/></td>
+    <td align="center"><img src="https://mb.ntdtv.kr/assets/uploads/2019/01/Screen-Shot-2019-01-08-at-4.31.55-PM-e1546932545978.pn" width="100" height="100"/></td>
     <td align="center"><img src="https://mblogthumb-phinf.pstatic.net/20160127_177/krazymouse_1453865104404DjQIi_PNG/%C4%AB%C4%AB%BF%C0%C7%C1%B7%BB%C1%EE_%B6%F3%C0%CC%BE%F0.png?type=w2" width="100" height="100"/></td>
     <td align="center"><img src="https://i.pinimg.com/236x/ed/bb/53/edbb53d4f6dd710431c1140551404af9.jpg" width="100" height="100"/></td>
     <td align="center"><img src="https://pbs.twimg.com/media/B-n6uPYUUAAZSUx.png" width="100" height="100"/></td>
@@ -174,10 +174,24 @@
 프로젝트 진행하는 동안 발생했던 이슈 중 가장 기억에 남았던 문제와 해결 프로세스 나열(2~5가지 정도)
   
 * 문제1<br>
- 문제점 설명 및 해결방안
- 
+부트스트렙3,5을 혼용 해서 사용하다 보니 충돌<br>
+해결방안 : 하드 코딩 or 부트스트랩5 버전으로만 이용하여 해결
+ ![부트스트렙](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/55077181-636c-40e8-9a96-276dce0a6a85)
+
 * 문제2<br>
- 문제점 설명 및 해결방안
+  데이터는 각각 다른 사이트에 흩어져 있으며 전처리 과정 중 일시와 날짜 에 맞게 수집하고 결과는 늘 같은 데이터 병합해야하는
+  과정이 있어야 했으며 입력 데이터는 같은 속성 과 갯수가 필요함 <br>
+  해결 방안 : 기상, 대기오염, 발전량 데이터를 각각 불러낸 후 전처리를 실시 <br>
+  df['날짜'] = df['일시'].apply(lambda x: x.split(' ')[0]) # df['일시']를 공백을 기준으로 잘라 앞의 값을 가져옴 (20xx-xx-xx)<br>
+  df['시간'] = df['일시'].apply(lambda x: x.split(' ')[1].split(':')[0]) # df['일시']를 공백을 기준으로 잘라 뒤의 값을 ':'를  
+  기준으로 한 번 더 잘라 앞의 시간만 가져옴<br> 그 후 일시를 삭제함 merge 함수를 이용하여 날짜,시간 기준으로 데이터를 병합하여 해결
+  ![전처리과정](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/21fc53cf-5357-4b4f-95b2-ed4091d2e7cc)
+  ![전처리 후](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/d2a55488-eda6-4257-a418-6a8b9eea0d03)
+
+  * 문제3<br>
+
+
+  
 
 
 
