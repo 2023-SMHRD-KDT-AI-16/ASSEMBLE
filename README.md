@@ -36,24 +36,34 @@
         <td>
             <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
             <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/>
-            <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
             <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
         </td>
+    </tr>
+     <tr>
+        <td>프레임워크</td>
+        <td>
+            <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white"/>
+        </td>
+    </tr>
+    <tr>
+        <td>디자인</td>
+        <td><img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"/>
+        <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"></td>
     </tr>
     <tr>
         <td>라이브러리</td>
         <td>
-            <img src="https://img.shields.io/badge/BootStrap-7952B3?style=for-the-badge&logo=BootStrap&logoColor=white"/>
-            <img src="https://img.shields.io/badge/KakaoMap-FFCD00?style=for-the-badge&logo=Kakao&logoColor=white"/>
+            <img src="https://img.shields.io/badge/openai-412991?style=for-the-badge&logo=css3&logoColor=black">
+            <img src="https://img.shields.io/badge/chartdotjs-FF6384?style=for-the-badge&logo=css3&logoColor=black">
         </td>
     </tr>
     <tr>
         <td>개발도구</td>
         <td>
             <img src="https://img.shields.io/badge/Eclipse-2C2255?style=for-the-badge&logo=Eclipse&logoColor=white"/>
-            <img src="https://img.shields.io/badge/RaskpberryPi-A22846?style=for-the-badge&logo=RaskpberryPi&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white"/>
             <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=VisualStudioCode&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=Jupyter&logoColor=white"/>
         </td>
     </tr>
     <tr>
@@ -65,8 +75,7 @@
     <tr>
         <td>데이터베이스</td>
         <td>
-            <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Oracle 11g-F80000?style=for-the-badge&logo=Oracle&logoColor=white"/>
+            <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>
         </td>
     </tr>
     <tr>
@@ -81,20 +90,25 @@
 
 <br>
 
-## ⚙ 시스템 아키텍처(구조) 예시 
-![서비스 아키텍처](https://user-images.githubusercontent.com/25995055/169925538-15867bd9-aa0b-42fc-a39b-88981e926e51.png)
+## 📌 시스템 아키텍처
+![시스템 아키텍처 - 장재훈팀](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/9a81c242-9346-4d3e-8b04-a7e701940fad)
+
 <br>
 
-## 📌 SW유스케이스
-![image](https://user-images.githubusercontent.com/25995055/178401023-9a015e66-aa6e-4d74-8564-9b1f9d306649.png)
+## 📌 유스케이스
+
+![유스케이스](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/fe715e54-bbac-4525-9b88-2be13379f7d1)
+
 <br>
 
 ## 📌 서비스 흐름도
-![image](https://user-images.githubusercontent.com/25995055/178401048-d6484bda-a2d7-40e1-998b-2bd195cd9f89.png)
+![서비스흐름도 최종](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/b0457d8f-25ff-473c-80e1-eef9e8c9f1c1)
+
 <br>
 
 ## 📌 ER다이어그램
-![image](https://user-images.githubusercontent.com/25995055/169925318-102784c2-893f-4fd7-bec9-a54c44b669d4.png)
+![ER](https://github.com/2023-SMHRD-KDT-AI-16/ASSEMBLE/assets/157601308/92701918-a612-40cc-9171-40a0c7e9bcd6)
+
 <br>
 
 ## 🖥 화면 구성
@@ -121,18 +135,18 @@
     <td align="center"><img src="https://pbs.twimg.com/media/B-n6uPYUUAAZSUx.png" width="100" height="100"/></td>
   </tr>
   <tr>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
+    <td align="center"><strong>장재훈</strong></td>
+    <td align="center"><strong>박경완</strong></td>
+    <td align="center"><strong>유승영</strong></td>
+    <td align="center"><strong>권창안</strong></td>
+    <td align="center"><strong>강성훈</strong></td>
   </tr>
   <tr>
+    <td align="center"><b>PM Frontend Backend DB Model</b></td>
+    <td align="center"><b>Data전처리 Modeling</b></td>
     <td align="center"><b>Frontend</b></td>
-    <td align="center"><b>Frontend</b></td>
-    <td align="center"><b>Backend</b></td>
-    <td align="center"><b>Backend</b></td>
-    <td align="center"><b>Deep Learning</b></td>
+    <td align="center"><b>Frontend Backend</b></td>
+    <td align="center"><b>Frontend Backend</b></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
@@ -152,3 +166,8 @@
  
 * 문제2<br>
  문제점 설명 및 해결방안
+
+
+
+
+
