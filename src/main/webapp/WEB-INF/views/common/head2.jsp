@@ -43,7 +43,7 @@
         <li class="nav-item d-flex align-items-center">
           <c:choose>
             <c:when test="${not empty mvo.user_profile}">
-              <img class="rounded-circle" src="${contextPath}/resources/images/${mvo.user_profile}" style="width: 40px; height: 40px; margin: 5px;">
+              <img class="rounded-circle" src="data:image;base64,${mvo.user_profile}" style="width: 40px; height: 40px; margin: 5px;">
             </c:when>
             <c:otherwise>
               <img class="rounded-circle" src="${contextPath}/resources/images/person.png" style="width: 40px; height: 40px; margin: 5px;">
