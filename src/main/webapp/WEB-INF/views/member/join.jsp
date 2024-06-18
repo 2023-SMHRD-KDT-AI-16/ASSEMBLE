@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -14,6 +14,40 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    
+        <!-- Favicons -->
+    <link href="resources/assets/img/favicon.png" rel="icon" />
+    <link href="resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="resources/assets/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="resources/assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="resources/assets/vendor/simple-datatables/style.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="resources/assets/css/style.css" rel="stylesheet" />
+    
+    
+    
+    
 
   <style>
     body {
@@ -23,7 +57,6 @@
 
     .input-form {
       max-width: 680px;
-      margin-top: 40px;
       padding: 32px;
       background: #fff;
       border-radius: 10px;
@@ -40,7 +73,12 @@
 
 <body>
 
-
+                <div class="d-flex justify-content-center py-4">
+                    <a class="logo d-flex align-items-center w-auto" href="${contextPath}/" style="padding: 3px">
+                        <img alt="logo" src="${contextPath}/resources/images/logo.png" style="height: 45px;">
+                        <span class="d-none d-lg-block" style="color: white;">SolarNamdo</span>
+                    </a>
+                </div>
 <form id="content" action="join.do" method="post" onsubmit="return modifyEmailAndSubmit()">
   <div class="container">
     <div class="input-form-background row">
@@ -145,9 +183,6 @@
     
     </form>
     
-    <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2024 The Sun</p>
-    </footer>
   </div>
 
   <!-- Bootstrap 및 JavaScript 라이브러리 -->
@@ -265,6 +300,25 @@
     
     
   </script>
+  
+  
+  
+  
+  
+      <!-- Vendor JS Files -->
+    <script src="resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="resources/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="resources/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="resources/assets/vendor/quill/quill.js"></script>
+    <script src="resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="resources/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="resources/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="resources/assets/js/main.js"></script>
+  
+  
 </body>
 
 </html>
