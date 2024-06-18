@@ -164,7 +164,7 @@
     <td align="center"><a href="https://github.com/jxehxn" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/ParkKyungWann" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/tmddud2024" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/kcadata" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/tjdgns369" target='_blank'>github</a></td>
   </tr>
 </table>
