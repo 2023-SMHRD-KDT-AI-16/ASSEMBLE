@@ -19,8 +19,14 @@
       <ul class="nav navbar-nav">
         <li><a href="${contextPath}/index">Home</a></li>
         <li><a href="boardList.do">게시판</a></li>
-        <li><a href="${contextPath}/powerMain.do">내 발전소</a></li>
+         <c:if test="${mvo.plant_idx != null && mvo.plant_idx > 0}">
+        	<li><a href="${contextPath}/powerMain.do">내 발전소</a></li>
+         </c:if>
       </ul>
+      
+      
+      
+      
       
       <c:if test="${empty mvo}">
      <ul class="nav navbar-nav navbar-right">
@@ -47,7 +53,7 @@
           	<li>
           		<c:choose>
 								<c:when test="${not empty mvo.user_profile }">
-									<img class="img-circle " src="${pageContext.request.contextPath}/resources/images/${mvo.user_profile }"
+									<img class="img-circle " src="data:image;base64,${mvo.user_profile}"
 										style="width: 40px; height: 40px; margin:5px;">																			
 								</c:when>
 								<c:otherwise>  

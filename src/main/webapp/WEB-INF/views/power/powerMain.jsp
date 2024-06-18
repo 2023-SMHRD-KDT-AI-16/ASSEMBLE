@@ -19,7 +19,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>내 발전소</title>
+<title>SolarNamdo</title>
 
 
 <!-- Bootstrap core CSS -->
@@ -266,15 +266,14 @@ p {
 
 
 										<div class="card-body">
-											<h4 class="card-title font-weight-bold text-center"">내일
-												예측된 발전량</h4>
-												<p class="card-text font-weight-bold text-center"
+											<h4 class="card-title font-weight-bold text-center"">내일 예측된 발전량</h4>
+												<p id="tomorrowDate" class="card-text font-weight-bold text-center"
 													style="border-bottom: 1px solid #999999; padding-bottom: 16px ">
 													  </p>
 													  
 													  
 											<div id="tomorrowPredictionTotal" class="text-center"
-												style="font-size: 1.8rem; margin: 60px 0"></div>
+												style="font-size: 1.8rem; margin: 50px 0"></div>
 										</div>
 
 									</div>
@@ -581,6 +580,24 @@ p {
 
 	<script>
 	$(document).ready(function() {
+	    function getTomorrowDate() {
+	        var today = new Date();
+	        var tomorrow = new Date(today);
+	        tomorrow.setDate(today.getDate() + 1);
+
+	        var year = tomorrow.getFullYear();
+	        var month = (tomorrow.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+	        var day = tomorrow.getDate().toString().padStart(2, '0');
+
+	        return year + '-' + month + '-' + day;
+	    }
+
+	    
+	    
+	    
+		
+		
+		
 		function fetchWeeklyPredictionData() {
 			$.ajax({
 				url: "${pageContext.request.contextPath}/getWeeklyPredictionData",
@@ -896,6 +913,8 @@ p {
 		fetchTomorrowPredictionTotal();
 		fetchWeeklyPredictionData();
 	    fetchPastFiveYearsData();
+	    document.getElementById('tomorrowDate').innerText = getTomorrowDate();
+
 	});
 </script>
 

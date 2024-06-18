@@ -15,7 +15,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>board_main</title>
+<title>SolarNamdo</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -108,7 +108,12 @@
                                     <td style="width:400px;cursor:pointer;"><a style="color: black; width:400px;"
                                        href="boardContent.do?b_idx=${vo.b_idx}"><c:out value="${vo.b_title}"></c:out></a></td>
                                     <td>${vo.user_id}</td>
-                                    <td>${vo.b_file}</td>
+                                    <c:if test="${fn:contains(vo.b_content, '<img')}">
+					                    <td><i class="bi bi-file-earmark-image-fill" style="font-size: 15px; padding-left: 30px;"></i></td>
+					                </c:if>
+					                <c:if test="${!fn:contains(vo.b_content, '<img')}">
+	                                    <td>${vo.b_file}</td>
+					                </c:if>
                                     <td>${vo.b_views}</td>
                                     <td>${fn:split(vo.created_at, " ")[0]}</td>
                                  </tr>

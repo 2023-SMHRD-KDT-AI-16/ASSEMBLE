@@ -13,7 +13,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>board_main</title>
+<title>SolarNamdo</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -97,6 +97,64 @@ function goDelete(b_idx){
 							  <button class="btn btn-warning" type="button" onclick="goDelete(${vo.b_idx})">삭제</button>
 					      </c:if>
 			            </div>
+			            
+			            <br>
+			            <!-- 댓글 넣기 -->
+					            <c:choose>
+					                <c:when test="${not empty co}">
+					                    <c:forEach var="comment" items="${co}">
+					                        <div class="card">
+					                        <div class="card-body">
+					                            <div style="display:flex; justify-content:space-between; ">
+					                            
+					                                <div>${comment.user_id}</div>
+					                                <div>${comment.created_at}</div>
+					                            </div>
+					                            	<h5>${comment.cmt_content}</h5>
+					                            	  <!-- 삭제 버튼 -->
+								                    <c:if test="${mvo != null && comment != null && mvo.user_id eq comment.user_id || mvo.user_id eq 'admin'}">
+								                    	<form action="commentDelete.do" method="get">
+								                        	<input type="hidden" name="cmt_idx" value="${comment.cmt_idx}">
+								                            <input type="hidden" name="b_idx" value="${vo.b_idx}">
+								                            <button class="btn btn-sm btn-warning" type="submit">삭제</button>
+								                        </form>
+								                    </c:if>
+					                            </div>
+					                        </div>
+					                    </c:forEach>
+					                </c:when>
+					                <c:otherwise>
+					                    <div class="card">
+					                    	<div class="card-body">
+					                        <p class="mb-1">코멘트가 없습니다.</p>
+					                        </div>
+					                    </div>
+					                </c:otherwise>
+					            </c:choose>
+			            
+
+			            	 <!-- 댓글 등록 폼 -->
+			            	<c:if test="${not empty mvo}">  
+				            <div class="card">
+				                <div class="card-body">
+				                    <form action="commentInsert.do" method="get">
+				                        <input type="hidden" name="b_idx" value="${vo.b_idx}">
+				                        <input type="hidden" name="user_id" value="${mvo.user_id}">
+				                        <div class="mb-3">
+				                            <label for="cmt_content" class="form-label">댓글등록</label>
+				                            <textarea class="form-control" id="cmt_content" name="cmt_content" rows="3" style="resize: none;" required></textarea>
+				                        </div>
+				                        <div class="text-center">
+				                            <button type="submit" class="btn btn-primary">등록하기</button>
+				                        </div>
+				                    </form>
+				                </div>
+				            </div>
+			            	</c:if>
+			            	
+			            
+			            
+			            
                      </div>
                   </div>
                </div>

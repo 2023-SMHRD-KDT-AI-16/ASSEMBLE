@@ -2,7 +2,7 @@
    pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
@@ -42,7 +42,7 @@
    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
    crossorigin="anonymous"></script> -->
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
@@ -156,7 +156,7 @@
             } else {
                 // 비가 아닐 경우 하늘 상태 체크
                 if (selectedSkyFcstValues[i] <= 5) {
-                    state = "맑음";
+                    state = '<i class="bi bi-brightness-high-fill" style="color: coral;"></i>';
                 } else if (selectedSkyFcstValues[i] <= 8) {
                     state = "구름많음";
                 } else {
@@ -266,8 +266,9 @@
                  data: { b_idx : index },
                  dataType:'json',
                  success: function(data) {
-                    document.getElementById("titleDetail").value = data.b_title;
-                    document.getElementById("contentDetail").value = data.b_content;
+                	 document.getElementById("titleDetail").innerText = data.b_title;
+                	 document.getElementById("contentDetail").innerText = data.b_content;
+                	 document.getElementById("created_atDetail").innerText = data.created_at;                	 
                       document.getElementById("hiddenIdx").value = data.b_idx;
                 $('#noticeContent').modal('show');
                  },
@@ -299,9 +300,9 @@ font-size:18px;
 z-index:9999;
 }
 
-input:readonly {
-        background-color: #fff; /* 흰색 배경색 지정 */
-    }
+.n_detail:hover p{
+  text-decoration: underline;
+}
     
 </style>
 
@@ -324,9 +325,8 @@ input:readonly {
          
          <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">      
                   
-               
                <div class="card col-md-6 col-sm-12 col-xs-12" id="notice" style="height: 400px; overflow-y: auto;">
-                   <h3>공지사항
+                   <h3 class="ps-3">공지사항
                    
                    <c:if test="${mvo.user_id == 'admin'}">                                                                                      
                                    <button type="button" class="btn btn-danger" onclick="noticeInsert()">공지사항 등록</button>                                                                      
@@ -336,11 +336,11 @@ input:readonly {
                    <c:forEach var="item" items="${notice}" varStatus="status">
                          <c:if test="${status.index < 8}">
                              <div class="row">
-                                 <div class="col-xs-7 text-left n_detail" onclick="showNoticeDetails('${item.b_idx}')">
+                                 <div class="col-xs-8 text-left n_detail" onclick="showNoticeDetails('${item.b_idx}')">
                                      <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" >${item.b_title}</p>
                                  </div>
-                                 <div class="col-xs-5 text-right">
-                                     <p>${item.created_at}</p>
+                                 <div class="col-xs-4 text-right">
+                                     <p>${fn:split(item.created_at, " ")[0]}</p>
                                  </div>
                              </div>
                          </c:if>
@@ -352,7 +352,7 @@ input:readonly {
                
                
                
-      <div class="card col-md-6 col-sm-12 col-xs-12 " style="height: 400px; overflow:hidden;">
+      <div class=" col-md-6 col-sm-12 col-xs-12 " style="height: 400px; overflow:hidden;">
       
       <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100%; height: 100%;">
   <!-- Indicators -->
@@ -365,15 +365,15 @@ input:readonly {
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active" >
-      <img  src="${contextPath}/resources/images/solar-expo.png"  >
+      <img  src="${contextPath}/resources/images/card1.jpg"  >
     </div>
 
     <div class="item" >
-       <img  src="${contextPath}/resources/images/batteryexpo.png" >
+       <img  src="${contextPath}/resources/images/card2.jpg" >
     </div>
 
     <div class="item">
-      <img  src="${contextPath}/resources/images/energyexpo.png" >
+      <img  src="${contextPath}/resources/images/card3.jpg" >
     </div>
   </div>
 
@@ -469,8 +469,7 @@ input:readonly {
                </div>
 
             </div>
-            
-
+           
             <!-- 온도 차트 -->
          <div class="col-md-12 col-sm-12 col-xs-12 panel ">
             <div style="width: 100%; height: 150px;">
@@ -566,7 +565,6 @@ input:readonly {
                </table>
 
             <div class="panel-body " >
-            
                <section class="section dashboard">
                   <div class="row">
                     <div class="col-lg-12">
@@ -606,10 +604,6 @@ input:readonly {
                   </div>
                 </section>
             </div>
-
-               <div class="panel-footer" style="text-align:center;">2024 ~ Solar Namdo ~         
-            
-               </div>
 
             </div>
 
@@ -673,11 +667,9 @@ input:readonly {
    </div>
       
    
-      <!-- Modal -->
+      <!-- Modal 
       <div id="noticeContent" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-      
-          <!-- Modal content-->
+        <div class="modal-dialog">      
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -708,8 +700,39 @@ input:readonly {
         </div>
       </div>
    
-   </div>   
+   </div>   -->
     
+   <!-- Modal -->
+<div id="noticeContent" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+                <h4 id="titleDetail" class="form-control-static"></h4>
+                <p id="created_atDetail" ></p>
+            </div>
+            <div class="modal-body">                
+                
+                
+                <div class="form-label">
+                    
+                    <div id="contentDetail" class="form-control-static" style="height: 200px; overflow-y: auto; font-size:16px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form action="noticeDelete.do" method="get">
+                    <input class="hidden" type="text" name="b_idx" id="hiddenIdx">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <c:if test="${mvo.user_id == 'admin'}">
+                        <button type="submit" class="btn btn-danger">삭제하기</button>
+                    </c:if>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
       
        
 </body>
