@@ -4,7 +4,7 @@
 
 ## 👀 서비스 소개
 * 서비스명:  딥러닝 모델을 통한 태양광 발전량 예측 솔루션
-* 서비스설명: 태양광 발전량 예측량을 원하는 사용자들을 위한 서비스로, 2014~2023년의 기상, 대기오염, 태양광발전량 데이터을 분석하여 다음날의 태양광 발전량을 예착하는 서비스입니다.
+* 서비스설명: 태양광 발전량 예측량을 원하는 사용자들을 위한 서비스로, 2014~2023년의 기상, 대기오염, 태양광발전량 데이터을 분석하여 다음날의 태양광 발전량을 예측하는 서비스입니다.
 <br>
 
 ## 📅 프로젝트 기간
@@ -162,7 +162,7 @@
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/ParkKyungWann" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
