@@ -1,7 +1,20 @@
+<img src="https://capsule-render.vercel.app/api?type=waving&color=BDBDC8&height=150&section=header" />
+
+## 딥러닝모델을 통한 태양광 발전량 예측 솔루션
+<span>팀명 : 어셈블 (2023. 12. 27 ~ 2024. 06. 20)</span>
+
+### 1. Project소개
+
+
+
+
+
+
+
+
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=BDBDC8&height=150&section=footer" />
+
+
 빅데이터 분석서비스 개발자 과정
 2023. 12. 27 ~ 2024. 06. 20
-
-팀명 : 어셈블
-주제 : 딥러닝모델을 통한 태양광 발전량 예측 솔루션
-
-프로젝트 기간 : 24. 05. 27 ~ 24. 06. 19
