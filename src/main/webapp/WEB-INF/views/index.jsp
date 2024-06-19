@@ -138,6 +138,7 @@
 
         for (var i = 0; i < selectedPopFcstValues.length; i++) {
             table.rows[1].cells[i + 1].innerHTML = selectedPopFcstValues[i];
+            table.rows[3].cells[i + 1].innerHTML = selectedSkyFcstValues[i];
         }
         
         for (var i = 0; i < selectedSkyFcstValues.length; i++) {
@@ -146,7 +147,7 @@
             
             // 비 조건 먼저 체크
             if (selectedPtyFcstValues[i] == 1) {
-                state = "비";
+                state = '<i class="bi bi-cloud-rain" style="color: coral;"></i>';
             } else if (selectedPtyFcstValues[i] == 2) {
                 state = "비/눈";
             } else if (selectedPtyFcstValues[i] == 3) {
@@ -155,10 +156,10 @@
                 state = "소나기";
             } else {
                 // 비가 아닐 경우 하늘 상태 체크
-                if (selectedSkyFcstValues[i] <= 5) {
+                if (selectedSkyFcstValues[i] <= 3) {
                     state = '<i class="bi bi-brightness-high-fill" style="color: coral;"></i>';
                 } else if (selectedSkyFcstValues[i] <= 8) {
-                    state = "구름많음";
+                	state = '<i class="bi bi-cloud-fill" style="color: coral;"></i>';
                 } else {
                     state = "흐림";
                 }
@@ -545,6 +546,24 @@ z-index:9999;
                   </tr>
                   <tr>
                      <td>날씨</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>구름량(0~10)</td>
                      <td></td>
                      <td></td>
                      <td></td>
