@@ -733,6 +733,15 @@ z-index:9999;
         </div>
     </div>
 </div>
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; 2024 <strong><span>SolarNamdo</span></strong>
+    </div>
+  </footer>
+
       
        
 </body>

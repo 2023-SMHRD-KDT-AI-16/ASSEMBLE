@@ -575,6 +575,13 @@ p {
 					
 					</script>
 
+	  <hr>				
+     <!-- ======= Footer ======= -->
+	  <footer id="footer" class="footer">
+	    <div class="copyright" style="padding-left: 550px;">
+	      &copy; 2024 <strong><span>SolarNamdo</span></strong>
+	    </div>
+	  </footer>
 			</div>
 	</main>
 
@@ -917,13 +924,6 @@ p {
 
 	});
 </script>
-
-						
-
-
-
-
-
 
 </body>
 </html>
