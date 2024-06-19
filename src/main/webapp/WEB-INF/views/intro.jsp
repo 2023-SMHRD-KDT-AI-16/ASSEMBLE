@@ -101,7 +101,7 @@ body, html {
         <video src="${pageContext.request.contextPath}/resources/video/intro_down.mp4" autoplay loop muted></video>
         <div class="overlay"></div>
         <div class="content">
-            <h1>SOLLANAMDO</h1>
+            <h1>SOLARNAMDO</h1>
             <h2 style="margin-bottom: 1px">POWER GENERATION PREDICTION SOLUTION</h3>
             <p style="font-size: 1rem; margin: 0px" >INNOVATIVE GREEN SOLUTIONS FOR A BETTER TOMORROW</p>
             <span style="margin: 20px auto;">
