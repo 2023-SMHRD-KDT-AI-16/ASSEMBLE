@@ -136,6 +136,13 @@
       </main>
       </div>
       <!-- End #main -->
+      
+     <!-- ======= Footer ======= -->
+	  <footer id="footer" class="footer">
+	    <div class="copyright">
+	      &copy; 2024 <strong><span>SolarNamdo</span></strong>
+	    </div>
+	  </footer>
    </div>
    <a href="#"
       class="back-to-top d-flex align-items-center justify-content-center"><i
