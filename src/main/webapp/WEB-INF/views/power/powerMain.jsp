@@ -577,8 +577,8 @@ p {
 
 	  <hr>				
      <!-- ======= Footer ======= -->
-	  <footer id="footer" class="footer">
-	    <div class="copyright" style="padding-left: 550px; color: #012970;">
+	  <footer id="footer" class="footer text-center">
+	    <div class="copyright" style="color: #012970;">
 	      &copy; 2024 <strong><span>SolarNamdo</span></strong>
 	    </div>
 	    <br>
